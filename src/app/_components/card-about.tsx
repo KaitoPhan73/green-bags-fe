@@ -9,23 +9,28 @@ import {
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+
 type CardProps = {
   link: string;
   title: string;
   description: string;
 };
+
 const CardAbout = ({ link, title, description }: CardProps) => {
   const router = useRouter();
   const handleNavigate = (link: string) => {
     router.push(link);
   };
+
   return (
     <Card className="flex flex-col items-center text-center p-4">
       <CardHeader className="flex flex-col items-center">
-        <CardTitle className="text-lg font-semibold ">{title}</CardTitle>
+        <CardTitle className="text-lg md:text-xl font-semibold">
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-md">{description}</p>
+        <p className="text-sm md:text-md">{description}</p>
       </CardContent>
       <CardFooter className="mt-4">
         <Button onClick={() => handleNavigate(link)}>
@@ -35,4 +40,5 @@ const CardAbout = ({ link, title, description }: CardProps) => {
     </Card>
   );
 };
+
 export default CardAbout;
