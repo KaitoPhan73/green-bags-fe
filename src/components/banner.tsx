@@ -10,7 +10,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-export default function Banner() {
+import { cn } from "@/lib/utils";
+import { items } from "@/constants/items-banner";
+type Props = {
+  className?: string;
+};
+
+export default function Banner({ className }: Props) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -19,34 +25,10 @@ export default function Banner() {
     plugin.current.play();
   };
 
-  const items = [
-    {
-      title: "San Hô",
-      description:
-        "San hô là loài sinh vật biển có cấu trúc phức tạp, sống thành cụm và tạo nên rạn san hô. Chúng đóng vai trò quan trọng trong hệ sinh thái biển.",
-      image: "/images/san-ho-tho-lan.jpg",
-      link: "@/",
-    },
-    {
-      title: "San Hô Đỏ",
-      description:
-        "San hô đỏ là một trong những loài san hô được biết đến nhiều nhất nhờ màu sắc nổi bật và giá trị thương mại cao.",
-      image: "/images/san-ho-cam.jpg",
-      link: "https://vi.wikipedia.org/wiki/San_hô_đỏ",
-    },
-    {
-      title: "San Hô Xanh",
-      description:
-        "San hô xanh, mặc dù ít phổ biến hơn, nhưng cũng đóng vai trò quan trọng trong việc duy trì sự cân bằng sinh thái của rạn san hô.",
-      image: "/images/san-ho-xanh.jpg",
-      link: "https://vi.wikipedia.org/wiki/San_hô_xanh",
-    },
-  ];
-
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full"
+      className={cn("w-full", className)}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={handleMouseLeave}
     >
