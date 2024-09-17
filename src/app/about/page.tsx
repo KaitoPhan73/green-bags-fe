@@ -24,7 +24,7 @@ function page() {
     <div>
     <PageTitle title="Dịch vụ" />
     <Container>
-      <Hero />
+      {/* <Hero /> */}
       <Who />
       <Works />
       <Contact />

@@ -2,13 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import BagSlider from "./BagSlider";
 import Sidebar from "./SideBar";
 import BagSelected from "./BagSelector";
+// import { useGetUserProfile } from "../../api/User/user";
+// import { API_ENDPOINTS } from "../../api/api-endpoint";
 import { useMutation, useQueryClient } from "react-query";
 import { Button, Input, Modal, notification } from "antd";
+// import http from "../../config/http";
 import html2canvas from "html2canvas";
 import Compressor from "compressorjs";
-import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { userRouter } from "react-router-dom";
 import CustomBagSteps from "../../UI/StepCustomBag";
+import { useRouter } from "next/navigation";
+// import {
+//   usePostCustomBagMutation,
+//   useUpdateCustomNameMutation,
+// } from "../../api/custom";
 
 const CustomBagV2 = () => {
   const [step, setStep] = useState(1);
@@ -41,9 +48,11 @@ const CustomBagV2 = () => {
   const [isTextSubmitted, setIsTextSubmitted] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
 
-  // const navigate = useNavigate();
+  const navigate = useRouter();
 
   const IMGUR_CLIENT_ID = "884e8514127eed3";
+
+  // const { data: userData, isFetching, error, refetch } = useGetUserProfile();
 
   // Function to handle showing the modal
   const showNameModal = () => {
@@ -63,6 +72,10 @@ const CustomBagV2 = () => {
     console.error("Failed to update custom name:", error);
   };
 
+  // const { mutate: updateCustomNameMutation } = useUpdateCustomNameMutation(
+  //   onUpdateNameSuccess,
+  //   onUpdateNameError
+  // );
 
   const handleSaveProductName = () => {
     updateCustomNameMutation({ customBagId: bagId, name: productName });
@@ -77,6 +90,10 @@ const CustomBagV2 = () => {
     console.error("Failed to post custom bag:", error);
   };
 
+  // const { mutate: postCustomBagMutation } = usePostCustomBagMutation(
+  //   onSuccess,
+  //   onError
+  // );
 
   const handlePostCustomBag = () => {
     if (userData && compressedBlob) {
