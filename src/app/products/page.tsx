@@ -1,6 +1,5 @@
 import React from "react";
 import { products, services } from "@/constants/data";
-import PageTitle from "@/components/page-tittle";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
 
@@ -12,7 +11,6 @@ const page = () => {
 
   return (
     <div>
-      <PageTitle title="Sản phẩm" />
       <section className="pt-12 md:pt-24 lg:pt-24">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
