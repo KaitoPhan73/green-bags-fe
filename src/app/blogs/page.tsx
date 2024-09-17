@@ -1,34 +1,24 @@
-import React from "react";
-import { services } from "@/constants/data";
 import PageTitle from "@/components/page-tittle";
+import React from "react";
+import ContactForm from "../contact/_components/form-contact";
 
 const page = () => {
   return (
     <div>
-      <PageTitle title="Dịch vụ" />
+      <PageTitle title="Liên hệ với chúng tôi " />
       <section className="py-12 md:py-24 lg:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-sans mb-8 text-center">
-            Dịch vụ của chúng tôi
-          </h2>
+        s
+        <div className="container mx-auto px-4 mb-24">
+          <h2 className="text-5xl font-sans mb-8 text-center">Tham gia</h2>
 
           <p className="text-gray-700 text-center text-2xl max-w-4xl mx-auto">
-            Chúng tôi là công ty chuyên cung cấp các trải nghiệm lặn biển và
-            khám phá san hô hàng đầu. Sứ mệnh của chúng tôi là bảo tồn và giới
-            thiệu vẻ đẹp của đại dương đến mọi người.
+            Gặp chúng tôi để tham gia những cuộc khám phá đại dương
           </p>
         </div>
+        <div className="md:mx-12 lg:mx-24">
+          <ContactForm />
+        </div>
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 md:mx-16 lg:mx-24">
-        {/* {services.map((service, index) => (
-          <CardService
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-          />
-        ))} */}
-      </div>
     </div>
   );
 };
