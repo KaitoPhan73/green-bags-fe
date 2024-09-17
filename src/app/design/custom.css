@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+    background-image: url("../../../public/images/tote-white.jpg");
+    width: 800px;
+    height: 1120px;
+    margin-left: 25%;
+    position: relative;
+  }
