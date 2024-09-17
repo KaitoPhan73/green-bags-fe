@@ -82,7 +82,7 @@ const CardProduct = ({ item, index }: CardProps) => {
           <div className="ml-4">
             <Button
               className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center"
-              onClick={() => router.push(`product/${item.id}`)}
+              onClick={() => router.push(`products/${item.id}`)}
             >
               <FaArrowRight className="h-4 w-4 text-black" />
             </Button>
