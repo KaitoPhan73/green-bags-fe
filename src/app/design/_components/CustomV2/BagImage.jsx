@@ -126,19 +126,27 @@ const BagImage = ({
           className="relative w-[600px] h-[521px] border rounded-lg border-pink-500 p-2 overflow-hidden "
           style={{
             backgroundColor: "#e2e8f0",
-            backgroundImage: `url(${"/images/bagsBody/BagTransparentBg.png"})`,
+            backgroundImage: `url(${"/bagsBody/BagTransparentBg.png"})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center",
-            maskImage: "url('/images/bagsBody/BagTransparentBg.png')",
-            WebkitMaskImage: "url('/images/bagsBody/BagTransparentBg.png')",
-            maskSize: "contain",
+            maskImage: "url('/bagsBody/BagTransparentBg.png')",
+            WebkitMaskImage: "url('/bagsBody/BagTransparentBg.png')",
+            maskSize: "contain",  
             WebkitMaskSize: "contain",
             maskPosition: "center",
             WebkitMaskPosition: "center",
             maskRepeat: "no-repeat",
             WebkitMaskRepeat: "no-repeat",
           }}
+          // style={{
+          //   backgroundColor: "#e2e8f0",
+          //   backgroundImage: `url('/bagsBody/BagTransparentBg.png')`,
+          //   backgroundSize: "cover",
+          //   backgroundRepeat: "no-repeat",
+          //   backgroundPosition: "center center",
+          // }}
+          
         >
           <img
             src={imageUrl}

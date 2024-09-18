@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { Card, Row, Col, Spin, notification, Button, Image } from "antd";
-// import { useRouter } from 'next/router'; // Use useRouter from next/router
+
 import CartCustom from "../OrderCustom/CartCustom";
 import styled from "styled-components";
 import BreadcrumbWithBackButton from "../../../UI/Breadcrum";
 import moment from "moment";
 import { DeleteOutlined } from "@ant-design/icons";
 import ConfirmButton from "../../../UI/ModalConfirm";
+import { useRouter } from "next/navigation";
 
 const CustomButton = styled(Button)`
   background-color: #cef53d;
@@ -57,7 +58,7 @@ const ColorSwatch = ({ color }) => (
 );
 
 const ListCustomPublic = () => {
-  // const router = useRouter(); // Initialize the router
+  const router = useRouter(); // Initialize the router
   const [prices, setPrices] = useState(400000);
   const [limit, setLimit] = useState(8);
 
@@ -91,9 +92,9 @@ const ListCustomPublic = () => {
     localStorage.setItem("cartItemsCus", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // const handleCreateCustomBag = () => {
-  //   router.push("/customize"); // Use router.push for navigation
-  // };
+  const handleCreateCustomBag = () => {
+    router.push("/customize"); // Use router.push for navigation
+  };
 
   const handleOrderBag = (customBag) => {
     const newCartItem = {
@@ -180,9 +181,9 @@ const ListCustomPublic = () => {
                         width: "100%",
                         height: "auto",
                         maskImage:
-                          "url('/images/bagsBody/BagTransparentBg.png')",
+                          "url('/bagsBody/BagTransparentBg.png')",
                         WebkitMaskImage:
-                          "url('/images/bagsBody/BagTransparentBg.png')",
+                          "url('/bagsBody/BagTransparentBg.png')",
                         maskSize: "contain",
                         WebkitMaskSize: "contain",
                         maskPosition: "center",
