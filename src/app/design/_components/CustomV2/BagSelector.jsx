@@ -14,6 +14,8 @@ import InputTextTab from "./contentTabs/InputTextTab";
 import DecorationTab from "./contentTabs/DecorationTab";
 import BagImage from "./BagImage";
 import CustomSteps from "../../UI/StepCartCustom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const { TabPane } = Tabs;
 
@@ -157,8 +159,9 @@ const BagSelected = ({
     <>
       <div className="flex items-center text-white">
         <div className="w-1/2 flex justify-end mr-10">
+        <DndProvider backend={HTML5Backend}>
           <BagImage
-            imageUrl="/images/bagsBody/BagTransparentBg.png"
+            imageUrl="/bagsBody/BagTransparentBg.png"
             color={selectedColor}
             stickers={stickers}
             onDrop={handleDrop}
@@ -171,6 +174,7 @@ const BagSelected = ({
             setImageURL={setImageURL}
             handleExportImage={handleExportImage}
           />
+          </DndProvider>
         </div>
         <div className="w-1/2 p-4 ">
           <Tabs

@@ -64,8 +64,8 @@ const CartCustom = () => {
             style={{
               width: "25%",
               height: "auto",
-              maskImage: "url('/images/bagsBody/BagTransparentBg.png')",
-              WebkitMaskImage: "url('/images/bagsBody/BagTransparentBg.png')",
+              maskImage: "url('/bagsBody/BagTransparentBg.png')",
+              WebkitMaskImage: "url('/bagsBody/BagTransparentBg.png')",
               maskSize: "contain",
               WebkitMaskSize: "contain",
               maskPosition: "center",
