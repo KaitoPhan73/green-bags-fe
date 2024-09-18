@@ -67,8 +67,10 @@ export default function Header() {
         {/* Login/Join Buttons */}
         <div className="ml-auto flex gap-2">
           <ModeToggle />
-          <Button variant="outline">Đăng nhập</Button>
-          <Button>Tham gia với chúng tôi</Button>
+          <Button variant="outline" className="text-sm sm:text-base">
+            Đăng nhập
+          </Button>
+          <Button className="text-sm sm:text-base">Đăng ký</Button>
         </div>
       </header>
     </div>

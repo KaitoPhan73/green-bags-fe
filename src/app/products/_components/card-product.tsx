@@ -1,3 +1,4 @@
+import { MotionDiv } from "@/components/motion-div";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Variants } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaArrowRight } from "react-icons/fa";
@@ -20,46 +22,75 @@ type CardProps = {
     id: number;
   };
 };
+
 const isLarge = (index: number) => {
   return index % 4 === 1 || index % 4 === 0;
 };
+
 const CardProduct = ({ item, index }: CardProps) => {
   const router = useRouter();
+  const getCardVariants = (index: number): Variants => {
+    return {
+      offscreen: {
+        x: index % 4 === 1 || index % 4 ? -200 : 200,
+        opacity: 0,
+      },
+      onscreen: {
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          bounce: 0.4,
+          duration: 2,
+        },
+      },
+    };
+  };
 
   return (
-    <div className="py-2 flex flex-col items-center">
-      <div
-        className={`${
-          isLarge(index + 1) ? "w-96 h-96" : "w-64 h-64"
-        } relative flex items-center justify-center`}
-      >
-        <Image
-          src={item.image}
-          alt={item.name}
-          layout="fill"
-          className="rounded-lg"
-        />
-      </div>
+    <MotionDiv
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+      variants={getCardVariants(index)}
+    >
+      <div className="py-2 flex flex-col items-center">
+        <div
+          className={`relative flex items-center justify-center ${
+            isLarge(index + 1) ? "w-full max-w-md h-80" : "w-full max-w-xs h-60"
+          }`}
+        >
+          <Image
+            src={item.image}
+            alt={item.name}
+            layout="fill"
+            className="rounded-lg object-cover"
+          />
+        </div>
 
-      <div
-        className={`flex justify-between items-center mt-2 ${
-          isLarge(index + 1) ? "w-96 " : "w-64"
-        }`}
-      >
-        <div className="p-4">
-          <h3 className="text-xl font-semibold">{item.name}</h3>
-          <p className="text-gray-700 max-w-xl">{item.price} VND</p>
-        </div>
-        <div>
-          <Button
-            className="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center"
-            onClick={() => router.push(`product/${item.id}`)}
-          >
-            <FaArrowRight className="h-4 w-4 text-black" />
-          </Button>
+        <div
+          className={`flex justify-between items-center mt-2 ${
+            isLarge(index + 1) ? "w-full max-w-md" : "w-full max-w-xs"
+          }`}
+        >
+          <div className="p-4 flex-1">
+            <h3 className="text-lg sm:text-xl font-semibold">{item.name}</h3>
+            <p className="text-gray-700 text-sm sm:text-base">
+              {item.price} VND
+            </p>
+          </div>
+          <div className="ml-4">
+            <Button
+              className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center"
+              onClick={() => router.push(`products/${item.id}`)}
+            >
+              <FaArrowRight className="h-4 w-4 text-black" />
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 };
+
 export default CardProduct;

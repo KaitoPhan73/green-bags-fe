@@ -27,6 +27,12 @@ export function useUrlParamChange() {
     return searchParams.get(key);
   };
 
+  const getCurrentParams = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    console.log("params", params);
+    return params;
+  };
+
   /**
    * Deletes a URL query parameter.
    * @param key - The query parameter key to delete.
@@ -37,5 +43,5 @@ export function useUrlParamChange() {
     router.replace(`${window.location.pathname}?${params.toString()}`); // Update URL with new query params
   };
 
-  return { updateUrlParams, getUrlParam, deleteUrlParam };
+  return { updateUrlParams, getUrlParam, deleteUrlParam, getCurrentParams };
 }

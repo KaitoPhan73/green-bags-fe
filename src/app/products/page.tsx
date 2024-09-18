@@ -1,6 +1,5 @@
 import React from "react";
 import { products, services } from "@/constants/data";
-import PageTitle from "@/components/page-tittle";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
 
@@ -9,10 +8,10 @@ const page = () => {
     { label: "Túi đeo chéo", value: "123" },
     { label: "Túi hư có sẳn", value: "456" },
   ];
+
   return (
     <div>
-      <PageTitle title="Dịch vụ" />
-      <section className="py-12 md:py-24 lg:py-24">
+      <section className="pt-12 md:pt-24 lg:pt-24">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
             <TabTypeProducts options={typeList} />

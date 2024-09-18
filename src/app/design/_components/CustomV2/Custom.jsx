@@ -616,7 +616,7 @@ const CustomBagV2 = () => {
               </svg>
 
               <h1 class="text-4xl font-bold mt-4">Yay !</h1>
-              <p>Your design custom bag have been done!</p>
+              <p>Your design custom bag have been donee!</p>
 
               <div className="flex my-10">
                 <a class="inline-flex items-center px-4 py-2 text-white bg-[#4848FF] border border-indigo-600 rounded rounded-full hover:bg-indigo-700 focus:outline-none focus:ring">
