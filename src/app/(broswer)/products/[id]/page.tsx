@@ -4,15 +4,16 @@ import { Input } from "@/components/ui/input";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { products } from "@/constants/data";
+import AddToCartButton from "@/components/add-to-cart-btn";
+import AddToCartQuantity from "./_components/add-cart-quantity";
 const ProductDetail = ({ params }: { params: { id: string } }) => {
-  const data = products.find((product) => product.id === Number(params.id));
-
+  const data = products.find((product) => product.id === params.id);
   return (
     <div className="container flex flex-col gap-8 w-[80vw] mt-20 p-8">
       <div className="flex gap-4 bg-slate-100 rounded-md p-8">
         <div className="">
           <Image
-            src={data?.image}
+            src={data?.image || "/path/to/default/image.jpg"}
             width={600}
             height={600}
             alt="Product"
@@ -55,15 +56,7 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
             </div>
             <p>{data?.description}</p>
           </div>
-          <div className="flex items-center gap-4">
-            <Input
-              type="number"
-              defaultValue={1}
-              className="w-20 h-10"
-              min={1}
-            />
-            <Button className="w-full">Thêm vào giỏ hàng</Button>
-          </div>
+          <AddToCartQuantity data={data} />
         </div>
       </div>
     </div>

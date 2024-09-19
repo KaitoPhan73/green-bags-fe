@@ -9,13 +9,14 @@ import {
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 function Cart() {
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Link href="cart">
+          <Link href="/cart">
             <Button variant="outline" size="icon" className="relative ">
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute inset-0 object-right-top mt-0 -mr-6">
@@ -63,12 +64,26 @@ function Cart() {
                     <p className="text-xs text-gray-500">Quantity: 1</p>
                   </div>
                 </div>
-                <p className="text-sm font-normal">$100</p>
+                {/* <p className="text-sm font-normal">$100</p> */}
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    toast("Event has been created", {
+                      description: "Sunday, December 03, 2023 at 9:00 AM",
+                      action: {
+                        label: "Undo",
+                        onClick: () => console.log("Undo"),
+                      },
+                    })
+                  }
+                >
+                  Show Toast
+                </Button>
               </div>
             </div>
             <Separator className="mb-2" />
             <Button variant="default" className="w-full mb-1" asChild>
-              <Link href="cart">Xem giỏ hàng</Link>
+              <Link href="/cart">Xem giỏ hàng</Link>
             </Button>
           </div>
         </TooltipContent>
