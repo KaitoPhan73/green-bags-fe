@@ -2,13 +2,15 @@ import React from "react";
 import { products, services } from "@/constants/data";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
+import { getProducts } from "@/api/productApi";
 
-const page = () => {
+const page = async () => {
   const typeList = [
     { label: "Túi đeo chéo", value: "123" },
     { label: "Túi hư có sẳn", value: "456" },
   ];
-
+  const response = await getProducts();
+  console.log(response.payload);
   return (
     <div>
       <section className="pt-12 md:pt-24 lg:pt-24">

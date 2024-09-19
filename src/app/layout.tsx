@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 const inter = Inter({ subsets: ["latin"] });
 import { ThemeProvider } from "@/components/theme-provider";
 import ReactQueryClientProvider from "@/provider/queryClient";
+import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Green Bag",
   description: "Túi",
@@ -26,9 +27,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
-            <main className="mt-20">{children}</main>
-            <Footer />
+            <main>{children}</main>
+            <Toaster />
           </ThemeProvider>
         </ReactQueryClientProvider>
       </body>

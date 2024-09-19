@@ -1,11 +1,11 @@
 import Banner from "@/components/banner";
-import AboutUs from "./_components/about-us";
-import Services from "./_components/services";
-import Testimonials from "./_components/testimonials ";
-import Gallery from "./_components/gallery";
-import Blog from "./_components/blog";
-import ContactUs from "./_components/contact-us";
-import DesignIntroduction from "./_components/design-introduction";
+import AboutUs from "../_components/about-us";
+import Services from "../_components/services";
+import Testimonials from "../_components/testimonials ";
+import Gallery from "../_components/gallery";
+import Blog from "../_components/blog";
+import ContactUs from "../_components/contact-us";
+import DesignIntroduction from "../_components/design-introduction";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function Home() {
