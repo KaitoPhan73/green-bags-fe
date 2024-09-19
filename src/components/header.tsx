@@ -11,6 +11,7 @@ import { headerPaths } from "@/constants/router";
 import Image from "next/image";
 import { ModeToggle } from "./mode-toggle";
 import { useRouter } from "next/navigation";
+import Cart from "./cart";
 
 export default function Header() {
   const router = useRouter();
@@ -69,6 +70,7 @@ export default function Header() {
 
         {/* Login/Join Buttons */}
         <div className="ml-auto flex gap-2">
+          <Cart />
           <ModeToggle />
           <Button
             variant="outline"
