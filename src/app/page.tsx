@@ -8,25 +8,21 @@ import ContactUs from "./_components/contact-us";
 import DesignIntroduction from "./_components/design-introduction";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
-
 export default function Home() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <Banner />
-        <div className="container mx-auto px-0 md:px-6 lg:px-8 mb-12">
-          <div>
-            <AboutUs />
-            <DesignIntroduction />
-            <Services />
-            <Testimonials />
-            <Gallery />
-            <Blog />
-            <ContactUs />
-          </div>
+    <div>
+      <Banner />
+      <div className="container mx-auto px-0 md:px-6 lg:px-8 mb-12">
+        <div>
+          <AboutUs />
+          <DesignIntroduction />
+          <Services />
+          <Testimonials />
+          <Gallery />
+          <Blog />
+          <ContactUs />
         </div>
       </div>
-    </QueryClientProvider>
+    </div>
   );
 }
