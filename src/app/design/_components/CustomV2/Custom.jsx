@@ -509,7 +509,7 @@ const CustomBagV2 = () => {
     setStep(3);
   };
 
-  const handleViewOrder = () => navigate("/my-custom");
+  const handleViewOrder = () => navigate.push("/my-custom");
 
   return (
     <div>
