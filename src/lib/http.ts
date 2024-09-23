@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { NextFetchRequestConfig } from "next/types";
+import NextFetchRequestConfig from "next/types";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -8,6 +8,11 @@ interface CustomOptions
     NextFetchRequestConfig {
   baseUrl?: string;
   params?: Record<string, any>;
+}
+
+interface HttpResponse<T> {
+  status: number;
+  payload: T;
 }
 
 interface HttpErrorPayload {
@@ -44,15 +49,15 @@ const createHttpClient = (defaultBaseUrl: string) => {
     method: HttpMethod,
     url: string,
     options?: CustomOptions
-  ): Promise<T> => {
+  ): Promise<HttpResponse<T>> => {
     const baseUrl = options?.baseUrl ?? defaultBaseUrl;
-    const fullUrl = new URL(url, baseUrl).toString();
+    const fullUrl = defaultBaseUrl + url;
     const queryString = options?.params ? buildQueryString(options.params) : "";
     const finalUrl = queryString ? `${fullUrl}?${queryString}` : fullUrl;
-
-    const headers: HeadersInit = {
+    console.log("baseUrl", fullUrl);
+    const headers: Record<string, string> = {
       "Content-Type": "application/json",
-      ...options?.headers,
+      ...(options?.headers || {}),
     };
 
     if (isClient()) {
@@ -86,14 +91,14 @@ const createHttpClient = (defaultBaseUrl: string) => {
       }
 
       handleAuthResponse(url, data);
-      return data;
+      return { status: response.status, payload: data };
     } catch (error) {
       console.error(`Error in ${method} request to ${finalUrl}:`, error);
       throw error;
     }
   };
 
-  const handleUnauthorized = async (headers: HeadersInit) => {
+  const handleUnauthorized = async (headers: Record<string, string>) => {
     if (isClient()) {
       if (!clientLogoutRequest) {
         clientLogoutRequest = fetch("/api/auth/logout", {
@@ -134,17 +139,14 @@ const createHttpClient = (defaultBaseUrl: string) => {
       request<T>("PUT", url, { ...options, body }),
     patch: <T>(url: string, body: any, options?: Omit<CustomOptions, "body">) =>
       request<T>("PATCH", url, { ...options, body }),
-    delete: <T>(
-      url: string,
-      body: any,
-      options?: Omit<CustomOptions, "body">
-    ) => request<T>("DELETE", url, { ...options, body }),
+    delete: <T>(url: string, options?: Omit<CustomOptions, "body">) =>
+      request<T>("DELETE", url, options),
   };
 };
 
 const httpServer = createHttpClient("");
-const httpWifi = createHttpClient(
-  "https://grandstream-wifi-paypal-2.onrender.com/api/v1.0.0"
+const httpBag = createHttpClient(
+  "https://greenbag-e3bnc3hwc7exebep.eastus-01.azurewebsites.net/api/v1"
 );
 
-export { httpServer, httpWifi, HttpError, EntityError };
+export { httpServer, httpBag, HttpError, EntityError };

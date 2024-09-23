@@ -26,6 +26,16 @@ const sidebarItems: SidebarItems = {
       label: "Users",
     },
     {
+      href: "/admin/orders",
+      icon: List,
+      label: "Orders",
+    },
+    {
+      href: "/admin/customs",
+      icon: List,
+      label: "Customs",
+    },
+    {
       href: "/admin/products",
       icon: List,
       label: "Products",

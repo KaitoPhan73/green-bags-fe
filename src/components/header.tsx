@@ -1,3 +1,4 @@
+"use client";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -9,8 +10,11 @@ import {
 import { headerPaths } from "@/constants/router";
 import Image from "next/image";
 import { ModeToggle } from "./mode-toggle";
+import { useRouter } from "next/navigation";
+import Cart from "./cart";
 
 export default function Header() {
+  const router = useRouter();
   return (
     <div className="w-full mx-auto px-4 md:px-6 lg:px-8 fixed z-10 top-0 bg-white">
       <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
@@ -66,11 +70,21 @@ export default function Header() {
 
         {/* Login/Join Buttons */}
         <div className="ml-auto flex gap-2">
+          <Cart />
           <ModeToggle />
-          <Button variant="outline" className="text-sm sm:text-base">
+          <Button
+            variant="outline"
+            className="text-sm sm:text-base"
+            onClick={() => router.push("/login")}
+          >
             Đăng nhập
           </Button>
-          <Button className="text-sm sm:text-base">Đăng ký</Button>
+          <Button
+            className="text-sm sm:text-base"
+            onClick={() => router.push("/register")}
+          >
+            Đăng ký
+          </Button>
         </div>
       </header>
     </div>

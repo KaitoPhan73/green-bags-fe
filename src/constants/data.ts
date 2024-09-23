@@ -58,7 +58,7 @@ export const homepageList = [
 
 export const products = [
   {
-    id: 1,
+    id: "1",
     name: "Túi Xanh",
     price: 150000,
     description: "Túi màu xanh với thiết kế đơn giản, thích hợp cho nhiều dịp.",
@@ -67,7 +67,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 2,
+    id: "2",
     name: "Túi Đỏ",
     price: 200000,
     description: "Túi màu đỏ nổi bật, phù hợp cho những sự kiện đặc biệt.",
@@ -76,7 +76,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 3,
+    id: "3",
     name: "Túi Vàng",
     price: 180000,
     description: "Túi màu vàng sáng, thời trang và cá tính.",
@@ -85,7 +85,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 4,
+    id: "4",
     name: "Túi Vàng 2",
     price: 180000,
     description: "Túi màu vàng sáng, thời trang và cá tính.",
@@ -94,7 +94,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 5,
+    id: "5",
     name: "Túi Xanh",
     price: 150000,
     description: "Túi màu xanh với thiết kế đơn giản, thích hợp cho nhiều dịp.",
@@ -103,7 +103,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 6,
+    id: "6",
     name: "Túi Đỏ",
     price: 200000,
     description: "Túi màu đỏ nổi bật, phù hợp cho những sự kiện đặc biệt.",
@@ -112,7 +112,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 7,
+    id: "7",
     name: "Túi Vàng",
     price: 180000,
     description: "Túi màu vàng sáng, thời trang và cá tính.",
@@ -121,7 +121,7 @@ export const products = [
     image: "/images/blue-sky.jpg",
   },
   {
-    id: 8,
+    id: "8",
     name: "Túi Vàng 2",
     price: 180000,
     description: "Túi màu vàng sáng, thời trang và cá tính.",
