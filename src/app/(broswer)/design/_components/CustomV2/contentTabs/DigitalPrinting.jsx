@@ -18,37 +18,37 @@ const digitalPrintingColors = [
   "#556B2F",
 ];
 
-const screenPrintingColors = [
-  "#8B0000",
-  "#FF6347",
-  "#FF8C00",
-  "#FFD700",
-  "#9ACD32",
-  "#00FF00",
-  "#32CD32",
-  "#008000",
-  "#00FA9A",
-  "#40E0D0",
-  "#20B2AA",
-  "#00CED1",
-  "#4682B4",
-  "#0000FF",
-  "#4169E1",
-  "#8A2BE2",
-  "#4B0082",
-  "#9932CC",
-  "#8B008B",
-  "#FF00FF",
-  "#FF1493",
-  "#FF69B4",
-  "#C71585",
-  "#DB7093",
-  "#F08080",
-  "#CD5C5C",
-  "#DC143C",
-  "#B22222",
-  "#A52A2A",
-];
+// const screenPrintingColors = [
+//   "#8B0000",
+//   "#FF6347",
+//   "#FF8C00",
+//   "#FFD700",
+//   "#9ACD32",
+//   "#00FF00",
+//   "#32CD32",
+//   "#008000",
+//   "#00FA9A",
+//   "#40E0D0",
+//   "#20B2AA",
+//   "#00CED1",
+//   "#4682B4",
+//   "#0000FF",
+//   "#4169E1",
+//   "#8A2BE2",
+//   "#4B0082",
+//   "#9932CC",
+//   "#8B008B",
+//   "#FF00FF",
+//   "#FF1493",
+//   "#FF69B4",
+//   "#C71585",
+//   "#DB7093",
+//   "#F08080",
+//   "#CD5C5C",
+//   "#DC143C",
+//   "#B22222",
+//   "#A52A2A",
+// ];
 
 const ColorSwatch = ({ color, onSelect }) => (
   <div
@@ -78,7 +78,7 @@ const DigitalPrinting = ({ onColorSelect }) => {
           ))}
         </div>
 
-        <div className="flex mb-4 mt-10 text-[12px]">
+        {/* <div className="flex mb-4 mt-10 text-[12px]">
           <h3 className="text-black  font-bold mr-4">Screen Printing </h3>
           <p>(12 Piece Minimum - Ship in 5-6 Days)</p>
         </div>
@@ -86,8 +86,8 @@ const DigitalPrinting = ({ onColorSelect }) => {
           {screenPrintingColors.map((color) => (
             <ColorSwatch key={color} color={color} onSelect={onColorSelect} />
           ))}
-        </div>
-        <p className="text-gray-400 mt-4 text-[9px] mt-16">
+        </div> */}
+        <p className="text-gray-400 mt-4 text-[15px] mt-16">
           A Tote Bag Is A Large, Typically Unlined Bag With Two Handles That Are
           Attached To The Sides Of The Bag. Tote Bags Are Typically Made From
           Durable Materials Such As Canvas, Cotton, Or Denim, And They Are Often
