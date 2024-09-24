@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ChevronRightIcon, ReloadIcon } from "@radix-ui/react-icons";
 import { useToast } from "@/hooks/use-toast";
-
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -21,92 +19,143 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+import { RegisterSchema, TRegisterRequest } from "@/schema/auth.schema";
+import { register } from "@/api/authencation";
 
-const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(1, {
-    message: "Password not empty.",
-  }),
-});
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { toast } = useToast();
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<TRegisterRequest>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
+      phoneNumber: "",
+      username: "",
+      roleName: "user",
     },
   });
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+
+  const onSubmit = async (data: TRegisterRequest) => {
+    setIsLoading(true);
+    try {
+      const response = await register(data);
+
+      if (response.status === 200) {
+        setIsLoading(false);
+        router.push("/");
+      }
+      toast({
+        title: "Đăng ký thành công",
+      });
+    } catch (error) {
+      toast({
+        title: "Có lỗi xảy ra",
+      });
+      console.error("Error in register request:", error);
+    }
+  };
 
   return (
     <Form {...form}>
       <div className={cn("grid gap-6", className)} {...props}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2">
+            {/* Username Field */}
             <div className="grid gap-1">
               <FormField
                 control={form.control}
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Tên đăng nhập</FormLabel>
                     <FormControl>
-                      <Input placeholder="Input your username" {...field} />
+                      <Input placeholder="Nhập tên đăng nhập" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+
+            {/* Password Field */}
             <div className="grid gap-1">
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Mật khẩu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Input your password" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="Nhập mật khẩu"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
+
+            {/* Email Field */}
+            <div className="grid gap-1">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nhập email của bạn" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* Phone Number Field */}
+            <div className="grid gap-1">
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Số điện thoại</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nhập số điện thoại" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <Button disabled={isLoading}>
               {isLoading && (
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Sign up
+              Đăng ký
             </Button>
           </div>
         </form>
+
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              Have an account?
+              Đã có tài khoản?
             </span>
           </div>
         </div>
+
         <Button
           variant="outline"
           type="button"

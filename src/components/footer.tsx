@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="text-center md:text-left md:w-2/5">
             <h2 className="text-3xl font-semibold mb-4">
-              Trải nghiệm tuyệt vời với Kalban
+              Trải nghiệm tuyệt vời với KALBAN
             </h2>
             <div className="flex items-center">
               <Icon className="h-32 w-32" />
@@ -29,7 +29,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-8 md:mt-0 md:w-1/5">
-            <h3 className="text-2xl font-semibold mb-4">Thương hiệu Kalban</h3>
+            <h3 className="text-2xl font-semibold mb-4">Thương hiệu KALBAN</h3>
             <ul>
               <li className="flex gap-2 items-center mb-2">
                 <FaPhoneAlt className="h-6 w-6 text-green-400" />
@@ -64,7 +64,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 text-center border-t border-black py-8">
-          <p>&copy; 2024 Khám Phá Biển và San Hô. All rights reserved.</p>
+          <p>&copy; 2024 Khám Phá Các Mẫu Túi Có Sẵn Và Tự Lên Ý Tưởng. Sáng Tạo Nào!</p>
         </div>
       </div>
     </footer>
