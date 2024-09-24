@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { Carousel } from "antd";
 import "tailwindcss/tailwind.css";
-import bags from "../../../../utils/Bags";
+import bags from "../../../../../utils/Bags";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import CustomSteps from "../../UI/StepCartCustom";
 

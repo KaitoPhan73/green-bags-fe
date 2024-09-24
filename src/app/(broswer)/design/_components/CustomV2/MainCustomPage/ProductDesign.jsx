@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Bag from "./Bag";
 import styled from "styled-components";
+import Model from "@/app/(broswer)/about/_components/Bag";
 
 const Desc = styled.div`
   width: 200px;
@@ -29,15 +29,11 @@ const ProductDesign = () => {
       <Canvas>
         <Suspense fallback={null}>
           <Stage environment="city" intensity={0.6}>
-            <Bag />
+            <Model />
           </Stage>
           <OrbitControls enableZoom={false} autoRotate />
         </Suspense>
       </Canvas>
-      <Desc>
-        We design products with a strong focus on both world class design and
-        ensuring your product is a market success.
-      </Desc>
     </>
   );
 };

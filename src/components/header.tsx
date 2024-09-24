@@ -112,7 +112,7 @@ function Icon(props: any) {
         alt="Kalban-logo"
         {...props}
       />
-      <p className="text-lg font-semibold">Kalban</p>
+      <p className="text-lg font-semibold">KALBAN</p>
     </div>
   );
 }

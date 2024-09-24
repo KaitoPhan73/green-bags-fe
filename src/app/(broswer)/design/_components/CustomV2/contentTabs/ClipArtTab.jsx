@@ -1,7 +1,7 @@
 // src/components/contentTabs/ClipArtTab.js
 import React, { useState } from "react";
 import { Modal, Input, Row, Col, Image, Button, Upload } from "antd";
-import items from "../../../../../utils/Items";
+import items from "../../../../../../utils/Items";
 import { PlusOutlined, RightOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 

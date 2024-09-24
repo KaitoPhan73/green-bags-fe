@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { API_ENDPOINTS } from "./api-endpoint";
-import http from "../config/http";
+import { API_ENDPOINTS } from "../api-endpoint";
+import http from "../../config/http";
 import { notification } from "antd";
 
 // POST CUSTOM BAG FUNCTION
-const postCustomBag = async ({ input, selectedColor }) => {
+export const postCustomBag = async ({ input, selectedColor }) => {
   let color = selectedColor.startsWith("#")
     ? selectedColor.substring(1)
     : selectedColor;

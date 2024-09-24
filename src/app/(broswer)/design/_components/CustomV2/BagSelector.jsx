@@ -1,6 +1,6 @@
 // BagSelected.js
 import React, { useState } from "react";
-import bags from "../../../../utils/Bags";
+import bags from "../../../../../utils/Bags";
 import { Button, Tabs } from "antd";
 import {
   CameraOutlined,
