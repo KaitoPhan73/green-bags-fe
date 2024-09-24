@@ -29,8 +29,8 @@ const NotFound = () => {
             <Image
               src="/images/not-found.jpg"
               alt="Image"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }} 
               className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale rounded-bl-[360px]"
             />
           </div>

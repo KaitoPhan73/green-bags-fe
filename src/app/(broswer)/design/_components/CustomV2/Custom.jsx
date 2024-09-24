@@ -346,7 +346,7 @@ import html2canvas from "html2canvas";
 import Compressor from "compressorjs";
 import { useRouter } from "next/navigation";
 import { Button, Input, Modal } from "antd";
-import { usePostCustomBagMutation, useUpdateCustomNameMutation } from "../../../../api/custom";
+import { usePostCustomBagMutation, useUpdateCustomNameMutation } from "../../../../../api/Custom/custom";
 
 const CustomBagV2 = () => {
   const [step, setStep] = useState(1);
@@ -509,7 +509,7 @@ const CustomBagV2 = () => {
     setStep(3);
   };
 
-  const handleViewOrder = () => navigate("/my-custom");
+  const handleViewOrder = () => navigate.push("/my-custom");
 
   return (
     <div>

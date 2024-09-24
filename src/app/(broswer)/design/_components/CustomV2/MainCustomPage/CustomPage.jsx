@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import CustomBagV2 from "../Custom";
 import { ArrowDownOutlined } from "@ant-design/icons";
 import ListCustomPublic from "../GetCustom/CustomPublic";
-import ProductDesign from "@/app/about/_components/ProductDesign";
+import ProductDesign from "./ProductDesign";
 import Grid from '@mui/material/Grid';
 
 const CustomPage = () => {
@@ -39,20 +39,20 @@ const CustomPage = () => {
       <div style={{}}>
         <div className="h-screen flex" style={{ backgroundColor: "#C0C0C0" }}>
           <Grid container spacing={2}>
-            <Grid item xs={5}>
+            <Grid item xs={6}>
               <ProductDesign />
             </Grid>
 
-            <Grid item xs={7} className="flex flex-col items-center justify-center text-center p-80">
+            <Grid item xs={6} className="flex flex-col items-center justify-center text-center p-80">
               <div className="max-w-md">
                 <div>
-                  <h1 className="text-[100px] text-left text-xl font-semibold mb-4 text-black relative z-10">
-                    <span className="relative z-70">Custom Your Bag.</span>
+                  <h1 className="text-[100px] text-left text-xl font-semibold mb-4 text-red relative z-1">
+                    <span className="relative">Custom Your Bag.</span>
                     <br />
 
                   </h1>
                 </div>
-                <p className="text-lg mb-8 w-[70%] text-black text-left">
+                <p className="text-lg mb-8 w-[70%] text-black text-left z-1">
                   Discover the world of custom tote bags with Nghich – your
                   one-stop solution for personalized totes in multiple styles,
                   materials, and print techniques.
@@ -69,7 +69,7 @@ const CustomPage = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center h-[500px]">
-          <h1 className="amatic-sc-regular text-[140px]  text-white text-center">
+          <h1 className="amatic-sc-regular text-[140px]  text-black text-center">
             Remember,
           </h1>
           <p className="text-center text-black mt-4 max-w-4xl px-4">

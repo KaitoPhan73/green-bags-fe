@@ -14,7 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import PersonIcon from '@mui/icons-material/Person';
+import HistoryIcon from '@mui/icons-material/History';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import LogoutIcon from '@mui/icons-material/Logout';
 const UserHeader = () => {
   const user = getUserInfo();
   const router = useRouter();
@@ -47,35 +50,42 @@ const UserHeader = () => {
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuContent className="w-50" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">
+                <p className="text-xs leading-none text-muted-foreground">
+                  Chào Mừng
+                </p>
+                <p className="text-sm font-bold leading-none">
                   {user.fullName ? user.fullName : user.username}
                 </p>
-                <p className="text-xs leading-none text-muted-foreground">
-                  chào mừng
-                </p>
+
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
+                <PersonIcon style={{ marginRight: "8px" }} /> 
                 Hồ sơ
                 {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
               </DropdownMenuItem>
               <DropdownMenuItem>
+                <HistoryIcon style={{ marginRight: "8px" }} />
                 Lịch sử mua hàng
                 {/* <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> */}
               </DropdownMenuItem>
               <DropdownMenuItem>
+                <LocalMallIcon style={{ marginRight: "8px" }} />
                 Sản phẩm của bạn
                 {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href="/logout">Log out</Link>
+              <Link href="/logout">
+              <LogoutIcon style={{ marginRight: "8px" }}/>
+              Log out
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

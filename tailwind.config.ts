@@ -54,6 +54,9 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      zIndex: {
+        '-1': '-1',  // Thêm z-index -1
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

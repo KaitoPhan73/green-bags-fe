@@ -25,8 +25,8 @@ function page() {
       <PageTitle title="Khác" />
       <Container>
         {/* <Hero /> */}
-        <Who />
-        <Works />
+        {/* <Who />
+        <Works /> */}
         <Contact />
       </Container>
     </div>
