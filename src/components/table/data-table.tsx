@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -29,9 +28,10 @@ import { DataTableToolbar } from "./data-table-toolbar";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { TTableResponse } from "@/types/Table";
+import { CustomColumnDef } from "@/types/Colunm";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+  columns: CustomColumnDef<TData, TValue>[];
   payload: TTableResponse<TData>;
 }
 
@@ -48,7 +48,8 @@ export function DataTable<TData, TValue>({
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
-  const data = payload?.items || [];
+  const data = payload?.listResult || [];
+  console.log("data", data);
   const table = useReactTable({
     data,
     columns,
