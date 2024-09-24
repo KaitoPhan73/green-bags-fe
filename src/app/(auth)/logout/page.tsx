@@ -1,5 +1,5 @@
 "use client";
-import authApi from "@/actions/authencation";
+import authClient from "@/api/client/auth";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
@@ -15,7 +15,7 @@ function LogoutLogic() {
       try {
         localStorage.clear();
         sessionStorage.clear();
-        await authApi.logoutFromNextClientToNextServer(true, signal);
+        await authClient.logoutFromNextClientToNextServer(true, signal);
         router.push(`/login?redirectFrom=${pathname}`);
       } catch (error) {
         console.error("Logout failed:", error);
