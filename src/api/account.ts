@@ -5,18 +5,31 @@ import { TAccountResponse } from "@/schema/account.schema";
 import { TTableResponse } from "@/types/Table";
 
 // Lấy tất cả tài khoản
-const getAllAccounts = async (): Promise<TTableResponse<TAccountResponse>> => {
+const getAllAccounts = async (accessToken: string, params?: any) => {
   const response = await httpBag.get<TTableResponse<TAccountResponse>>(
-    "/account"
+    "/account",
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params,
+    }
   );
-  return response.payload;
+  return response;
 };
 
-const getAllAccountsActive = async (): Promise<
-  TTableResponse<TAccountResponse>
-> => {
+const getAllAccountsActive = async (
+  accessToken: string,
+  params?: any
+): Promise<TTableResponse<TAccountResponse>> => {
   const response = await httpBag.get<TTableResponse<TAccountResponse>>(
-    "/account/account-status-active"
+    "/account/account-status-active",
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params,
+    }
   );
   return response.payload;
 };

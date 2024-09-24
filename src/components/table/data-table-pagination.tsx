@@ -19,7 +19,7 @@ interface DataTablePaginationProps<TData> {
   table: Table<TData>;
   paginationProps: {
     page: number;
-    size: number;
+    limit: number;
     totalPage: number;
   };
 }
@@ -37,7 +37,7 @@ export function DataTablePagination<TData>({
 
   const handlePageSizeChange = (newPageSize: number) => {
     table.setPageSize(newPageSize);
-    updateUrlParams("size", newPageSize);
+    updateUrlParams("limit", newPageSize);
   };
 
   return (
@@ -102,7 +102,7 @@ export function DataTablePagination<TData>({
               onValueChange={(value) => handlePageSizeChange(Number(value))}
             >
               <SelectTrigger className="h-8 w-full">
-                <SelectValue placeholder={paginationProps.size} />
+                <SelectValue placeholder={paginationProps.limit} />
               </SelectTrigger>
               <SelectContent side="top">
                 {[5, 10, 20, 30, 40, 50].map((pageSize) => (

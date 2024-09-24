@@ -48,10 +48,7 @@ const createProduct = async (
 };
 
 // Cập nhật sản phẩm
-const updateProduct = async (
-  id: string,
-  body: TUpdateProductRequest
-): Promise<TProductResponse> => {
+const updateProduct = async (id: string, body: TUpdateProductRequest) => {
   const response = await httpBag.patch<TProductResponse>(
     `/products/${id}`,
     body

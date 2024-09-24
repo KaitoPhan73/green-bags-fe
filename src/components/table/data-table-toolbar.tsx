@@ -47,7 +47,7 @@ export function DataTableToolbar<TData>({
 
   const columnTitles = table.getAllColumns().reduce((acc, column) => {
     const header = column.columnDef.header;
-
+    console.log("column", header);
     if (typeof header === "function") {
       const renderedHeader = header({ column } as any);
       if (React.isValidElement(renderedHeader)) {
