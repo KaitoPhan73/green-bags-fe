@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-50 text-black pt-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start">
+        <div className="flex flex-col md:flex-row justify-between items-start border-t-b border-black py-8 bg-gray-100">
           <div className="text-center md:text-left md:w-2/5">
             <h2 className="text-3xl font-semibold mb-4">
               Trải nghiệm tuyệt vời với KALBAN
