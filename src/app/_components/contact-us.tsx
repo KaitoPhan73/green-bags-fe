@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const ContactUs = () => {
   const router = useRouter();
   return (
-    <div className="relative flex flex-col items-center justify-center h-64">
+    <div className="relative flex flex-col items-center justify-center h-64 z-1">
       <div className="absolute inset-0">
         <Image
           src="/images/contact-background.jpg"

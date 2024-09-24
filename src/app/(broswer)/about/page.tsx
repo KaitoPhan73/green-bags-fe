@@ -1,9 +1,7 @@
 "use client";
 import styled from "styled-components";
 import Contact from "./_components/Contact";
-import Hero from "./_components/Hero";
-import Who from "./_components/Who";
-import Works from "./_components/Works";
+
 import PageTitle from "@/components/page-tittle";
 
 const Container = styled.div`
@@ -22,11 +20,8 @@ const Container = styled.div`
 function page() {
   return (
     <div>
-      <PageTitle title="Khác" />
+      <PageTitle title="Liên hệ với chúng tôi" />
       <Container>
-        {/* <Hero /> */}
-        {/* <Who />
-        <Works /> */}
         <Contact />
       </Container>
     </div>

@@ -5,9 +5,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { DataTableColumnHeader } from "../../../../components/data-table-column-header";
+import { DataTableColumnHeader } from "../../../../components/table/data-table-column-header";
 import { TVoucherGroupResponse } from "@/schema/voucher-group.schema";
-import { DataTableRowActions } from "@/components/data-table-row-actions";
+import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 
 export const columns: ColumnDef<TVoucherGroupResponse>[] = [
   {
