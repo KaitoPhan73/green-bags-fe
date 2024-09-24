@@ -12,6 +12,7 @@ import Image from "next/image";
 import { ModeToggle } from "./mode-toggle";
 import { useRouter } from "next/navigation";
 import Cart from "./cart";
+import UserHeader from "./user-header";
 
 export default function Header() {
   const router = useRouter();
@@ -72,19 +73,7 @@ export default function Header() {
         <div className="ml-auto flex gap-2">
           <Cart />
           <ModeToggle />
-          <Button
-            variant="outline"
-            className="text-sm sm:text-base"
-            onClick={() => router.push("/login")}
-          >
-            Đăng nhập
-          </Button>
-          <Button
-            className="text-sm sm:text-base"
-            onClick={() => router.push("/register")}
-          >
-            Đăng ký
-          </Button>
+          <UserHeader />
         </div>
       </header>
     </div>

@@ -1,5 +1,9 @@
+import { TAuthResponse } from "@/schema/auth.schema";
 import { redirect } from "next/navigation";
 import NextFetchRequestConfig from "next/types";
+import envConfig from "@/schema/config";
+import { normalizePath } from "./utils";
+import exp from "constants";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -40,7 +44,7 @@ const buildQueryString = (params: Record<string, any>): string =>
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join("&");
 
-const isClient = () => typeof window !== "undefined";
+export const isClient = () => typeof window !== "undefined";
 
 const createHttpClient = (defaultBaseUrl: string) => {
   let clientLogoutRequest: Promise<any> | null = null;
@@ -50,14 +54,25 @@ const createHttpClient = (defaultBaseUrl: string) => {
     url: string,
     options?: CustomOptions
   ): Promise<HttpResponse<T>> => {
-    const baseUrl = options?.baseUrl ?? defaultBaseUrl;
-    const fullUrl = defaultBaseUrl + url;
-    const queryString = options?.params ? buildQueryString(options.params) : "";
-    const finalUrl = queryString ? `${fullUrl}?${queryString}` : fullUrl;
+    const baseUrl =
+      options?.baseUrl === undefined ? defaultBaseUrl : options.baseUrl;
+
+    let fullUrl = url.startsWith("/")
+      ? `${baseUrl}${url}`
+      : `${baseUrl}/${url}`;
+
+    if (options?.params) {
+      const queryString = buildQueryString(options.params);
+      fullUrl = queryString ? `${fullUrl}?${queryString}` : `${fullUrl}`;
+    }
     console.log("baseUrl", fullUrl);
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
-      ...(options?.headers || {}),
+      ...Object.fromEntries(
+        Object.entries(options?.headers || {}).filter(
+          ([key, value]) => typeof value === "string"
+        )
+      ),
     };
 
     if (isClient()) {
@@ -77,7 +92,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
     };
 
     try {
-      const response = await fetch(finalUrl, config);
+      const response = await fetch(fullUrl, config);
       const data = await response.json();
 
       if (!response.ok) {
@@ -93,7 +108,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       handleAuthResponse(url, data);
       return { status: response.status, payload: data };
     } catch (error) {
-      console.error(`Error in ${method} request to ${finalUrl}:`, error);
+      console.error(`Error in ${method} request to ${fullUrl}:`, error);
       throw error;
     }
   };
@@ -122,10 +137,18 @@ const createHttpClient = (defaultBaseUrl: string) => {
 
   const handleAuthResponse = (url: string, data: any) => {
     if (isClient()) {
-      if (["auth/login", "auth/register"].includes(url)) {
-        localStorage.setItem("accessToken", data.accessToken);
-      } else if (url === "auth/logout") {
+      console.log("Normalized URL:", normalizePath(url));
+
+      if (
+        ["api/auth", "/register"].some((item) => item === normalizePath(url))
+      ) {
+        localStorage.setItem("accessToken", data.token);
+        const parseData = data.user;
+
+        localStorage.setItem("user", JSON.stringify(parseData));
+      } else if (url === "/auth/logout") {
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("user");
       }
     }
   };
@@ -144,9 +167,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
   };
 };
 
-const httpServer = createHttpClient("");
-const httpBag = createHttpClient(
-  "https://greenbag-e3bnc3hwc7exebep.eastus-01.azurewebsites.net/api/v1"
-);
+const httpServer = createHttpClient(envConfig.NEXT_PUBLIC_URL);
+const httpBag = createHttpClient(envConfig.NEXT_PUBLIC_BAG_API_ENDPOINT);
 
 export { httpServer, httpBag, HttpError, EntityError };

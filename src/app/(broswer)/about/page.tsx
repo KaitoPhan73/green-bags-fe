@@ -13,7 +13,7 @@ const Container = styled.div`
   overflow-y: auto;
   scrollbar-width: none;
   color: white;
-  background: url("/images/bg.jpg"); 
+  background: url("/images/bg.jpg");
   &::-webkit-scrollbar {
     display: none;
   }
@@ -22,13 +22,13 @@ const Container = styled.div`
 function page() {
   return (
     <div>
-    <PageTitle title="Dịch vụ" />
-    <Container>
-      {/* <Hero /> */}
-      <Who />
-      <Works />
-      <Contact />
-    </Container>
+      <PageTitle title="Khác" />
+      <Container>
+        {/* <Hero /> */}
+        <Who />
+        <Works />
+        <Contact />
+      </Container>
     </div>
   );
 }

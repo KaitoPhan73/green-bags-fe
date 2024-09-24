@@ -20,7 +20,9 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { LoginSchema, TLoginRequest } from "@/schema/auth.schema";
-import authApi from "@/api/authencation";
+import { checkLogin } from "@/api/authencation";
+import authClient from "@/api/client/auth";
+
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
@@ -35,22 +37,34 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     },
   });
   const onSubmit = async (data: TLoginRequest) => {
-    setIsLoading(true);
-    const response = await authApi.checkLogin(data);
-    if (response.status === 200) {
-      await authApi.auth({
-        accessToken: response.payload.accessToken,
-        expireTime: response.payload.expireTime,
-      });
+    try {
+      setIsLoading(true);
+      const response = await checkLogin(data);
+
+      if (response.status === 200) {
+        await authClient.auth({
+          expireTime: 999999999,
+          user: response.payload,
+        });
+
+        toast({
+          title: "Chào mừng bạn trở lại",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">Đang chuyển đến trang chủ</code>
+            </pre>
+          ),
+        });
+
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Login error: ", error);
       toast({
-        title: "Sign in successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">You are redirecting!!</code>
-          </pre>
-        ),
+        title: "Sign in failed",
+        description: "An error occurred. Please try again.",
       });
-      router.push("/admin/voucher-groups");
+    } finally {
       setIsLoading(false);
     }
   };

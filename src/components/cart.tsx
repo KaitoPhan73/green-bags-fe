@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -6,12 +7,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import useCartStore from "@/store/cartStore";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 
 function Cart() {
+  const { items, clearCart, getTotal } = useCartStore();
   return (
     <TooltipProvider>
       <Tooltip>
@@ -21,7 +24,7 @@ function Cart() {
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute inset-0 object-right-top mt-0 -mr-6">
                 <div className="inline-flex items-center px-1 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
-                  2
+                  {items.length}
                 </div>
               </span>
             </Button>
