@@ -380,7 +380,7 @@ const CustomBagV2 = () => {
 
   const { mutate: postCustomBagMutation } = usePostCustomBagMutation(
     (data) => {
-      setBagId(data._id); // Assuming the bag ID is in the _id field
+      setBagId(data._id);
       showNameModal();
     },
     (error) => {
