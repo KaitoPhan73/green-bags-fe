@@ -66,17 +66,17 @@ const UserHeader = () => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <PersonIcon style={{ marginRight: "8px" }} /> 
-                Hồ sơ
+                Hồ Sơ
                 {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <HistoryIcon style={{ marginRight: "8px" }} />
-                Lịch sử mua hàng
+                Lịch Sử Mua Hàng
                 {/* <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> */}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <LocalMallIcon style={{ marginRight: "8px" }} />
-                Sản phẩm của bạn
+                Sản Phẩm Của Bạn
                 {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -84,7 +84,7 @@ const UserHeader = () => {
             <DropdownMenuItem>
               <Link href="/logout">
               <LogoutIcon style={{ marginRight: "8px" }}/>
-              Log out
+              Đăng Xuất
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

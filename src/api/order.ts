@@ -8,10 +8,18 @@ import {
 } from "@/schema/order.schema";
 import { TTableResponse } from "@/types/Table";
 
-// Lấy tất cả đơn hàng
-const getAllOrders = async (): Promise<TTableResponse<TOrderResponse>> => {
-  const response = await httpBag.get<TTableResponse<TOrderResponse>>("/order");
-  return response.payload;
+
+const getAllOrders = async (accessToken: string, params?: any) => {
+  const response = await httpBag.get<TTableResponse<TOrderResponse>>(
+    "/order",
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params,
+    }
+  );
+  return response;
 };
 
 // Lấy đơn hàng theo ID
