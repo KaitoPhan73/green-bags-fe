@@ -2,10 +2,7 @@
 
 import { DataTable } from "@/components/table/data-table";
 import { columns } from "./components/columns";
-import CardVoucher from "./components/card";
 import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
-import CardReports from "./components/card-report";
 import { getAllAccounts } from "@/api/account";
 
 export default async function UsersPage(props: any) {

@@ -7,8 +7,9 @@ import {
   List,
   Mail,
   MoreHorizontal,
+  ShoppingCart, 
   User,
-  Users,
+  Package, 
 } from "lucide-react";
 import { SidebarDesktop } from "./sidebar-desktop";
 import { SidebarButton } from "./sidebar-button";
@@ -18,39 +19,39 @@ import { SidebarItems } from "./types";
 
 const sidebarItems: SidebarItems = {
   links: [
-    { label: "Home", href: "/", icon: Home },
+    { label: "Trang Chủ", href: "/", icon: Home },
 
     {
       href: "/admin/users",
-      icon: List,
-      label: "Users",
+      icon: User,
+      label: "Nguời Dùng",
     },
     {
       href: "/admin/orders",
-      icon: List,
-      label: "Orders",
+      icon: ShoppingCart,
+      label: "Đơn Hàng",
     },
     {
       href: "/admin/customs",
       icon: List,
-      label: "Customs",
+      label: "Sản Phẩm Tùy Chỉnh",
     },
     {
       href: "/admin/products",
-      icon: List,
-      label: "Products",
+      icon: Package,
+      label: "Sản Phẩm",
     },
   ],
   extras: (
     <div className="flex flex-col gap-2">
       <SidebarButton icon={MoreHorizontal} className="w-full">
-        More
+        Thêm
       </SidebarButton>
       <SidebarButton
         className="w-full justify-center text-white"
         variant="default"
       >
-        Tweet
+        ADMINISTRATION
       </SidebarButton>
     </div>
   ),

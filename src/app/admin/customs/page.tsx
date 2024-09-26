@@ -3,17 +3,16 @@
 import { DataTable } from "@/components/table/data-table";
 import { columns } from "./components/columns";
 import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
-import { getAllProducts } from "@/api/product";
+import { getAllCustoms } from "@/api/custom";
 
-export default async function ProductsPage(props: any) {
+export default async function CustomsPage(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  const response = await getAllProducts(accessToken!, params);
+  const response = await getAllCustoms(accessToken!, params);
  
   return (
     <>
