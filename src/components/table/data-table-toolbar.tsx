@@ -47,7 +47,6 @@ export function DataTableToolbar<TData>({
 
   const columnTitles = table.getAllColumns().reduce((acc, column) => {
     const header = column.columnDef.header;
-    console.log("column", header);
     if (typeof header === "function") {
       const renderedHeader = header({ column } as any);
       if (React.isValidElement(renderedHeader)) {
@@ -75,7 +74,7 @@ export function DataTableToolbar<TData>({
               return (
                 <Input
                   key={column.id}
-                  placeholder={`Filter ${columnTitles[column.id]}...`}
+                  placeholder={`Tìm Kiếm ${columnTitles[column.id]}...`}
                   value={(column.getFilterValue() as string) ?? ""}
                   onChange={(event) => {
                     column.setFilterValue(event.target.value);

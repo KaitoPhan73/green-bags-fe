@@ -60,12 +60,11 @@ const createHttpClient = (defaultBaseUrl: string) => {
     let fullUrl = url.startsWith("/")
       ? `${baseUrl}${url}`
       : `${baseUrl}/${url}`;
-
+    console.log("options", options);
     if (options?.params) {
       const queryString = buildQueryString(options.params);
       fullUrl = queryString ? `${fullUrl}?${queryString}` : `${fullUrl}`;
     }
-    console.log("baseUrl", fullUrl);
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       ...Object.fromEntries(
@@ -90,7 +89,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
           : JSON.stringify(options?.body),
       next: options?.next,
     };
-
+    console.log("config", config);
     try {
       const response = await fetch(fullUrl, config);
       const data = await response.json();
