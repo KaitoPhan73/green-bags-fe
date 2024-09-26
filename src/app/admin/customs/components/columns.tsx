@@ -3,29 +3,17 @@
 import { DataTableColumnHeader } from "../../../../components/table/data-table-column-header";
 import { CustomColumnDef } from "@/types/Colunm";
 import { DataTableRowActions } from "@/components/table/data-table-row-actions";
-import { TProductResponse } from "@/schema/product.schema";
-import { formattedDateTime } from "@/lib/formatter";
+import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
+import { TCustomResponse } from "@/schema/custom.schema";
 
-export const columns: CustomColumnDef<TProductResponse>[] = [
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="ID" />
-  //   ),
-  //   cell: ({ row }) => (
-  //     <div className="w-[80px]">{row.getValue("id")}</div>
-  //   ),
-  //   enableSorting: true,
-  //   enableHiding: false,
-  //   enableColumnFilter: true,
-  // },
+export const columns: CustomColumnDef<TCustomResponse>[] = [
   {
     accessorKey: "createdDate",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ngày tạo" />
     ),
-    cell: ({ row }) => (
-      <div className="">{formattedDateTime(row.getValue("createdDate"))}</div>
+    cell: ({ row  }) => (
+      <div className="w-36">{formattedDateTime(row.getValue("createdDate"))}</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -58,7 +46,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       <DataTableColumnHeader column={column} title="Người chỉnh sửa" />
     ),
     cell: ({ row }) => (
-      <div className="">{row.getValue("modifiedBy") || 'N/A'}</div>
+      <div className="">{row.getValue("modifiedBy") ?? 'N/A' }</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -87,32 +75,42 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
     },
     enableColumnFilter: true,
   },
-  // {
-  //   accessorKey: "baseModelID",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Base Model ID" />
-  //   ),
-  //   cell: ({ row }) => (
-  //     <div className="">{row.getValue("baseModelID")}</div>
-  //   ),
-  //   enableSorting: true,
-  //   enableColumnFilter: true,
-  // },
   {
-    accessorKey: "finalPrice",
+    accessorKey: "optionName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Giá cuối" />
+      <DataTableColumnHeader column={column} title="Tên tùy chọn" />
     ),
     cell: ({ row }) => (
-      <div className="">{formattedDateTime(row.getValue("finalPrice"))}</div>
+      <div className="">{row.getValue("optionName") || 'N/A'}</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
   },
   {
-    id: "actions", 
+    accessorKey: "optionType",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Loại tùy chọn" />
+    ),
+    cell: ({ row }) => (
+      <div className="">{row.getValue("optionType") || 'N/A'}</div>
+    ),
+    enableSorting: true,
+    enableColumnFilter: true,
+  },
+  {
+    accessorKey: "additionalPrice",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Giá bổ sung" />
+    ),
+    cell: ({ row }) => (
+      <div className="">{formatPriceVND(row.getValue("additionalPrice"))}</div>
+    ),
+    enableSorting: true,
+    enableColumnFilter: true,
+  },
+  {
+    id: "actions",
     header: "Actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];
-  
