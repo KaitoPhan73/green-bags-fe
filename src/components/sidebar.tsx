@@ -7,10 +7,12 @@ import {
   List,
   Mail,
   MoreHorizontal,
-  ShoppingCart, 
+  ShoppingCart,
   User,
-  Package, 
+  Package,
+  ChartBarStacked,
 } from "lucide-react";
+
 import { SidebarDesktop } from "./sidebar-desktop";
 import { SidebarButton } from "./sidebar-button";
 import { useMediaQuery } from "usehooks-ts";
@@ -40,6 +42,16 @@ const sidebarItems: SidebarItems = {
       href: "/admin/products",
       icon: Package,
       label: "Sản Phẩm",
+    },
+    {
+      href: "/admin/base-models",
+      icon: Package,
+      label: "Sản Phẩm Gốc",
+    },
+    {
+      href: "/admin/categories",
+      icon: ChartBarStacked,
+      label: "Phân Loại",
     },
   ],
   extras: (

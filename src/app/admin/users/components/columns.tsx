@@ -9,7 +9,6 @@ import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { formattedDate, formattedDateTime } from "@/lib/formatter";
 
 export const columns: CustomColumnDef<TAccountResponse>[] = [
-
   {
     accessorKey: "username",
     header: ({ column }) => (
@@ -38,9 +37,7 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Email" />
     ),
-    cell: ({ row }) => (
-      <div className="w-[80px]">{row.getValue("email")}</div>
-    ),
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("email")}</div>,
     enableSorting: false,
     enableHiding: false,
     enableColumnFilter: true,
@@ -48,17 +45,19 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
       filterType: "input",
     },
   },
-  
+
   {
     accessorKey: "createdDate",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ngày tạo" />
     ),
     cell: ({ row }) => (
-      <div className="w-[30px]">{formattedDateTime(row.getValue("createdDate"))}</div>
+      <div className="w-[30px]">
+        {formattedDateTime(row.getValue("createdDate"))}
+      </div>
     ),
   },
-  
+
   {
     accessorKey: "status",
     header: ({ column }) => (
