@@ -12,7 +12,7 @@ const CartPage = () => {
   return (
     <section className="py-24 relative">
       <div className="container px-4 md:px-5 lg-6 mx-auto">
-        <h2 className="title font-manrope font-bold text-4xl leading-10 mb-8 text-black">
+        <h2 className="title font-manrope font-bold text-4xl leading-10 mb-8 ">
           Giỏ hàng của bạn
         </h2>
 

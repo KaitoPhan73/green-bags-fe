@@ -35,8 +35,8 @@ const CardBlog = ({
 
   return (
     <div className="p-1">
-      <Card className="rounded-lg relative overflow-hidden transform transition-transform duration-300 hover:scale-105">
-        <CardContent className="relative h-96 w-full">
+      <Card className="rounded-lg relative overflow-hidden transform transition-transform duration-300 hover:scale-105 ">
+        <CardContent className="relative h-96 w-full dark:bg-gray-800">
           <Badge className="absolute top-6 left-6 z-10 ">Hot</Badge>
           <Image
             src={image}
@@ -46,15 +46,15 @@ const CardBlog = ({
             className="w-full h-full p-4 rounded-lg"
           />
         </CardContent>
-        <CardFooter className="p-4 bg-white shadow-lg">
+        <CardFooter className="p-4 shadow-lg dark:bg-gray-800">
           <div className="flex flex-col">
             <h3 className="text-lg sm:text-xl font-semibold">{name}</h3>
-            <p className="text-gray-700 text-sm sm:text-base mt-1">
+            <p className="text-gray-700 dark:text-white text-sm sm:text-base mt-1">
               {description}
             </p>
             <div className="flex justify-between items-center mt-2">
               <div className="flex-1">
-                <p className="text-gray-500 text-xs sm:text-sm">
+                <p className="text-gray-500 dark:text-white text-xs sm:text-sm">
                   {createdDate}
                 </p>
               </div>

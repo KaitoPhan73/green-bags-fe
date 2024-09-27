@@ -17,7 +17,7 @@ import UserHeader from "./user-header";
 export default function Header() {
   const router = useRouter();
   return (
-    <div className="w-full mx-auto px-4 md:px-6 lg:px-8 fixed z-10 top-0 bg-white">
+    <div className="w-full mx-auto px-4 md:px-6 lg:px-8 fixed z-10 top-0 bg-white dark:bg-black">
       <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
         <Sheet>
           <SheetTrigger asChild>
@@ -28,7 +28,7 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="left">
             <Link href="#" prefetch={false}>
-              <Icon className="h-6 w-6" />
+              <Icon className="h-6 w-6 dark:filter dark:invert" />
               <span className="sr-only">ShadCN</span>
             </Link>
             <div className="grid gap-2 py-6">
@@ -47,7 +47,7 @@ export default function Header() {
         </Sheet>
 
         <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-          <Icon className="h-16 w-16" />
+          <Icon className="h-16 w-16 dark:filter dark:invert" />
           <span className="sr-only">ShadCN</span>
         </Link>
 
@@ -112,7 +112,7 @@ function Icon(props: any) {
         alt="Kalban-logo"
         {...props}
       />
-      <p className="text-lg font-semibold">KALBAN</p>
+      <p className="text-lg font-semibold lig">KALBAN</p>
     </div>
   );
 }

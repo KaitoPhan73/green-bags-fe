@@ -21,9 +21,8 @@ function page() {
   return (
     <div>
       <PageTitle title="Liên hệ với chúng tôi" />
-      <Container>
-        <Contact />
-      </Container>
+
+      <Contact />
     </div>
   );
 }

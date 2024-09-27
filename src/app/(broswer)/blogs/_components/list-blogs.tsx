@@ -30,10 +30,10 @@ const Blogs = () => {
   };
 
   return (
-    <section className="py-12 md:py-24 lg:py-24">
+    <section className="py-12 md:py-24 lg:py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl py-12 md:py-24 lg:py-24 ">
-          <h2 className="text-2xl text-gray-600 font-sans border-l border-black pl-12 py-4">
+          <h2 className="text-2xl text-gray-600 font-sans border-l border-black dark:text-white dark:border-white pl-12 py-4">
             Bài viết & Tin tức
           </h2>
         </div>

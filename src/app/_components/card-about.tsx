@@ -23,7 +23,7 @@ const CardAbout = ({ link, title, description }: CardProps) => {
   };
 
   return (
-    <Card className="flex flex-col items-center text-center p-4">
+    <Card className="flex flex-col items-center text-center p-4 dark:border-white">
       <CardHeader className="flex flex-col items-center">
         <CardTitle className="text-lg md:text-xl font-semibold">
           {title}
