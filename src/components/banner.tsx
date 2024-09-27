@@ -42,11 +42,11 @@ export default function Banner({ className }: Props) {
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                       {item.title}
                     </h2>
-                    <p className="text-lg md:text-xl mb-6 text-gray-600 dark:text-gray-400">
+                    <p className="text-lg md:text-xl mb-6 text-gray-600 dark:text-white">
                       {item.description}
                     </p>
-                    <Button className="bg-black text-white py-3 px-6 rounded-lg">
-                      Learn More
+                    <Button className="  py-6 px-6 rounded-lg">
+                      Tìm hiểu thêm
                     </Button>
                   </div>
                   <div className="order-1 md:order-2">

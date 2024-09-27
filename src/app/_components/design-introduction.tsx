@@ -20,25 +20,25 @@ const DesignIntroduction = () => {
       };
   return (
     <section
-      className="container mx-auto p-4 md:p-8 bg-gray-50 rounded-lg flex flex-col md:flex-row flex-wrap justify-between items-center
+      className="container mx-auto p-4 md:p-8 bg-gray-50 dark:bg-black rounded-lg flex flex-col md:flex-row flex-wrap justify-between items-center
       bg-cover bg-center bg-no-repeat md:bg-none"
       style={sectionStyle}
     >
-      <div className="flex flex-col justify-evenly p-4 max-w-xl gap-6 md:gap-12 bg-white bg-opacity-80 md:bg-transparent rounded-md">
+      <div className="flex flex-col justify-evenly p-4 max-w-xl gap-6 md:gap-12  bg-opacity-80 md:bg-transparent rounded-md">
         <h3 className="text-xl md:text-2xl font-semibold mb-4">
           Chúng tôi tạo ra nghệ thuật Kiểu dáng thời trang thích hợp cho mọi
           người sử dụng
         </h3>
-        <p className="text-gray-700">
+        <p className="">
           Chúng tôi tạo ra nghệ thuật Kiểu dáng thời trang thích hợp cho mọi
           người sử dụng
         </p>
         <div className="flex gap-4 md:gap-6 items-center">
-          <div className="h-12 w-12 md:h-16 md:w-16 bg-green-100 rounded-full flex items-center justify-center">
-            <FaPhoneAlt className="h-6 w-6 md:h-8 md:w-8 text-green-300" />
+          <div className="h-12 w-12 md:h-16 md:w-16 bg-green-100 dark:bg-gray-400 rounded-full flex items-center justify-center">
+            <FaPhoneAlt className="h-6 w-6 md:h-8 md:w-8 text-green-300 dark:text-gray-800" />
           </div>
 
-          <div className="text-gray-700">
+          <div className="text-gray-700 dark:text-white">
             <p className="text-lg md:text-xl">0793-022-559</p>
             <p className="text-sm md:text-md">
               Gọi cho chúng tôi bất cứ lúc nào

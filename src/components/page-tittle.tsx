@@ -17,9 +17,10 @@ const PageTitle = ({ title }: Props) => {
           objectFit="fill"
           className="z-0"
         />
-        <div className="absolute inset-0 bg-black opacity-20 z-2" />
+        {/* Độ mờ cho dark mode */}
+        <div className="absolute inset-0 bg-black opacity-20 dark:opacity-50 z-2" />
       </div>
-      <div className="bg-gradient-to-r from-indigo-100  to-pink-100 p-8 rounded-t-[3rem] max-w-xl  w-full text-center absolute bottom-0 left-1/2 transform -translate-x-1/2 z-3">
+      <div className="bg-gradient-to-r from-indigo-100 to-pink-100 dark:from-slate-400 dark:to-green-900 p-8 rounded-t-[3rem] max-w-xl w-full text-center absolute bottom-0 left-1/2 transform -translate-x-1/2 z-3">
         <h1 className="text-4xl font-bold bg-black inline-block text-transparent bg-clip-text">
           {title}
         </h1>

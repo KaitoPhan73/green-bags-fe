@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
-
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 const Section = styled.div`
   height: 100vh;
   scroll-snap-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f4f4f4; /* Màu nền sáng hơn */
+  /* Màu nền sáng hơn */
 `;
 
 const Container = styled.div`
@@ -45,34 +46,6 @@ const Form = styled.form`
   gap: 15px; /* Thay đổi khoảng cách giữa các phần tử */
 `;
 
-const Input = styled.input`
-  padding: 15px;
-  background-color: #e8e6e6;
-  border: none;
-  border-radius: 5px;
-  color: black; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bóng đổ cho input */
-  
-  &:focus {
-    outline: none;
-    border: 2px solid #da4ea2; /* Thay đổi màu viền khi focus */
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #e8e6e6;
-  color: black; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bóng đổ cho textarea */
-  
-  &:focus {
-    outline: none;
-    border: 2px solid #da4ea2; /* Thay đổi màu viền khi focus */
-  }
-`;
-
 const Button = styled.button`
   background-color: #da4ea2;
   color: white;
@@ -82,7 +55,7 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 15px;
   transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
-  
+
   &:hover {
     background-color: #c84c92; /* Màu nền khi hover */
   }
@@ -93,7 +66,7 @@ const Right = styled.div`
   display: flex;
   align-items: center; /* Căn giữa nội dung */
   justify-content: center; /* Căn giữa nội dung */
-  
+
   @media only screen and (max-width: 768px) {
     display: none; /* Ẩn bản đồ trên màn hình nhỏ */
   }
@@ -126,40 +99,46 @@ const Contact = () => {
   };
 
   return (
-    <Section>
+    <Section className="dark:bg-slate-900">
       {/* <Container> */}
-        <Left>
-          <Form ref={ref} onSubmit={handleSubmit}>
-            <Title style={{ color: "chocolate", fontSize: "36px", fontWeight: "bold" }}>Contact Us</Title>
-            <Input placeholder="Name" name="name" required />
-            <Input type="email" placeholder="Email" name="email" required />
-            <TextArea
-              placeholder="Write your message"
-              name="message"
-              rows={10}
-              required
-            />
-            <Button type="submit">Send</Button>
-            {success && <p>Your message has been sent. We'll get back to you soon :)</p>}
-            {success === false && <p>Something went wrong, please try again.</p>}
-          </Form>
-        </Left>
-        <Right>
-          <div className="w-full">
-            <div className="embed-responsive">
-              <iframe
-                width="90%"
-                height="400"
-                frameBorder="0"
-                scrolling="no"
-                marginHeight="0"
-                marginWidth="0"
-                src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=L%C3%B4%20E2a-7,%20%C4%90%C6%B0%E1%BB%9Dng%20D1,%20%C4%90.%20D1,%20Long%20Th%E1%BA%A1nh%20M%E1%BB%B9,%20Th%C3%A0nh%20Ph%E1%BB%91%20Th%E1%BB%A7%20%C4%90%E1%BB%A9c,%20H%E1%BB%93%20Ch%C3%AD%20Minh%20700000,%20Vietnam+(fpt%20)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                title="Google Map"
-              ></iframe>
-            </div>
+      <Left>
+        <Form ref={ref} onSubmit={handleSubmit}>
+          <Title
+            style={{ color: "chocolate", fontSize: "36px", fontWeight: "bold" }}
+          >
+            Contact Us
+          </Title>
+          <Input placeholder="Name" name="name" required />
+          <Input type="email" placeholder="Email" name="email" required />
+          <Textarea
+            name="message"
+            placeholder=" Your message here."
+            required
+            rows={10}
+          />
+          <Button type="submit">Send</Button>
+          {success && (
+            <p>Your message has been sent. We'll get back to you soon :)</p>
+          )}
+          {success === false && <p>Something went wrong, please try again.</p>}
+        </Form>
+      </Left>
+      <Right>
+        <div className="w-full">
+          <div className="embed-responsive">
+            <iframe
+              width="90%"
+              height="400"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight="0"
+              marginWidth="0"
+              src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=L%C3%B4%20E2a-7,%20%C4%90%C6%B0%E1%BB%9Dng%20D1,%20%C4%90.%20D1,%20Long%20Th%E1%BA%A1nh%20M%E1%BB%B9,%20Th%C3%A0nh%20Ph%E1%BB%91%20Th%E1%BB%A7%20%C4%90%E1%BB%A9c,%20H%E1%BB%93%20Ch%C3%AD%20Minh%20700000,%20Vietnam+(fpt%20)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+              title="Google Map"
+            ></iframe>
           </div>
-        </Right>
+        </div>
+      </Right>
       {/* </Container> */}
     </Section>
   );

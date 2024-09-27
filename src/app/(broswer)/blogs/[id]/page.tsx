@@ -29,7 +29,9 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
               />
             </div>
             <div className="text-right mt-2">
-              <span className="text-sm text-gray-500">{blog.createdDate}</span>
+              <span className="text-sm text-gray-500 dark:text-white">
+                {blog.createdDate}
+              </span>
             </div>
           </div>
 
@@ -64,7 +66,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
                   <div key={index} className="mb-4">
                     <h2 className="text-xl font-semibold my-2">{item.name}</h2>
                     <div className="text-right mt-2">
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-500 dark:text-white">
                         {item.createdDate}
                       </span>
                     </div>
@@ -73,7 +75,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
                 ))}
             </div>
             <div>
-              <h3 className="text-xl font-extralight mb-4">Tags</h3>
+              <h3 className="text-2xl font-bold mb-4">Tags</h3>
               <div className="grid grid-cols-2 gap-2">
                 {allTags.map((item, index) => (
                   <div key={index} className="mb-4">

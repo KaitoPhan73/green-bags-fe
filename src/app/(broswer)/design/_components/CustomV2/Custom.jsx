@@ -337,7 +337,6 @@
 
 // export default CustomBagV2;
 
-
 import React, { useEffect, useRef, useState } from "react";
 import BagSlider from "./BagSlider";
 import BagSelected from "./BagSelector";
@@ -346,7 +345,10 @@ import html2canvas from "html2canvas";
 import Compressor from "compressorjs";
 import { useRouter } from "next/navigation";
 import { Button, Input, Modal } from "antd";
-import { usePostCustomBagMutation, useUpdateCustomNameMutation } from "../../../../../api/Custom/custom";
+import {
+  usePostCustomBagMutation,
+  useUpdateCustomNameMutation,
+} from "../../../../../api/Custom/custom";
 
 const CustomBagV2 = () => {
   const [step, setStep] = useState(1);
@@ -376,7 +378,11 @@ const CustomBagV2 = () => {
   });
 
   const navigate = useRouter();
-  const steps = ["Select Bag", "Customize Bag", "Review & Order"];
+  const steps = [
+    "Chọn túi của bạn",
+    "Thiết kế túi của bạn",
+    "Đánh giá & Đăt hàng",
+  ];
 
   const { mutate: postCustomBagMutation } = usePostCustomBagMutation(
     (data) => {
@@ -406,7 +412,9 @@ const CustomBagV2 = () => {
 
   const handlePostCustomBag = () => {
     if (compressedBlob) {
-      const file = new File([compressedBlob], "custom-bag.jpg", { type: "image/jpeg" });
+      const file = new File([compressedBlob], "custom-bag.jpg", {
+        type: "image/jpeg",
+      });
       const formData = new FormData();
       formData.append("image", file);
       postCustomBagMutation({ input: formData, selectedColor });
@@ -467,7 +475,9 @@ const CustomBagV2 = () => {
   };
 
   const handleExportImage = async () => {
-    const originalCanvas = await html2canvas(document.querySelector("#bagCanvas"));
+    const originalCanvas = await html2canvas(
+      document.querySelector("#bagCanvas")
+    );
 
     const resizedCanvas = document.createElement("canvas");
     const ctx = resizedCanvas.getContext("2d");
@@ -513,8 +523,8 @@ const CustomBagV2 = () => {
 
   return (
     <div>
-      <h1 className="amatic-sc-bold text-[40px] my-10 text-black text-center">
-        Let Custom Your Bag!
+      <h1 className="amatic-sc-bold text-[40px] my-10  text-center">
+        Tạo ra chiếc túi của bạn!
       </h1>
       <div className="p-4 max-w-7xl mx-auto">
         <CustomBagSteps current={step - 1} steps={steps} />
@@ -546,20 +556,52 @@ const CustomBagV2 = () => {
       {step === 3 && (
         <div className="flex justify-center">
           <div className="flex flex-col items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="text-green-600 w-28 h-28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-green-600 w-28 h-28"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="1"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             <h1 className="text-4xl font-bold mt-4">Yay!</h1>
-            <p>Your custom bag design is complete!</p>
+            <p>Ý tưởng thiết kế sản phẩm đã hoàn tất!</p>
             <div className="flex my-10">
-              <a className="inline-flex items-center px-4 py-2 text-white bg-[#4848FF] border border-indigo-600 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring" onClick={() => setStep(1)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+              <a
+                className="inline-flex items-center px-4 py-2 text-white bg-[#4848FF] border border-indigo-600 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring"
+                onClick={() => setStep(1)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-3 h-3 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                  />
                 </svg>
                 <span className="text-sm font-medium">Continue Customize</span>
               </a>
-              <div className="text-sm font-medium cursor-pointer flex items-center bg-[#cff53e] border border-black-600 rounded-full hover:bg-[#FF78C5] hover:text-white py-1 ml-4 px-4" onClick={handleViewOrder}>
-                <img src="/images/iconCustom.png" className="mr-2 w-5 h-5" alt="Custom Icon" />
+              <div
+                className="text-sm font-medium cursor-pointer flex items-center bg-[#cff53e] border border-black-600 rounded-full hover:bg-[#FF78C5] hover:text-white py-1 ml-4 px-4"
+                onClick={handleViewOrder}
+              >
+                <img
+                  src="/images/iconCustom.png"
+                  className="mr-2 w-5 h-5"
+                  alt="Custom Icon"
+                />
                 <span>View Your Order</span>
               </div>
             </div>
@@ -567,8 +609,16 @@ const CustomBagV2 = () => {
         </div>
       )}
 
-      <Modal title="Name Your Custom Bag" visible={modalVisible} onOk={handleSaveProductName} onCancel={hideNameModal}>
-        <Input value={productName} onChange={(e) => setProductName(e.target.value)} />
+      <Modal
+        title="Name Your Custom Bag"
+        visible={modalVisible}
+        onOk={handleSaveProductName}
+        onCancel={hideNameModal}
+      >
+        <Input
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+        />
       </Modal>
     </div>
   );
