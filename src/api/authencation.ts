@@ -6,30 +6,17 @@ import {
   TAuthResponse,
   TRegisterRequest,
 } from "@/schema/auth.schema";
+import { revalidateTag } from "next/cache";
 
 const checkLogin = async (body: TLoginRequest) => {
   return httpBag.post<TAuthResponse>("/auth/login", body);
 };
 
 const register = async (body: TRegisterRequest) => {
-  return httpBag.post<TAuthResponse>("/account/create", body);
+  const response = await httpBag.post<TAuthResponse>("/account/create", body);
+  revalidateTag("accounts");
+  revalidateTag("accounts-active");
+  return response;
 };
 
-// const auth = async (body: { expireTime: number; user: TAuthResponse }) => {
-//   return httpServer.post("/api/auth", body);
-// };
-
 export { checkLogin, register };
-
-// Uncomment and adjust if needed
-// export async function logoutFromNextServerToServer(accessToken: string) {
-//   return httpServer.post<any>(
-//     "/auth/logout",
-//     {},
-//     {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     }
-//   );
-// }

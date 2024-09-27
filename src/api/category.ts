@@ -6,7 +6,6 @@ import {
   TCategoryResponse,
 } from "@/schema/category.schema";
 import { TTableResponse } from "@/types/Table";
-import next from "next";
 import { revalidateTag } from "next/cache";
 // Lấy tất cả Categories
 const getAllCategories = async (params?: any) => {
@@ -28,28 +27,35 @@ const getAllCategoriesActive = async (params?: any) => {
 
 // Lấy Category theo ID
 const getCategoryById = async (id: string) => {
-  return await httpBag.get<TCategoryResponse>(`/category/${id}`);
+  return await httpBag.get<TCategoryResponse>(`/category/${id}`, {
+    next: { tags: ["categories"] },
+  });
 };
 
 // Tạo mới Category
 const createCategory = async (body: TCreateCategoryRequest) => {
-  const result = await httpBag.post<TCategoryResponse>("/category", body);
-  revalidateTag("category");
-  return result;
-};
-
-export const clickChoi = async () => {
+  const result = await httpBag.post<TCategoryResponse>(
+    "/category/create",
+    body
+  );
   revalidateTag("categories");
+  return result;
 };
 
 // Cập nhật Category
 const updateCategory = async (body: TUpdateCategoryRequest) => {
-  return await httpBag.patch<TCategoryResponse>(`/category`, body);
+  const response = await httpBag.patch<TCategoryResponse>(
+    `/category/update`,
+    body
+  );
+  revalidateTag("categories");
+  return response;
 };
 
 // Xóa Category
 const deleteCategory = async (id: string): Promise<void> => {
   await httpBag.delete(`/category/${id}`);
+  revalidateTag("categories");
 };
 
 export {

@@ -6,6 +6,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import CardProduct from "./card-product";
 import { PaginationView } from "@/components/pagination-view";
+import { TProductResponse } from "@/schema/product.schema";
 
 type Product = {
   id: number;
@@ -18,12 +19,14 @@ type Product = {
 };
 
 type Props = {
-  dataSource: Product[];
+  dataSource: TProductResponse[];
+  params: {
+    page: number;
+    limit: number;
+  };
 };
 
-const ListProducts = ({ dataSource }: Props) => {
-  const currentPage = 5; // Ví dụ: Trang hiện tại
-  const pageCount = 10; // Tổng số trang
+const ListProducts = ({ dataSource, params }: Props) => {
   return (
     <>
       <div className="grid grid-cols-1  md:grid-cols-2 gap-6 items-center">
@@ -32,8 +35,8 @@ const ListProducts = ({ dataSource }: Props) => {
         ))}
       </div>
       <PaginationView
-        pageCount={pageCount}
-        currentPage={currentPage}
+        pageCount={params.page}
+        currentPage={params.limit}
         className="my-12"
       />
     </>

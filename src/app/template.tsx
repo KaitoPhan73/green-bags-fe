@@ -9,8 +9,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
       animate={{ opacity: 1 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
       style={{
-        width: "100vw", 
-        height: "100vh", 
+        width: "100vw",
+        height: "100vh",
         overflowX: "hidden",
       }}
     >
