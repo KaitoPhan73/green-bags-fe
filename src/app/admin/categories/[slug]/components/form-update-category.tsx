@@ -19,7 +19,7 @@ import {
   UpdateCategorySchema,
   TUpdateCategoryRequest,
 } from "@/schema/category.schema";
-import { clickChoi, updateCategory } from "@/api/category";
+import { updateCategory } from "@/api/category";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
 interface FormUpdateCategoryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -40,7 +40,6 @@ export function FormUpdateCategory({
 
   const onSubmit = async (data: TUpdateCategoryRequest) => {
     console.log(data);
-    await clickChoi();
     setIsLoading(true);
     try {
       const response = await updateCategory(data);

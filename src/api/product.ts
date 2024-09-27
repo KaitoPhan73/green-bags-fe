@@ -8,13 +8,10 @@ import {
 } from "@/schema/product.schema";
 import { TTableResponse } from "@/types/Table";
 
-const getAllProducts = async (accessToken: string, params?: any) => {
+const getAllProducts = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TProductResponse>>(
     "/product",
     {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
       params,
     }
   );

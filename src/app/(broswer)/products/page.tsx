@@ -2,14 +2,18 @@ import React from "react";
 import { products, services } from "@/constants/data";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
-import { getProducts } from "@/api/productApi";
+import { getAllProducts } from "@/api/product";
 
-const page = async () => {
+const page = async (props: any) => {
   const typeList = [
     { label: "Túi đeo chéo", value: "123" },
     { label: "Túi hư có sẳn", value: "456" },
   ];
-  const response = await getProducts();
+  const params = {
+    page: props.searchParams.page ? +props.searchParams.page : 1,
+    limit: props.searchParams.limit ? +props.searchParams.limit : 10,
+  };
+  const response = await getAllProducts(params);
   console.log(response.payload);
   return (
     <div>
@@ -19,7 +23,10 @@ const page = async () => {
             <TabTypeProducts options={typeList} />
           </div>
           <div className="my-12">
-            <ListProducts dataSource={products} />
+            <ListProducts
+              dataSource={response.payload.listResult}
+              params={params}
+            />
           </div>
         </div>
       </section>

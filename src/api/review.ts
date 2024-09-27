@@ -3,53 +3,60 @@
 import { httpBag } from "@/lib/http";
 import { TReviewResponse, TCreateReviewRequest } from "@/schema/review.schema";
 import { TTableResponse } from "@/types/Table";
-
+import { revalidateTag } from "next/cache";
 // Lấy tất cả Review
-const getAllReview = async (): Promise<TTableResponse<TReviewResponse>> => {
+const getAllReview = async () => {
   const response = await httpBag.get<TTableResponse<TReviewResponse>>(
-    "/review"
+    "/review",
+    {
+      next: { tags: ["reviews"] },
+    }
   );
   return response.payload;
 };
 
 // Lấy Review theo ID
-const getReviewById = async (id: string): Promise<TReviewResponse> => {
-  const response = await httpBag.get<TReviewResponse>(`/review/${id}`);
+const getReviewById = async (id: string) => {
+  const response = await httpBag.get<TReviewResponse>(`/review/${id}`, {
+    next: { tags: ["reviews"] },
+  });
   return response.payload;
 };
 
 // Tạo Review mới
-const createReview = async (
-  body: TCreateReviewRequest
-): Promise<TReviewResponse> => {
+const createReview = async (body: TCreateReviewRequest) => {
   const response = await httpBag.post<TReviewResponse>("/review", body);
-  return response.payload;
+  revalidateTag("reviews");
+  revalidateTag("reviews-active");
+  return response;
 };
 
 // Lấy Review theo Product ID
-const getAllReviewByProductId = async (
-  productId: string
-): Promise<TTableResponse<TReviewResponse>> => {
+const getAllReviewByProductId = async (productId: string) => {
   const response = await httpBag.get<TTableResponse<TReviewResponse>>(
-    `/review/product/${productId}`
+    `/review/product/${productId}`,
+    {
+      next: { tags: ["reviews"] },
+    }
   );
-  return response.payload;
+  return response;
 };
 
 // Cập nhật trạng thái Review
-const updateReviewStatus = async (
-  id: string,
-  status: string
-): Promise<TReviewResponse> => {
+const updateReviewStatus = async (id: string, status: string) => {
   const response = await httpBag.patch<TReviewResponse>(`/review/${id}`, {
     status,
   });
-  return response.payload;
+  revalidateTag("reviews");
+  revalidateTag("reviews-active");
+  return response;
 };
 
 // Xóa Review
 const deleteReview = async (id: string): Promise<void> => {
   await httpBag.delete(`/review/${id}`);
+  revalidateTag("reviews");
+  revalidateTag("reviews-active");
 };
 
 // Lấy tất cả Review đang hoạt động
@@ -57,7 +64,10 @@ const getAllReviewActive = async (): Promise<
   TTableResponse<TReviewResponse>
 > => {
   const response = await httpBag.get<TTableResponse<TReviewResponse>>(
-    "/review/review-status-active"
+    "/review/review-status-active",
+    {
+      next: { tags: ["reviews-active"] },
+    }
   );
   return response.payload;
 };
