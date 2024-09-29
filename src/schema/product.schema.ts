@@ -3,6 +3,8 @@ import z from "zod";
 // Schema cho Product
 export const ProductResponseSchema = z.object({
   id: z.string().uuid(),
+  productName: z.string(),
+  stock: z.string(),
   createdDate: z.string(),
   modifiedDate: z.string().nullable(),
   createdBy: z.string().nullable(),
@@ -27,10 +29,10 @@ export const CreateProductSchema = z.object({
 });
 
 export const UpdateProductSchema = z.object({
-  baseModelID: z.string().uuid().optional(),
+  id: z.string(),
   productName: z.string().optional(),
-  stock: z.number().optional(),
-  finalPrice: z.number().optional(),
+  stock: z.string(),
+  finalPrice: z.string(),
   status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
 });
 

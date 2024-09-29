@@ -60,7 +60,7 @@ export const products = [
   {
     id: "1",
     name: "Túi Xanh",
-    price: 150000,
+    price: 160000,
     description: "Túi màu xanh với thiết kế đơn giản, thích hợp cho nhiều dịp.",
     color: "Xanh",
     size: "M",
@@ -96,7 +96,7 @@ export const products = [
   {
     id: "5",
     name: "Túi Xanh",
-    price: 150000,
+    price: 160000,
     description: "Túi màu xanh với thiết kế đơn giản, thích hợp cho nhiều dịp.",
     color: "Xanh",
     size: "M",

@@ -89,14 +89,14 @@ export function FormCreateProduct({
               name="baseModelID"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Chọn Loại Sản Phẩm:</FormLabel>
+                  <FormLabel>Chọn:</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Chọn loại sản phẩm" />
+                        <SelectValue placeholder="SP gốc" />
                       </SelectTrigger>
                       <SelectContent>
                         {basemodel.map((basemodel) => (
@@ -195,7 +195,7 @@ export function FormCreateProduct({
           </div>
           <Button type="submit" disabled={isLoading}>
             {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-            Tạo
+            Tạo Sản Phẩm
           </Button>
         </form>
       </div>

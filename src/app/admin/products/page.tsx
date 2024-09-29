@@ -1,11 +1,11 @@
 "use server";
 
 import { DataTable } from "@/components/table/data-table";
-import { columns } from "./components/columns";
+import { columns } from "./_components/columns";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { getAllProducts } from "@/api/product";
-import ProductIndex from "./components";
+import ProductIndex from "./_components";
 import { getAllBaseModelsActive } from "@/api/base-model";
 
 export default async function ProductsPage(props: any) {
@@ -18,14 +18,14 @@ export default async function ProductsPage(props: any) {
     getAllProducts(params),
     getAllBaseModelsActive(params) || [],
   ]);
-console.log("hihihihihi:", baseModelResponse);
+// console.log("hihihihihi:", baseModelResponse);
   return (
     <>
       <div className="flex h-full flex-1 flex-col">
         <ProductIndex
           columns={columns}
-          payload={productResponse.payload} // Product data
-          basemodel={baseModelResponse.payload} // Category data
+          payload={productResponse.payload}
+          basemodel={baseModelResponse.payload}
           params={params}
         />
       </div>

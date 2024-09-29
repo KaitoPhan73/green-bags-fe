@@ -1,5 +1,5 @@
 import React from "react";
-import { FormCreateProduct } from "../components/form-create-product";
+import { FormCreateProduct } from "../_components/form-create-product";
 import { getAllCategories } from "@/api/category";
 const CreateCategory = async (props: any) => {
   const params = {
