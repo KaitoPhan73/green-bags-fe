@@ -5,11 +5,12 @@ import {
   TBaseModelResponse,
 } from "@/schema/base-model.schema";
 import { TTableResponse } from "@/types/Table";
-
+import { revalidateTag } from "next/cache";
 // Lấy tất cả BaseModels
 const getAllBaseModels = async (params?: any) => {
   return await httpBag.get<TTableResponse<TBaseModelResponse>>(`/base-model`, {
     params,
+    next: { tags: ["base-models"] },
   });
 };
 
@@ -19,6 +20,7 @@ const getAllBaseModelsActive = async (params?: any) => {
     `/base-model/active`,
     {
       params,
+      next: { tags: ["base-models-active"] },
     }
   );
 };
@@ -30,17 +32,31 @@ const getBaseModelById = async (id: string) => {
 
 // Tạo mới BaseModel
 const createBaseModel = async (body: TCreateBaseModelRequest) => {
-  return await httpBag.post<TBaseModelResponse>("/base-model/create", body);
+  const result = await httpBag.post<TBaseModelResponse>(
+    "/base-model/create",
+    body
+  );
+  revalidateTag("base-models");
+  revalidateTag("base-models-active");
+  return result;
 };
 
 // Cập nhật BaseModel
-const updateBaseModel = async (id: string, body: TUpdateBaseModelRequest) => {
-  return await httpBag.patch<TBaseModelResponse>(`/base-model/${id}`, body);
+const updateBaseModel = async (body: TUpdateBaseModelRequest) => {
+  const result = await httpBag.post<TBaseModelResponse>(
+    "/base-model/update",
+    body
+  );
+  revalidateTag("base-models");
+  revalidateTag("base-models-active");
+  return result;
 };
 
 // Xóa BaseModel
 const deleteBaseModel = async (id: string): Promise<void> => {
   await httpBag.delete(`/base-model/${id}`);
+  revalidateTag("base-models");
+  revalidateTag("base-models-active");
 };
 
 export {

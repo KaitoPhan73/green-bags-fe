@@ -11,6 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { RowActionBaseModel } from "./row-action";
+import { Badge } from "@/components/ui/badge";
 export const columns: CustomColumnDef<TBaseModelResponse>[] = [
   // {
   //   accessorKey: "id",
@@ -114,7 +116,18 @@ export const columns: CustomColumnDef<TBaseModelResponse>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
+            {status === "ACTIVE" ? (
+              <Badge
+                variant="outline"
+                className="border-2 border-green-500 p-1"
+              >
+                Hoạt động
+              </Badge>
+            ) : (
+              <Badge variant="destructive" className="p-1">
+                Không hoạt động
+              </Badge>
+            )}
           </span>
         </div>
       );
@@ -153,6 +166,6 @@ export const columns: CustomColumnDef<TBaseModelResponse>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <RowActionBaseModel row={row} />,
   },
 ];

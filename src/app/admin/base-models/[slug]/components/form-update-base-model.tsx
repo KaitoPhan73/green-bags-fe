@@ -23,50 +23,55 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  UpdateCategorySchema,
-  TUpdateCategoryRequest,
-} from "@/schema/category.schema";
-import { updateCategory } from "@/api/category";
+  UpdateBaseModelSchema,
+  TUpdateBaseModelRequest,
+} from "@/schema/base-model.schema"; // Import schema tương ứng
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { statusCategory } from "../../_components/config";
+import { updateBaseModel } from "@/api/base-model";
+import { TTableResponse } from "@/types/Table";
+import { TCategoryResponse } from "@/schema/category.schema";
+import { statusBaseModel } from "../../components/config";
+import { useRouter } from "next/navigation";
 
-interface FormUpdateCategoryProps extends React.HTMLAttributes<HTMLDivElement> {
-  initialData: TUpdateCategoryRequest;
+interface FormUpdateBaseModelProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  initialData: TUpdateBaseModelRequest;
+  categories?: TTableResponse<TCategoryResponse>["listResult"];
 }
 
-export function FormUpdateCategory({
+export function FormUpdateBaseModel({
   className,
   initialData,
+  categories,
   ...props
-}: FormUpdateCategoryProps) {
+}: FormUpdateBaseModelProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { toast } = useToast();
-  const form = useForm<TUpdateCategoryRequest>({
-    resolver: zodResolver(UpdateCategorySchema),
+  const router = useRouter();
+  const form = useForm<TUpdateBaseModelRequest>({
+    resolver: zodResolver(UpdateBaseModelSchema),
     defaultValues: initialData,
   });
 
-  const onSubmit = async (data: TUpdateCategoryRequest) => {
-    console.log(data);
+  const onSubmit = async (data: TUpdateBaseModelRequest) => {
     setIsLoading(true);
     try {
-      const response = await updateCategory(data);
+      const response = await updateBaseModel(data); // Gọi hàm API cập nhật
       if (response.status === 200) {
         toast({
-          title: "Cập Nhật Thành Công",
+          title: "Cập nhật mẫu thành công",
         });
-        // Redirect hoặc refresh trang nếu cần
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: `Failed to update category: ${error}`,
+        description: `Failed to update base model: ${error}`,
       });
     } finally {
       setIsLoading(false);
     }
   };
-
+  console.log("initialData", initialData);
   return (
     <Form {...form}>
       <div className={cn("grid gap-6", className)} {...props}>
@@ -74,12 +79,12 @@ export function FormUpdateCategory({
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-2">
             <FormField
               control={form.control}
-              name="categoryName"
+              name="modelName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tên</FormLabel>
+                  <FormLabel>Tên Mẫu</FormLabel>
                   <FormControl>
-                    <Input placeholder="Tên..." {...field} />
+                    <Input placeholder="Tên mẫu..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,7 +103,51 @@ export function FormUpdateCategory({
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="basePrice"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Giá Cơ Bản</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Giá cơ bản..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
+            <FormField
+              control={form.control}
+              name="categoryID"
+              render={({ field }) => (
+                <FormItem>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormLabel>Phân Loại</FormLabel>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn phân loại" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categories?.map((item, index) => (
+                        <SelectItem key={index} value={item.id}>
+                          {item.categoryName}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="status"
@@ -115,7 +164,7 @@ export function FormUpdateCategory({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {statusCategory.map((item, index) => (
+                      {statusBaseModel.map((item, index) => (
                         <SelectItem key={index} value={item.value}>
                           {item.label}
                         </SelectItem>
@@ -129,7 +178,7 @@ export function FormUpdateCategory({
           </div>
           <Button type="submit" disabled={isLoading}>
             {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-            Câp Nhật
+            Cập Nhật
           </Button>
         </form>
       </div>
