@@ -37,6 +37,7 @@
     "@react-three/drei": "^9.112.0",
     "@react-three/fiber": "^8.11.5",
     "@react-three/postprocessing": "^2.16.2",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-table": "^8.20.5",
     "antd": "^5.20.6",

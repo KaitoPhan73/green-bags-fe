@@ -16,7 +16,7 @@ const getAllBaseModels = async (params?: any) => {
 // Lấy tất cả BaseModels đang active
 const getAllBaseModelsActive = async (params?: any) => {
   return await httpBag.get<TTableResponse<TBaseModelResponse>>(
-    `/base-model/active`,
+    `/base-model/base-model-status-active`,
     {
       params,
     }
