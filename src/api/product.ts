@@ -20,26 +20,24 @@ const getAllProducts = async (params?: any) => {
   return response;
 };
 
-// const getAllProductsActive = async (
-//   params?: any
-// ): Promise<TTableResponse<TProductResponse>> => {
-//   const response = await httpBag.get<TTableResponse<TProductResponse>>(
-//     `/product/product-status-active`,
-//     {
-//       params: params,
-//     }
-//   );
-//   return response.payload;
-// };
+const getProductById = async (id: string) => {
+  return await httpBag.get<TProductResponse>(`/product/${id}`, {
+    next: { tags: ["products"] },
+  });
+};
 
-// const getProduct = async (
-//   id: string
-// ): Promise<TTableResponse<TProductResponse>> => {
-//   const response = await httpBag.get<TTableResponse<TProductResponse>>(
-//     `/product/${id}`
-//   );
-//   return response.payload;
-// };
+const getAllProductsActive = async (
+  params?: any
+) => {
+  const response = await httpBag.get<TTableResponse<TProductResponse>>(
+    `/product/product-status-active`,
+    {
+      params,
+      next: { tags: ["products"] },
+    }
+  );
+  return response.payload;
+};
 
 const createProduct = async (
   body: TCreateProductRequest
@@ -50,14 +48,24 @@ const createProduct = async (
   return response;
 };
 
-// // Cập nhật sản phẩm
-// const updateProduct = async (id: string, body: TUpdateProductRequest) => {
-//   const response = await httpBag.patch<TProductResponse>(
-//     `/products/${id}`,
-//     body
+// const getProduct = async (
+//   id: string
+// ): Promise<TTableResponse<TProductResponse>> => {
+//   const response = await httpBag.get<TTableResponse<TProductResponse>>(
+//     `/product/${id}`
 //   );
 //   return response.payload;
 // };
+
+// // Cập nhật sản phẩm
+const updateProduct = async (body: TUpdateProductRequest) => {
+  const response = await httpBag.patch<TProductResponse>(
+    `/products/update`,
+    body
+  );
+  revalidateTag("products");
+  return response;
+};
 
 // // Xóa sản phẩm
 // const deleteProduct = async (id: string): Promise<void> => {
@@ -67,9 +75,10 @@ const createProduct = async (
 // Export các hàm API
 export {
   getAllProducts,
-  // getAllProductsActive,
+  getProductById,
+  getAllProductsActive,
   createProduct,
-  // updateProduct,
+  updateProduct,
   // deleteProduct,
   // getProduct,
 };

@@ -13,18 +13,6 @@ import {
 } from "@/components/ui/tooltip";
 import { RowAction } from "./row-action";
 export const columns: CustomColumnDef<TCategoryResponse>[] = [
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="ID" />
-  //   ),
-  //   cell: ({ row }) => (
-  //     <div className="w-[80px]">{row.getValue("id")}</div>
-  //   ),
-  //   enableSorting: true,
-  //   enableHiding: false,
-  //   enableColumnFilter: true,
-  // },
   {
     accessorKey: "categoryName",
     header: ({ column }) => (

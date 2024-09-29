@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FormCreateProduct } from "../components/form-create-product";
+import { FormCreateProduct } from "../_components/form-create-product";
 import { TCategoryResponse } from "@/schema/category.schema";
 
 interface DialogProductProps {
@@ -35,9 +35,9 @@ export function DialogProduct({ basemodel }: DialogProductProps) {
         <div className="grid gap-4 py-4">
         <FormCreateProduct basemodel={basemodel}/>
         </div>
-        <DialogFooter>
+        {/* <DialogFooter>
           <Button type="submit">Lưu thay đổi</Button>
-        </DialogFooter>
+        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );

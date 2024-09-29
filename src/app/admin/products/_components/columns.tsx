@@ -5,20 +5,9 @@ import { CustomColumnDef } from "@/types/Colunm";
 import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { TProductResponse } from "@/schema/product.schema";
 import { formattedDateTime } from "@/lib/formatter";
+import { RowAction } from "./row-action";
 
 export const columns: CustomColumnDef<TProductResponse>[] = [
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="ID" />
-  //   ),
-  //   cell: ({ row }) => (
-  //     <div className="w-[80px]">{row.getValue("id")}</div>
-  //   ),
-  //   enableSorting: true,
-  //   enableHiding: false,
-  //   enableColumnFilter: true,
-  // },
   {
     accessorKey: "createdDate",
     header: ({ column }) => (
@@ -36,7 +25,9 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       <DataTableColumnHeader column={column} title="Ngày chỉnh sửa" />
     ),
     cell: ({ row }) => (
-      <div className="">{formattedDateTime(row.getValue("modifiedDate")) || 'Chưa chỉnh sửa'}</div>
+      <div className="">
+        {formattedDateTime(row.getValue("modifiedDate")) || "Chưa chỉnh sửa"}
+      </div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -47,7 +38,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       <DataTableColumnHeader column={column} title="Người tạo" />
     ),
     cell: ({ row }) => (
-      <div className="">{row.getValue("createdBy") || 'N/A'}</div>
+      <div className="">{row.getValue("createdBy") || "N/A"}</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -58,7 +49,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       <DataTableColumnHeader column={column} title="Người chỉnh sửa" />
     ),
     cell: ({ row }) => (
-      <div className="">{row.getValue("modifiedBy") || 'N/A'}</div>
+      <div className="">{row.getValue("modifiedBy") || "N/A"}</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -110,9 +101,8 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
     enableColumnFilter: true,
   },
   {
-    id: "actions", 
+    id: "actions",
     header: "Actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <RowAction row={row} />,
   },
 ];
-  

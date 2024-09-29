@@ -15,6 +15,7 @@ export const postCustomBag = async ({ input, selectedColor }) => {
     },
     timeout: 60000,
   });
+  console.log("noooooooooo", response);
   return response.data.data;
 };
 

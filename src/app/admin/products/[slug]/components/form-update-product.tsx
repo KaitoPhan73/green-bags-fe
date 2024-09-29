@@ -15,45 +15,47 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  UpdateCategorySchema,
-  TUpdateCategoryRequest,
-} from "@/schema/category.schema";
-import { updateCategory } from "@/api/category";
-import { ReloadIcon } from "@radix-ui/react-icons";
 
-interface FormUpdateCategoryProps extends React.HTMLAttributes<HTMLDivElement> {
-  initialData: TUpdateCategoryRequest;
+import { ReloadIcon } from "@radix-ui/react-icons";
+import {
+  TProductResponse,
+  TUpdateProductRequest,
+  UpdateProductSchema,
+} from "@/schema/product.schema";
+import { updateProduct } from "@/api/product";
+
+interface FormUpdateProductProps extends React.HTMLAttributes<HTMLDivElement> {
+  initialData: TUpdateProductRequest;
 }
 
-export function FormUpdateCategory({
+export function FormUpdateProduct({
   className,
   initialData,
   ...props
-}: FormUpdateCategoryProps) {
+}: FormUpdateProductProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { toast } = useToast();
-  const form = useForm<TUpdateCategoryRequest>({
-    resolver: zodResolver(UpdateCategorySchema),
+  const form = useForm<TUpdateProductRequest>({
+    resolver: zodResolver(UpdateProductSchema),
     defaultValues: initialData,
   });
-
-  const onSubmit = async (data: TUpdateCategoryRequest) => {
+// console.log("noooo", initialData),
+  const onSubmit = async (data: TUpdateProductRequest) => {
     // console.log(data);
     setIsLoading(true);
     try {
-      const response = await updateCategory(data);
+      const response = await updateProduct(data);
       if (response.status === 200) {
         toast({
-          title: "Category updated successfully",
-          description: "Redirecting to categories list...",
+          title: "Product updated successfully",
+          description: "Redirecting to Product list...",
         });
         // Redirect hoặc refresh trang nếu cần
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: `Failed to update category: ${error}`,
+        description: `Failed to update product: ${error}`,
       });
     } finally {
       setIsLoading(false);
@@ -67,10 +69,10 @@ export function FormUpdateCategory({
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-2">
             <FormField
               control={form.control}
-              name="categoryName"
+              name="productName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tên</FormLabel>
+                  <FormLabel>Tên Sản Phẩm</FormLabel>
                   <FormControl>
                     <Input placeholder="Tên..." {...field} />
                   </FormControl>
@@ -80,12 +82,36 @@ export function FormUpdateCategory({
             />
             <FormField
               control={form.control}
-              name="description"
+              name="stock"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mô Tả</FormLabel>
+                  <FormLabel>Số Lượng</FormLabel>
                   <FormControl>
-                    <Input placeholder="Mô Tả..." {...field} />
+                    <Input
+                      placeholder="Số Lượng..."
+                      {...field}
+                      min={0}
+                      max={100}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="finalPrice"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Giá Cả</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Giá..."
+                      {...field}
+                      min={0}
+                      max={100000000}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
