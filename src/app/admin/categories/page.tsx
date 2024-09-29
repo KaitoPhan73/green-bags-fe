@@ -10,10 +10,8 @@ export default async function ProductsPage(props: any) {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
-  const next = {
-    tags: ["category"],
-  };
-  const response = await getAllCategories(params, next);
+
+  const response = await getAllCategories(params);
 
   return (
     <>

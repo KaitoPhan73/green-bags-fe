@@ -20,19 +20,32 @@ import {
 import { FaEye } from "react-icons/fa";
 import { TbEyeClosed } from "react-icons/tb";
 import { FaDeleteLeft } from "react-icons/fa6";
-// import { labels } from "@/constants/data/data";
-// import { UserSchema } from "@/schema/user.schema";
+import { deleteCategory } from "@/api/category";
+import { toast } from "sonner";
+import { TCategoryResponse } from "@/schema/category.schema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
 
-export function RowAction<TData>({ row }: DataTableRowActionsProps<TData>) {
+export function RowAction<TData extends TCategoryResponse>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   const router = useRouter();
   const handleViewDetail = () => {
     router.push(`/admin/categories/${row.original.id}`);
   };
-
+  const handleDelete = async () => {
+    try {
+      await deleteCategory(row.original.id);
+      toast("Xóa thành công", {
+        description: `Bạn đã xóa phân loại với ${row.original.categoryName}`,
+      });
+    } catch (error) {
+      toast.error("Có lỗi xảy ra khi xóa danh mục."); // Thông báo lỗi
+      console.error("Error deleting category:", error); // In ra lỗi để kiểm tra nếu cần
+    }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -71,8 +84,8 @@ export function RowAction<TData>({ row }: DataTableRowActionsProps<TData>) {
           </DropdownMenuSubContent>
         </DropdownMenuSub> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Xóa
+        <DropdownMenuItem onClick={handleDelete}>
+          {row.original.status === "ACTIVE" ? "Xóa" : "Đã xóa"}
           <DropdownMenuShortcut>
             <FaDeleteLeft className=" h-4 w-4 " />
           </DropdownMenuShortcut>

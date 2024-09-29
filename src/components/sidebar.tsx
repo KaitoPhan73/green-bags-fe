@@ -59,10 +59,7 @@ const sidebarItems: SidebarItems = {
       <SidebarButton icon={MoreHorizontal} className="w-full">
         Thêm
       </SidebarButton>
-      <SidebarButton
-        className="w-full justify-center text-white"
-        variant="default"
-      >
+      <SidebarButton className="w-full justify-center " variant="default">
         ADMINISTRATION
       </SidebarButton>
     </div>
