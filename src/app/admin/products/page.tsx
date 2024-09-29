@@ -5,25 +5,28 @@ import { columns } from "./components/columns";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { getAllProducts } from "@/api/product";
+import ProductIndex from "./components";
+import { getAllBaseModelsActive } from "@/api/base-model";
 
 export default async function ProductsPage(props: any) {
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
-  const response = await getAllProducts(params);
 
+  const [productResponse, baseModelResponse] = await Promise.all([
+    getAllProducts(params),
+    getAllBaseModelsActive(params) || [],
+  ]);
+console.log("hihihihihi:", baseModelResponse);
   return (
     <>
       <div className="flex h-full flex-1 flex-col">
-        {/* <CardReports data={response.payload} /> */}
-        <DataTable
-          payload={{
-            ...response.payload,
-            page: params.page,
-            limit: params.limit,
-          }}
+        <ProductIndex
           columns={columns}
+          payload={productResponse.payload} // Product data
+          basemodel={baseModelResponse.payload} // Category data
+          params={params}
         />
       </div>
     </>

@@ -49,7 +49,7 @@ const CardBlog = ({
         <CardFooter className="p-4 shadow-lg dark:bg-gray-800">
           <div className="flex flex-col">
             <h3 className="text-lg sm:text-xl font-semibold">{name}</h3>
-            <p className="text-gray-700 dark:text-white text-sm sm:text-base mt-1">
+            <p className="text-gray-700 dark:text-white text-sm sm:text-base mt-1 line-clamp-3">
               {description}
             </p>
             <div className="flex justify-between items-center mt-2">

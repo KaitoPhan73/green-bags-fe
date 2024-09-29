@@ -134,10 +134,12 @@ export const products = [
 export const dataBlogs = [
   {
     id: 1,
-    name: "Blog Sống Xanh",
-    description: "Sống bền vững và thân thiện với môi trường.",
+    name: "Tại Sao Túi Tote Là Người Bạn Đồng Hành Hoàn Hảo Cho Mùa Thu",
+    description:
+      "Ai nói túi tote chỉ dành cho bãi biển? Những chiếc túi đa năng này là người bạn đồng hành tốt nhất cho mọi cuộc phiêu lưu mùa thu của bạn. Từ chợ nông sản đến vườn bí ngô, túi tote là phụ kiện hoàn hảo để mang tất cả các món hàng của bạn một cách phong cách. Chúng tôi cung cấp các loại túi tote cụ thể được thiết kế cho các sự kiện này: Chợ Nông Sản và nhiều nơi khác...",
     author: "Alice Green",
-    image: "/images/blue-sky.jpg",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/08/Blog_Why-Tote-Bags-Are-The-Ideal-Fall-Companion-600x338.png",
     createdDate: "2024-01-15",
     posts: [
       {
@@ -153,10 +155,12 @@ export const dataBlogs = [
   },
   {
     id: 2,
-    name: "Kiến Thức Năng Lượng Xanh",
-    description: "Khám phá tương lai của năng lượng tái tạo.",
+    name: "Câu Chuyện Đằng Sau Enviro-Tote",
+    description:
+      "Từ khi được thành lập vào năm 1990, Enviro-Tote™ đã cam kết tạo ra các túi tote thân thiện với môi trường, giúp tạo ra tác động tích cực lên hành tinh của chúng ta. Là một công ty gia đình, do phụ nữ điều hành và sở hữu, với cam kết về tính bền vững, chúng tôi đã phát triển thành một nhà lãnh đạo có uy tín trong ngành túi thân thiện với môi trường. Đây là hành trình của chúng tôi...",
     author: "Bob Sun",
-    image: "/images/blue-sky.jpg",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/08/Blog_The-Story-Behind-Enviro-Tote-600x338.png",
     createdDate: "2024-02-20",
     posts: [
       {
@@ -181,11 +185,12 @@ export const dataBlogs = [
   },
   {
     id: 3,
-    name: "Sống Không Nhựa",
+    name: "5 Lý Do Tại Sao Túi Tote Thân Thiện Với Môi Trường Làm Quà Tặng Doanh Nghiệp Hoàn Hảo",
     description:
-      "Mẹo và thủ thuật để giảm sử dụng nhựa trong cuộc sống hàng ngày.",
+      "Quà tặng doanh nghiệp là cách tuyệt vời để thể hiện sự cảm kích đối với nhân viên, khách hàng và đối tác. Việc chọn đúng món quà có thể để lại ấn tượng lâu dài, củng cố giá trị thương hiệu của bạn và xây dựng mối quan hệ mạnh mẽ hơn. Thay vì chọn mũ hoặc cốc, túi tote thân thiện với môi trường nổi bật như một lựa chọn lý tưởng cho việc tặng quà doanh nghiệp. Dưới đây là một vài lý do tại sao...",
     author: "Clara Rivers",
-    image: "/images/blue-sky.jpg",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/07/Enviro-Tote_5-Reasons-Why-Eco-Friendly-Totes-Make-the-Perfect-Corporate-Gift-600x338.png",
     createdDate: "2024-03-15",
     posts: [
       {
@@ -201,11 +206,12 @@ export const dataBlogs = [
   },
   {
     id: 4,
-    name: "Vườn Xanh Thành Phố",
+    name: "Một Món Quà Kỷ Niệm Đám Cưới Đáng Nhớ",
     description:
-      "Blog dành cho những người yêu thích làm vườn ở đô thị và muốn sống xanh.",
+      "Túi Tote Có Thể Thêm Sự Cá Nhân Hóa Cho Đám Cưới Của Bạn Như Thế Nào Ngày cưới của bạn là một trong những dịp đặc biệt nhất trong đời và mọi chi tiết nên phản ánh phong cách và câu chuyện tình yêu của bạn. Chọn đúng món quà kỷ niệm đám cưới có thể để lại ấn tượng sâu sắc với khách mời và thêm một nét cá nhân hóa cho buổi tiệc của bạn...",
     author: "David Bloom",
-    image: "/images/blue-sky.jpg",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/06/Enviro-Tote-Blog_A-Wedding-Favor-to-Remember-600x338.png",
     createdDate: "2024-04-10",
     posts: [
       {
@@ -221,30 +227,31 @@ export const dataBlogs = [
   },
   {
     id: 5,
-    name: "Thời Trang Bền Vững",
+    name: "Khám Phá Các Chất Liệu Túi Tote Thân Thiện Với Môi Trường Cho Doanh Nghiệp Của Bạn",
     description:
-      "Lựa chọn quần áo phong cách và bền vững cho những người yêu môi trường.",
-    author: "Emma Vogue",
-    image: "/images/blue-sky.jpg",
-    createdDate: "2024-05-25",
+      "Các loại túi tote thân thiện với môi trường không chỉ tốt cho hành tinh mà còn giúp xây dựng thương hiệu của bạn với cam kết về tính bền vững. Hãy cùng khám phá các loại chất liệu bền vững và cách chúng có thể làm nổi bật doanh nghiệp của bạn...",
+    author: "Eva Carter",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/05/Enviro-Tote-Blog_Eco-Friendly-Tote-Bag-Materials-for-Your-Business-600x338.png",
+    createdDate: "2024-05-20",
     posts: [
       {
         id: 106,
-        title: "Top 5 Thương Hiệu Thời Trang Bền Vững Năm 2024",
+        title: "Lợi Ích Của Vải Tái Chế",
         content:
-          "Những thương hiệu này đang dẫn đầu trong lĩnh vực thời trang thân thiện với môi trường. Hãy khám phá...",
-        tags: ["thời trang bền vững", "thân thiện môi trường", "quần áo"],
-        datePublished: "2024-08-14",
+          "Sử dụng vải tái chế giúp giảm thiểu lượng rác thải và bảo vệ môi trường. Dưới đây là những lợi ích quan trọng của việc chuyển sang sử dụng vải tái chế...",
+        tags: ["vải tái chế", "bền vững", "thân thiện với môi trường"],
+        datePublished: "2024-07-15",
         image: "/images/blue-sky.jpg",
       },
     ],
   },
   {
     id: 6,
-    name: "Đánh Giá Công Nghệ Xanh",
-    description: "Những sản phẩm công nghệ thân thiện với môi trường mới nhất.",
+    name: "Những Chiếc Túi Đa Năng Cho Rượu Vang Làm Được Tất Cả",
+    description: "Khách hàng của bạn đang tìm kiếm một giải pháp vừa phong cách vừa tiện dụng để mang rượu vang? Túi của chúng tôi không chỉ để đựng rượu mà còn có thể chứa sách, đồ tạp hóa hoặc bất cứ thứ gì bạn muốn! Trong những ngày bận rộn tại cửa hàng tạp hóa, túi rượu của chúng tôi mang lại một giải pháp thân thiện với môi trường thay thế túi nhựa dùng một lần. Chúng tôi có nhắc đến rằng những chiếc túi này [...]",
     author: "Frank Tech",
-    image: "/images/blue-sky.jpg",
+    image: "https://enviro-tote.com/wp-content/uploads/2024/04/Enviro-Tote_The-Multifunctional-Wine-Totes-That-Do-It-All-600x338.png",
     createdDate: "2024-06-01",
     posts: [
       {
@@ -260,10 +267,10 @@ export const dataBlogs = [
   },
   {
     id: 7,
-    name: "Trái Đất Khỏe, Bạn Khỏe",
-    description: "Blog về việc sống khỏe mạnh và có ý thức bảo vệ môi trường.",
+    name: "Hướng Dẫn Của Bạn Về Kích Cỡ Túi Tote",
+    description: "Túi tote đã trở nên cực kỳ phổ biến trong thế giới hiện đại, phục vụ như là những phương tiện vận chuyển đa năng và bền vững cho nhiều loại vật dụng. Nhưng túi tote thực sự dùng để làm gì? Từ những vật dụng hàng ngày đến nhu cầu chuyên dụng, túi tote cung cấp một giải pháp tiện lợi và phong cách để vận chuyển đồ đạc. Đây là hướng dẫn của bạn về kích cỡ túi tote và […]",
     author: "Grace Earth",
-    image: "/images/blue-sky.jpg",
+    image: "https://enviro-tote.com/wp-content/uploads/2024/03/Blog_Your-Guide-to-Tote-Bag-Sizes-600x338.png",
     createdDate: "2024-07-20",
     posts: [
       {
@@ -279,11 +286,11 @@ export const dataBlogs = [
   },
   {
     id: 8,
-    name: "Du Lịch Không Rác Thải",
+    name: "Lớn Hơn, Tốt Hơn: Quà Tặng Túi Tote Mà Người Tham Gia Yêu Thích",
     description:
-      "Khám phá thế giới trong khi giảm thiểu dấu chân carbon của bạn.",
+      "Các hội chợ, sự kiện kết nối, hội nghị... đều đầy thông tin. Nhưng hãy thừa nhận, những món quà lưu niệm thực sự là các quà tặng. Người tham gia khao khát những món đồ dùng được và có thể tái sử dụng, và không có gì tuyệt vời hơn việc đảm bảo họ nhớ đến bạn qua một chiếc túi tote quảng cáo tiện lợi. Tại sao lại chọn túi tote lớn cho quà tặng của bạn? Chắc chắn, lớn hơn là tốt hơn […]",
     author: "Harry Traveler",
-    image: "/images/blue-sky.jpg",
+    image: "https://enviro-tote.com/wp-content/uploads/2024/02/Enviro-Tote-Blog_Tote-Bag-Giveaways-Attendees-Will-Love-600x338.png",
     createdDate: "2024-08-05",
     posts: [
       {
@@ -300,11 +307,11 @@ export const dataBlogs = [
   },
   {
     id: 9,
-    name: "Những Nhà Sáng Tạo Xanh",
+    name: "Túi Tote Hàng Ngày: Người Bạn Đồng Hành Đáng Tin Cậy Cho Mọi Tình Huống",
     description:
-      "Hồ sơ những người sáng tạo đang tạo ra sự khác biệt trong lĩnh vực bền vững.",
+      "Xin chào túi Tote Hàng Ngày, người bạn vải bố đáng tin cậy cho mọi cuộc phiêu lưu, dù lớn hay nhỏ. Đây không chỉ là chiếc túi tote thông thường; nó là công cụ mạnh mẽ nhất, sẵn sàng đối mặt với cuộc sống hàng ngày của bạn với cả phong cách và chất lượng. Được sản xuất tại Mỹ với tình yêu và chất lượng mà bạn có thể cảm nhận, Túi Tote Hàng Ngày không chỉ là một […]",
     author: "Ivy Innovate",
-    image: "/images/blue-sky.jpg",
+    image: "https://enviro-tote.com/wp-content/uploads/2023/12/The-Everyday-Tote-Your-Go-To-Companion-for-Whatever-Life-Throws-Your-Way-600x338.png",
     createdDate: "2024-09-10",
     posts: [
       {
@@ -320,11 +327,11 @@ export const dataBlogs = [
   },
   {
     id: 10,
-    name: "Dự Án DIY Xanh",
+    name: "Nổi Bật Thương Hiệu Của Bạn Với Túi Tote Đeo Vai Bán Chạy Nhất Của Enviro-Tote: Chất Lượng Và Giá Trị Sản Xuất Tại Mỹ",
     description:
-      "Những dự án DIY dễ dàng và thú vị để giúp cuộc sống của bạn trở nên bền vững hơn.",
+      "Hãy tạm biệt những chiếc túi nhựa mỏng manh, túi đeo vai đã xuất hiện! Chiếc túi vải bố phong cách này, được sản xuất ngay tại Hoa Kỳ, không chỉ là phụ kiện thông thường. Nó là công cụ đắc lực của các nhà bán lẻ, là cứu cánh của người bán sách, là người hùng của các nhà tổ chức sự kiện và là vũ khí bí mật của những người mua sắm tinh tường, những người hiểu rõ chất lượng khi họ nhìn thấy nó. Từ […]",
     author: "Jack Maker",
-    image: "/images/blue-sky.jpg",
+    image: "https://enviro-tote.com/wp-content/uploads/2023/12/Enviro-Tote-Blog_Spotlight-Your-Brand-with-Enviro-Totes-Best-Selling-Shoulder-Tote-600x338.png",
     createdDate: "2024-09-01",
     posts: [
       {
@@ -337,5 +344,6 @@ export const dataBlogs = [
         image: "/images/blue-sky.jpg",
       },
     ],
-  },
+  }
+
 ];

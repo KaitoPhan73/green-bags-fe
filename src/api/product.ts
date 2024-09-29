@@ -7,12 +7,14 @@ import {
   TProductResponse,
 } from "@/schema/product.schema";
 import { TTableResponse } from "@/types/Table";
+import { revalidateTag } from "next/cache";
 
 const getAllProducts = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TProductResponse>>(
     "/product",
     {
       params,
+      next: { tags: ["products"] },
     }
   );
   return response;
@@ -38,12 +40,15 @@ const getAllProducts = async (params?: any) => {
 //   );
 //   return response.payload;
 // };
-// const createProduct = async (
-//   body: TCreateProductRequest
-// ): Promise<TProductResponse> => {
-//   const response = await httpBag.post<TProductResponse>("/product", body);
-//   return response.payload;
-// };
+
+const createProduct = async (
+  body: TCreateProductRequest
+) => {
+  const response = await httpBag.post<TProductResponse>("/product/create", body);
+  revalidateTag("products");
+
+  return response;
+};
 
 // // Cập nhật sản phẩm
 // const updateProduct = async (id: string, body: TUpdateProductRequest) => {
@@ -63,7 +68,7 @@ const getAllProducts = async (params?: any) => {
 export {
   getAllProducts,
   // getAllProductsActive,
-  // createProduct,
+  createProduct,
   // updateProduct,
   // deleteProduct,
   // getProduct,
