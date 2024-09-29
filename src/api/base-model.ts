@@ -30,7 +30,7 @@ const getBaseModelById = async (id: string) => {
 
 // Tạo mới BaseModel
 const createBaseModel = async (body: TCreateBaseModelRequest) => {
-  return await httpBag.post<TBaseModelResponse>("/base-model", body);
+  return await httpBag.post<TBaseModelResponse>("/base-model/create", body);
 };
 
 // Cập nhật BaseModel
