@@ -115,7 +115,8 @@ export function DataTablePagination<TData>({
           </div>
 
           <div className="text-sm font-medium">
-            Page {paginationProps?.page} of {paginationProps?.totalPage}
+            Trang {paginationProps?.page} trong tổng{" "}
+            {paginationProps?.totalPage}
           </div>
 
           <div className="flex items-center space-x-2">

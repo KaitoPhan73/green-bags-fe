@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/table/data-table";
 import { CustomColumnDef } from "@/types/Colunm";
 import { TTableResponse } from "@/types/Table";
-import { useRouter } from "next/navigation";
-import { DialogCreateCategory } from "./dialog-create-category";
+import { DialogCreateBaseModel } from "./dialog-create-base-model";
+import { TCategoryResponse } from "@/schema/category.schema";
 
 interface DataTableProps<TData, TValue> {
   columns: CustomColumnDef<TData, TValue>[];
@@ -14,23 +13,24 @@ interface DataTableProps<TData, TValue> {
     page: number;
     limit: number;
   };
+  categories?: TTableResponse<TCategoryResponse>["listResult"];
 }
 
-const CategoryIndex = <TData, TValue>({
+const BaseModelIndex = <TData, TValue>({
   columns,
   payload,
   params,
+  categories,
 }: DataTableProps<TData, TValue>) => {
-  const router = useRouter();
   return (
     <div>
       <div className="flex h-full flex-1 flex-col">
         {/* <CardReports data={response.payload} /> */}
 
         <div className="flex items-center justify-between">
-          <p className="text-3xl">Quản Lí Phân Loại</p>
+          <p className="text-3xl">Quản Lí Mẫu</p>
 
-          <DialogCreateCategory className="mb-3" />
+          <DialogCreateBaseModel className="mb-3" categories={categories} />
         </div>
         <DataTable
           payload={{
@@ -45,4 +45,4 @@ const CategoryIndex = <TData, TValue>({
   );
 };
 
-export default CategoryIndex;
+export default BaseModelIndex;

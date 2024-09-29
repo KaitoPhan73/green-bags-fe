@@ -18,7 +18,7 @@ const getAllCategories = async (params?: any) => {
 // Lấy tất cả Categories đang active
 const getAllCategoriesActive = async (params?: any) => {
   return await httpBag.get<TTableResponse<TCategoryResponse>>(
-    `/category/active`,
+    `/category/category-status-active`,
     {
       params,
     }
@@ -54,7 +54,7 @@ const updateCategory = async (body: TUpdateCategoryRequest) => {
 
 // Xóa Category
 const deleteCategory = async (id: string): Promise<void> => {
-  await httpBag.delete(`/category/${id}`);
+  await httpBag.delete(`/category/delete/${id}`);
   revalidateTag("categories");
 };
 
