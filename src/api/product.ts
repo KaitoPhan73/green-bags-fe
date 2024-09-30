@@ -61,7 +61,7 @@ const createProduct = async (body: TCreateProductRequest) => {
 // // Cập nhật sản phẩm
 const updateProduct = async (body: TUpdateProductRequest) => {
   const response = await httpBag.patch<TProductResponse>(
-    `/products/update`,
+    `/product/update`,
     body
   );
   revalidateTag("products");

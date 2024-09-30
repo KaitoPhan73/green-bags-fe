@@ -3,7 +3,7 @@ export const items = [
     title: "Trang Chủ",
     description:
       "Khám phá KalBan, nơi cung cấp các sản phẩm túi xanh thân thiện với môi trường và phong cách sống bền vững.",
-    image: "/images/blue-sky.jpg",
+    image: "/images/trangchu.jpg",
     link: "/",
   },
   {
