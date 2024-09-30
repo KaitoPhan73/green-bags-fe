@@ -45,18 +45,21 @@ export default function Banner({ className }: Props) {
                     <p className="text-lg md:text-xl mb-6 text-gray-600 dark:text-white">
                       {item.description}
                     </p>
-                    <Button className="  py-6 px-6 rounded-lg">
+                    <Button className="py-6 px-6 rounded-lg">
                       Tìm hiểu thêm
                     </Button>
                   </div>
                   <div className="order-1 md:order-2">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={500}
-                      height={500}
-                      className="object-cover w-full rounded-lg"
-                    />
+                    {/* Set a fixed size for the image container */}
+                    <div className="w-[700px] h-[500px]">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={500}
+                        height={500}
+                        className="object-cover w-full h-full rounded-lg"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -64,6 +67,7 @@ export default function Banner({ className }: Props) {
           </CarouselItem>
         ))}
       </CarouselContent>
+      {/* Uncomment if you want navigation buttons */}
       {/* <CarouselPrevious className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 h-16 w-16 bg-gray-100 bg-opacity-50 rounded-lg " />
       <CarouselNext className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 h-16 w-16 bg-gray-100 bg-opacity-50 rounded-lg " /> */}
     </Carousel>

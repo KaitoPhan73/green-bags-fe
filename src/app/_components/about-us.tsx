@@ -14,6 +14,7 @@ const AboutUs = () => {
             <CardAbout
               key={index}
               title={item.title}
+              img={item.img}
               description={item.description}
               link={item.link}
             />
