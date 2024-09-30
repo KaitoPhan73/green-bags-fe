@@ -1,5 +1,4 @@
 import React from "react";
-import { products, services } from "@/constants/data";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
 import { getAllProducts } from "@/api/product";
@@ -22,7 +21,7 @@ const page = async (props: any) => {
   revalidateTag("products");
   revalidateTag("products-active");
   const [productResponse, categoryResponse] = await Promise.all([
-    products,
+    product,
     category,
   ]);
   console.log("productResponse", productResponse);

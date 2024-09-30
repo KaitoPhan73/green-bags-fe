@@ -32,6 +32,7 @@ import { TTableResponse } from "@/types/Table";
 import { TCategoryResponse } from "@/schema/category.schema";
 import { statusBaseModel } from "../../components/config";
 import { useRouter } from "next/navigation";
+import { CldUploadWidget } from "next-cloudinary";
 
 interface FormUpdateBaseModelProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,12 +48,18 @@ export function FormUpdateBaseModel({
 }: FormUpdateBaseModelProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { toast } = useToast();
-  const router = useRouter();
+
+  const [info, setInfo] = React.useState<any>(null);
+
   const form = useForm<TUpdateBaseModelRequest>({
     resolver: zodResolver(UpdateBaseModelSchema),
     defaultValues: initialData,
   });
-
+  React.useEffect(() => {
+    if (info?.url) {
+      form.setValue("image", info.url);
+    }
+  }, [info, form]);
   const onSubmit = async (data: TUpdateBaseModelRequest) => {
     setIsLoading(true);
     try {
@@ -175,6 +182,20 @@ export function FormUpdateBaseModel({
                 </FormItem>
               )}
             />
+            <CldUploadWidget
+              signatureEndpoint="/api/sign-image"
+              onSuccess={(result) => {
+                setInfo(result?.info);
+              }}
+            >
+              {({ open }) => {
+                return (
+                  <Button type="button" onClick={() => open()}>
+                    Upload an Image
+                  </Button>
+                );
+              }}
+            </CldUploadWidget>
           </div>
           <Button type="submit" disabled={isLoading}>
             {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
