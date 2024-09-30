@@ -1,3 +1,4 @@
+"use client";
 import { TAccountResponse } from "@/schema/account.schema";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
@@ -23,13 +24,13 @@ const useUserStore = create<UserStore>()(
       // Hàm để xóa thông tin người dùng
       clearUser: () => {
         set({ user: null });
-        localStorage.removeItem("user-storage");
+        localStorage.removeItem("user");
       },
 
       // Hàm để tải thông tin người dùng từ localStorage
       loadUserFromLocalStorage: () => {
         try {
-          const userData = localStorage.getItem("user-storage");
+          const userData = localStorage.getItem("user");
           if (userData) {
             const parsedUser = JSON.parse(userData) as TAccountResponse;
             set({ user: parsedUser });
@@ -40,7 +41,7 @@ const useUserStore = create<UserStore>()(
       },
     }),
     {
-      name: "user", // Tên của kho lưu trữ trong localStorage
+      name: "user-storage", // Tên của kho lưu trữ trong localStorage
       storage: createJSONStorage(() => localStorage),
     }
   )

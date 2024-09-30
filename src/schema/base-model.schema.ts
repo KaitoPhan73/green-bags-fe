@@ -21,6 +21,7 @@ export const CreateBaseModelSchema = z.object({
   basePrice: z.coerce.number().min(0, { message: "Giá không hợp lệ." }),
   status: z.enum(["ACTIVE", "INACTIVE"]),
   categoryID: z.string().uuid(),
+  image: z.string(),
 });
 
 export const UpdateBaseModelSchema = z.object({
@@ -29,6 +30,7 @@ export const UpdateBaseModelSchema = z.object({
   basePrice: z.coerce.number().optional(),
   categoryID: z.string().uuid().optional(),
   status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
+  image: z.string(),
 });
 
 export type TCreateBaseModelRequest = z.TypeOf<typeof CreateBaseModelSchema>;

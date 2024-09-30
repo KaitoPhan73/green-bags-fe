@@ -16,11 +16,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   UpdateCategorySchema,
   TUpdateCategoryRequest,
 } from "@/schema/category.schema";
 import { updateCategory } from "@/api/category";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { statusCategory } from "../../_components/config";
 
 interface FormUpdateCategoryProps extends React.HTMLAttributes<HTMLDivElement> {
   initialData: TUpdateCategoryRequest;
@@ -45,8 +53,7 @@ export function FormUpdateCategory({
       const response = await updateCategory(data);
       if (response.status === 200) {
         toast({
-          title: "Category updated successfully",
-          description: "Redirecting to categories list...",
+          title: "Cập Nhật Thành Công",
         });
         // Redirect hoặc refresh trang nếu cần
       }
@@ -91,15 +98,30 @@ export function FormUpdateCategory({
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Trạng Thái</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Status..." {...field} />
-                  </FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormLabel>Trạng thái</FormLabel>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn trạng thái" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {statusCategory.map((item, index) => (
+                        <SelectItem key={index} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

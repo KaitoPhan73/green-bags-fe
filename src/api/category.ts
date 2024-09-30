@@ -21,6 +21,7 @@ const getAllCategoriesActive = async (params?: any) => {
     `/category/category-status-active`,
     {
       params,
+      next: { tags: ["categories-active"] },
     }
   );
 };
@@ -39,6 +40,7 @@ const createCategory = async (body: TCreateCategoryRequest) => {
     body
   );
   revalidateTag("categories");
+  revalidateTag("categories-active");
   return result;
 };
 
@@ -49,6 +51,7 @@ const updateCategory = async (body: TUpdateCategoryRequest) => {
     body
   );
   revalidateTag("categories");
+  revalidateTag("categories-active");
   return response;
 };
 
@@ -56,6 +59,7 @@ const updateCategory = async (body: TUpdateCategoryRequest) => {
 const deleteCategory = async (id: string): Promise<void> => {
   await httpBag.delete(`/category/delete/${id}`);
   revalidateTag("categories");
+  revalidateTag("categories-active");
 };
 
 export {

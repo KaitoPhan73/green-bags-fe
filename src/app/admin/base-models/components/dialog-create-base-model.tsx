@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -33,7 +34,8 @@ import {
   TCreateBaseModelRequest,
 } from "@/schema/base-model.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect } from "react";
+import { CldUploadWidget } from "next-cloudinary";
 import { useForm } from "react-hook-form";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { createBaseModel } from "@/api/base-model";
@@ -46,6 +48,8 @@ type Props = {
 };
 export function DialogCreateBaseModel({ className, categories }: Props) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [info, setInfo] = React.useState<any>(null);
+
   const { toast } = useToast();
   const form = useForm<TCreateBaseModelRequest>({
     resolver: zodResolver(CreateBaseModelSchema),
@@ -55,8 +59,16 @@ export function DialogCreateBaseModel({ className, categories }: Props) {
       basePrice: 0,
       status: "ACTIVE",
       categoryID: categories?.[0]?.id,
+      image: "",
     },
   });
+
+  useEffect(() => {
+    if (info?.url) {
+      form.setValue("image", info.url);
+    }
+  }, [info, form]);
+  console.log("form", form.watch());
 
   const onSubmit = async (data: TCreateBaseModelRequest) => {
     setIsLoading(true);
@@ -80,11 +92,14 @@ export function DialogCreateBaseModel({ className, categories }: Props) {
   };
 
   return (
-    <Dialog>
+    <Dialog modal={false}>
       <DialogTrigger asChild className={className}>
         <Button variant="default">Tạo Mẫu</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className="sm:max-w-[425px]"
+        onInteractOutside={(event) => event.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Tạo Mẫu</DialogTitle>
           <DialogDescription>Tạo mẫu mới</DialogDescription>
@@ -222,6 +237,27 @@ export function DialogCreateBaseModel({ className, categories }: Props) {
                         </FormItem>
                       )}
                     />
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="image" className="text-right">
+                    Ảnh
+                  </Label>
+                  <div className="col-span-3">
+                    <CldUploadWidget
+                      signatureEndpoint="/api/sign-image"
+                      onSuccess={(result) => {
+                        setInfo(result?.info);
+                      }}
+                    >
+                      {({ open }) => {
+                        return (
+                          <Button type="button" onClick={() => open()}>
+                            Upload an Image
+                          </Button>
+                        );
+                      }}
+                    </CldUploadWidget>
                   </div>
                 </div>
               </div>

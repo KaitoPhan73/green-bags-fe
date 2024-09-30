@@ -12,6 +12,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { RowAction } from "./row-action";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 export const columns: CustomColumnDef<TCategoryResponse>[] = [
   {
     accessorKey: "categoryName",
@@ -101,7 +103,18 @@ export const columns: CustomColumnDef<TCategoryResponse>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
+            {status === "ACTIVE" ? (
+              <Badge
+                variant="outline"
+                className="border-2 border-green-500 p-1"
+              >
+                Hoạt động
+              </Badge>
+            ) : (
+              <Badge variant="destructive" className="p-1">
+                Không hoạt động
+              </Badge>
+            )}
           </span>
         </div>
       );
