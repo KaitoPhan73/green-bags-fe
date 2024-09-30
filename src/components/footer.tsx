@@ -19,7 +19,7 @@ const Footer = () => {
             Trải nghiệm tuyệt vời với KALBAN
           </h2>
           <div className="flex items-center">
-            <Icon className="h-32 w-32 dark:filter dark:invert" />
+            <Icon className="h-40 w-56 dark:filter dark:invert" />
             <p className="text-lg max-w-xl ml-4">
               Khám phá vẻ đẹp của các sản phẩm túi xanh và những thiết kế độc
               đáo. Chúng tôi cung cấp thông tin chi tiết và hướng dẫn lựa chọn

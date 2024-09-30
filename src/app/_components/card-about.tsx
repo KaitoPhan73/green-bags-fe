@@ -9,14 +9,16 @@ import {
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
 
 type CardProps = {
   link: string;
   title: string;
+  img: string; // Add img prop for the image URL
   description: string;
 };
 
-const CardAbout = ({ link, title, description }: CardProps) => {
+const CardAbout = ({ link, title, description, img }: CardProps) => {
   const router = useRouter();
   const handleNavigate = (link: string) => {
     router.push(link);
@@ -28,6 +30,16 @@ const CardAbout = ({ link, title, description }: CardProps) => {
         <CardTitle className="text-lg md:text-xl font-semibold">
           {title}
         </CardTitle>
+        {/* Add the image here */}
+        <div className="mt-4">
+          <Image
+            src={img} 
+            alt={title} 
+            width={300} 
+            height={100} 
+            className="object-cover rounded-lg"
+          />
+        </div>
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="text-sm md:text-md">{description}</p>
