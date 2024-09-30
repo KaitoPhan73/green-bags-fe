@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import NextFetchRequestConfig from "next/types";
 import envConfig from "@/schema/config";
 import { normalizePath } from "./utils";
-import exp from "constants";
+import useUserStore from "@/store/userStore";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -143,7 +143,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
       ) {
         localStorage.setItem("accessToken", data.token);
         const parseData = data.user;
-
+        console.log("parseData", JSON.stringify(parseData));
         localStorage.setItem("user", JSON.stringify(parseData));
       } else if (url === "/auth/logout") {
         localStorage.removeItem("accessToken");

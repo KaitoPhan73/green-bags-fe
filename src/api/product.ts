@@ -39,10 +39,11 @@ const getAllProductsActive = async (
   return response.payload;
 };
 
-const createProduct = async (
-  body: TCreateProductRequest
-) => {
-  const response = await httpBag.post<TProductResponse>("/product/create", body);
+const createProduct = async (body: TCreateProductRequest) => {
+  const response = await httpBag.post<TProductResponse>(
+    "/product/create",
+    body
+  );
   revalidateTag("products");
 
   return response;

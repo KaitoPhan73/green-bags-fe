@@ -5,6 +5,7 @@ import { columns } from "./components/columns";
 import { getAllBaseModels } from "@/api/base-model";
 import BaseModelIndex from "./components";
 import { getAllCategoriesActive } from "@/api/category";
+import { revalidateTag } from "next/cache";
 
 export default async function ProductsPage(props: any) {
   const params = {
@@ -16,6 +17,8 @@ export default async function ProductsPage(props: any) {
     page: 1,
     limit: 1000,
   });
+  revalidateTag("base-models");
+  revalidateTag("base-models-active");
   const [baseModelresponse, categoryResponse] = await Promise.all([
     baseModel,
     category,
