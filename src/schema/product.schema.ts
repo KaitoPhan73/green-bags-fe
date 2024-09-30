@@ -4,6 +4,7 @@ import z from "zod";
 export const ProductResponseSchema = z.object({
   id: z.string().uuid(),
   productName: z.string(),
+  img: z.string(),
   stock: z.string(),
   createdDate: z.string(),
   modifiedDate: z.string().nullable(),
@@ -30,9 +31,16 @@ export const CreateProductSchema = z.object({
 
 export const UpdateProductSchema = z.object({
   id: z.string(),
+  baseModelID: z.string().uuid(),
   productName: z.string().optional(),
   stock: z.string(),
   finalPrice: z.string(),
+  description: z.string().optional(),
+  createdDate: z.string(),
+  modifiedDate: z.string().nullable(),
+  createdBy: z.string().nullable(),
+  modifiedBy: z.string().nullable(),
+  img: z.string().optional(),
   status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
 });
 
