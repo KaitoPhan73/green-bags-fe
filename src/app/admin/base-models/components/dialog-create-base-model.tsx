@@ -68,7 +68,7 @@ export function DialogCreateBaseModel({ className, categories }: Props) {
       form.setValue("image", info.url);
     }
   }, [info, form]);
-  console.log("form", form.watch());
+  // console.log("form", form.watch());
 
   const onSubmit = async (data: TCreateBaseModelRequest) => {
     setIsLoading(true);

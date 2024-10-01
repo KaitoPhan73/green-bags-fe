@@ -8,20 +8,17 @@ import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
 import { RowAction } from "./row-action";
 
 export const columns: CustomColumnDef<TProductResponse>[] = [
-
   // "createdDate": "2024-09-30T20:01:40.773+00:00",
   //     "modifiedDate": "2024-09-30T13:01:40.773+00:00",
   //     "createdBy": null,
   //     "modifiedBy": null,
-    //     "description": null,
+  //     "description": null,
   {
     accessorKey: "productName",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Tên sản phẩm" />
     ),
-    cell: ({ row }) => (
-      <div className="">{row.getValue("productName")}</div>
-    ),
+    cell: ({ row }) => <div className="">{row.getValue("productName")}</div>,
     enableSorting: true,
     enableColumnFilter: true,
   },
@@ -30,20 +27,28 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Hình ảnh" />
     ),
-    cell: ({ row }) => (
-      <div className="">{row.getValue("img") || "None"}</div>
-    ),
+    cell: ({ row }) => {
+      const imgSrc = row.getValue("img") as string;
+      return imgSrc ? (
+        <img
+          src={imgSrc}
+          alt="Product Image"
+          style={{ width: "100px", height: "auto" }}
+        />
+      ) : (
+        "No Image"
+      );
+    },
     enableSorting: true,
     enableColumnFilter: true,
   },
+
   {
     accessorKey: "stock",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Số lượng" />
     ),
-    cell: ({ row }) => (
-      <div className="">{row.getValue("stock")}</div>
-    ),
+    cell: ({ row }) => <div className="">{row.getValue("stock")}</div>,
     enableSorting: true,
     enableColumnFilter: true,
   },
@@ -104,7 +109,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
   //   enableSorting: true,
   //   enableColumnFilter: true,
   // },
-    // {
+  // {
   //   accessorKey: "modifiedDate",
   //   header: ({ column }) => (
   //     <DataTableColumnHeader column={column} title="Ngày chỉnh sửa" />
@@ -117,7 +122,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
   //   enableSorting: true,
   //   enableColumnFilter: true,
   // },
-    // {
+  // {
   //   accessorKey: "createdBy",
   //   header: ({ column }) => (
   //     <DataTableColumnHeader column={column} title="Người tạo" />
