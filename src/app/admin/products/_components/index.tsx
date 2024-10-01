@@ -5,10 +5,10 @@ import { DataTable } from "@/components/table/data-table";
 import { CustomColumnDef } from "@/types/Colunm";
 import { TTableResponse } from "@/types/Table";
 import { useRouter } from "next/navigation";
-import { DialogProduct } from "../dialog-product/dialogProduct";
 import { getAllCategories } from "@/api/category";
 import { TCategoryResponse } from "@/schema/category.schema";
 import { TBaseModelResponse } from "@/schema/base-model.schema";
+import { FormCreateProduct } from "./form-create-product";
 
 interface DataTableProps<TData, TValue> {
   columns: CustomColumnDef<TData, TValue>[];
@@ -17,7 +17,7 @@ interface DataTableProps<TData, TValue> {
     page: number;
     limit: number;
   };
-  basemodel: TTableResponse<TBaseModelResponse>;
+  basemodel: TTableResponse<TBaseModelResponse>["listResult"];
 }
 
 const ProductIndex = <TData, TValue>({
@@ -26,7 +26,6 @@ const ProductIndex = <TData, TValue>({
   params,
   basemodel,
 }: DataTableProps<TData, TValue>) => {
-  const router = useRouter();
   return (
     <div>
       <div className="flex h-full flex-1 flex-col">
@@ -35,7 +34,7 @@ const ProductIndex = <TData, TValue>({
         <div className="flex items-center justify-between">
           <p className="text-3xl">Quản Lí Sản Phẩm</p>
 
-          <DialogProduct basemodel={basemodel.listResult} />
+          <FormCreateProduct basemodel={basemodel} />
         </div>
         <DataTable
           payload={{

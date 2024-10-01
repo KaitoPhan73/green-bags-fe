@@ -18,14 +18,16 @@ export default async function ProductsPage(props: any) {
     getAllProducts(params),
     getAllBaseModelsActive(params) || [],
   ]);
-// console.log("hihihihihi:", baseModelResponse);
+  // console.log("hihihihihi:", baseModelResponse);
+  revalidateTag("products");
+  revalidateTag("base-models-active");
   return (
     <>
       <div className="flex h-full flex-1 flex-col">
         <ProductIndex
           columns={columns}
           payload={productResponse.payload}
-          basemodel={baseModelResponse.payload}
+          basemodel={baseModelResponse.payload.listResult}
           params={params}
         />
       </div>

@@ -29,29 +29,29 @@ export const services = [
 
 export const homepageList = [
   {
-    title: "Dịch vụ của chúng tôi",
+    title: "Sản Phẩm của Nhà Chúng Tôi",
     icon: MdOutlineScubaDiving,
     description:
-      "Trải nghiệm lặn biển cùng các chuyên gia và thế giới biển xanh bát ngát đầy màu sắc thú vị.",
-    image: "https://kinhboi.com/wp-content/uploads/2022/02/lan-bien-1.jpg",
+      "Trải nghiệm các loại mẫu sản phẩm đa dạng và đầy màu sắc thú vị.",
+    image: "https://i.pinimg.com/736x/31/c8/e4/31c8e44217971fa28a82c0a71be7245e.jpg",
     link: "/service",
   },
   {
-    title: "Thông tin về chúng tôi",
+    title: "Khám Phá Giá Trị Bản Thân",
     icon: FaDisease,
     description:
-      "Khám phá các khu bảo tồn biển và trải nghiệm những điều thú vị sẽ đến với bạn tại vùng đất này.",
+      "Khám phá các mô hình tự thiết kế để có thể thõa mãn sự sáng tạo của bản thân.",
     image:
-      "https://bcp.cdnchinhphu.vn/334894974524682240/2022/4/2/con-dao-1648858077344216792948.jpg",
+      "https://i.pinimg.com/736x/cd/a5/ea/cda5ea6ef22739ed0c3b1bef56d90456.jpg",
     link: "/about",
   },
   {
-    title: "Hướng dẫn viên tận tình",
+    title: "Dịch Vụ Chăm Sóc Khách Hàng",
     icon: FcManager,
     description:
-      "Được hướng dẫn bởi các chuyên gia giàu nhiệt huyết, tận tình và giàu kinh nghiệm .",
+      "Đi song song với các sản phẩm thì chú trọng về dịch vụ chăm sóc khách hàng là điều cốt lõi trong quy tắc bán hàng của chúng tôi.",
     image:
-      "https://m.baotuyenquang.com.vn/media/images/2022/03/img_20220331093237.jpg",
+      "https://i.etsystatic.com/32479513/r/il/37406b/4413285919/il_570xN.4413285919_fflr.jpg",
     link: "/about",
   },
 ];
