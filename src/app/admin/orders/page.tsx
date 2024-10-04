@@ -11,8 +11,7 @@ export default async function OrdersPage(props: any) {
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
   const cookieStore = cookies();
-  const accessToken = cookieStore.get("accessToken")?.value;
-  const response = await getAllOrders(accessToken!, params);
+  const response = await getAllOrders(params);
  
   return (
     <>

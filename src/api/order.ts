@@ -9,13 +9,10 @@ import {
 import { TTableResponse } from "@/types/Table";
 
 
-const getAllOrders = async (accessToken: string, params?: any) => {
+const getAllOrders = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TOrderResponse>>(
     "/order",
     {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
       params,
     }
   );
