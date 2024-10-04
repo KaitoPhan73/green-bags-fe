@@ -16,6 +16,7 @@ import BagImage from "./BagImage";
 import CustomSteps from "../../UI/StepCartCustom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import axios from "axios"; // Thêm axios nếu bạn chưa có
 
 const { TabPane } = Tabs;
 
@@ -40,6 +41,7 @@ const BagSelected = ({
   handleExportImage,
 }) => {
   const [isTextSubmitted, setIsTextSubmitted] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const selectedBag = bags.find((bag) => bag.id === selectedBagId);
   const handleImageSelect = (image) => {
@@ -55,6 +57,45 @@ const BagSelected = ({
       },
     ]);
   };
+
+  // const handleImageSelect = async (image) => {
+  //   setSelectedImages((prev) => [...prev, image]); // Cập nhật hình ảnh đã chọn
+  //   setStickers((prevStickers) => [
+  //     ...prevStickers,
+  //     {
+  //       uniqueId: Date.now(), // Unique ID for the sticker
+  //       image: image,
+  //       x: 50,
+  //       y: 50,
+  //       width: 100,
+  //       height: 100,
+  //     },
+  //   ]);
+  //   // Gọi hàm upload hình ảnh lên Cloudinary
+  //   await uploadImageToCloudinary(image);
+  // };
+
+  // const uploadImageToCloudinary = async (image) => {
+  //   const formData = new FormData();
+  //   formData.append("file", image);
+  //   formData.append("upload_preset", "greenbag"); // Cloudinary preset
+
+  //   try {
+  //     const response = await axios.post(
+  //       `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+  //       formData
+  //     );
+
+  //     console.log(
+  //       "Upload thành công. Dữ liệu nhận được từ Cloudinary:",
+  //       response.data
+  //     );
+  //     // Bạn có thể làm gì đó với dữ liệu nhận được, ví dụ lưu URL vào state
+  //     setImageURL(response.data.secure_url);
+  //   } catch (error) {
+  //     console.error("Tải lên ảnh thất bại:", error);
+  //   }
+  // };
 
   const handleRemoveSelectedImage = (uniqueId) => {
     setStickers((prevStickers) =>
@@ -159,21 +200,21 @@ const BagSelected = ({
     <>
       <div className="flex items-center text-white">
         <div className="w-1/2 flex justify-end mr-10">
-        <DndProvider backend={HTML5Backend}>
-          <BagImage
-            imageUrl="/bagsBody/BagTransparentBg.png"
-            color={selectedColor}
-            stickers={stickers}
-            onDrop={handleDrop}
-            onResize={handleResize}
-            onDeleteSticker={handleDeleteSticker}
-            textItems={textItems}
-            onTextRemove={handleRemoveText}
-            onTextClick={handleTextClick}
-            imageURL={imageURL}
-            setImageURL={setImageURL}
-            handleExportImage={handleExportImage}
-          />
+          <DndProvider backend={HTML5Backend}>
+            <BagImage
+              imageUrl="/bagsBody/BagTransparentBg.png"
+              color={selectedColor}
+              stickers={stickers}
+              onDrop={handleDrop}
+              onResize={handleResize}
+              onDeleteSticker={handleDeleteSticker}
+              textItems={textItems}
+              onTextRemove={handleRemoveText}
+              onTextClick={handleTextClick}
+              imageURL={imageURL}
+              setImageURL={setImageURL}
+              handleExportImage={handleExportImage}
+            />
           </DndProvider>
         </div>
         <div className="w-1/2 p-4 ">

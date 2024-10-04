@@ -1,9 +1,10 @@
 // src/components/contentTabs/ClipArtTab.js
 import React, { useState } from "react";
-import { Modal, Input, Row, Col, Image, Button, Upload } from "antd";
+import { Modal, Input, Row, Col, Image, Button, Upload, message } from "antd"; // Import message here
 import items from "../../../../../../utils/Items";
 import { PlusOutlined, RightOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import axios from "axios"; // Don't forget to import axios if it's not already imported
 
 const StyledModal = styled(Modal)`
   .ant-modal-title {
@@ -19,12 +20,13 @@ const StyledModal = styled(Modal)`
   }
 `;
 
-const ClipArtTab = ({ onImageSelect }) => {
+const ClipArtTab = ({ onImageSelect, selectedImage }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isUploadModalVisible, setIsUploadModalVisible] = useState(false);
   const [isMyImagesModalVisible, setIsMyImagesModalVisible] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [tempUploadFiles, setTempUploadFiles] = useState([]); // New state for temporary files
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -68,11 +70,108 @@ const ClipArtTab = ({ onImageSelect }) => {
     setIsMyImagesModalVisible(false);
   };
 
+  // Change to store files without uploading immediately
   const handleUploadChange = ({ fileList }) => {
-    setUploadedImages(
-      fileList.map((file) => URL.createObjectURL(file.originFileObj))
-    );
+    setTempUploadFiles(fileList.map(file => file.originFileObj)); // Store files temporarily
+    setUploadedImages(fileList.map((file) => URL.createObjectURL(file.originFileObj)));
   };
+
+  // Function to upload selected files when the Select button is clicked
+  // const handleUploadSelect = async () => {
+  //   const uploadedImageUrls = [];
+
+  //   for (const file of tempUploadFiles) {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("upload_preset", "greenbag"); // Replace with your Cloudinary upload preset
+
+  //     try {
+  //       const response = await axios.post(
+  //         `https://api.cloudinary.com/v1_1/dsmdqayv6/image/upload`, // Replace with your Cloudinary cloud name
+  //         formData
+  //       );
+  //       uploadedImageUrls.push(response.data.secure_url);
+  //     } catch (error) {
+  //       console.error("Error uploading image:", error);
+  //       message.error("Failed to upload image. Please try again.");
+  //     }
+  //   }
+
+  //   setUploadedImages(uploadedImageUrls);
+  //   setTempUploadFiles([]); // Clear temporary files after upload
+  //   setIsUploadModalVisible(false); // Close the upload modal after upload
+  // };
+
+  // const handleUploadSelect = async () => {
+  //   const uploadedImageUrls = [];
+  
+  //   for (const file of tempUploadFiles) {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("upload_preset", "greenbag"); // Replace with your Cloudinary upload preset
+  
+  //     try {
+  //       const response = await axios.post(
+  //         `https://api.cloudinary.com/v1_1/dsmdqayv6/image/upload`, // Replace with your Cloudinary cloud name
+  //         formData
+  //       );
+  //       uploadedImageUrls.push(response.data.secure_url);
+  //     } catch (error) {
+  //       console.error("Error uploading image:", error);
+  //       message.error("Failed to upload image. Please try again.");
+  //     }
+  //   }
+  
+  //   // Save uploaded image URLs to localStorage
+  //   if (uploadedImageUrls.length > 0) {
+  //     const existingImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+  //     const updatedImages = [...existingImages, ...uploadedImageUrls];
+  //     localStorage.setItem('uploadedImages', JSON.stringify(updatedImages));
+  //   }
+  
+  //   setUploadedImages(uploadedImageUrls);
+  //   setTempUploadFiles([]); // Clear temporary files after upload
+  //   setIsUploadModalVisible(false); // Close the upload modal after upload
+  // };
+
+  const handleUploadSelect = async () => {
+    const uploadedImageUrls = [];
+  
+    for (const file of tempUploadFiles) {
+      const reader = new FileReader();
+  
+      // Convert file to base64 string
+      reader.onload = () => {
+        const base64String = reader.result;
+  
+        // Push the base64 string to the array
+        if (typeof base64String === "string") {
+          uploadedImageUrls.push(base64String);
+        }
+  
+        // Save base64 images to localStorage after processing all files
+        if (uploadedImageUrls.length === tempUploadFiles.length) {
+          const existingImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+          const updatedImages = [...existingImages, ...uploadedImageUrls];
+          localStorage.setItem('uploadedImages', JSON.stringify(updatedImages));
+  
+          setUploadedImages(uploadedImageUrls); // Update state with uploaded images
+          setTempUploadFiles([]); // Clear temporary files after upload
+          setIsUploadModalVisible(false); // Close the upload modal after upload
+        }
+      };
+  
+      reader.onerror = () => {
+        console.error("Error reading file:", file.name);
+        message.error("Failed to read file. Please try again.");
+      };
+  
+      // Read the file as a base64 string
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  
 
   return (
     <div>
@@ -143,7 +242,9 @@ const ClipArtTab = ({ onImageSelect }) => {
         title="Upload Images"
         open={isUploadModalVisible}
         onCancel={handleUploadCancel}
-        footer={null}
+        footer={
+          <Button onClick={handleUploadSelect}>Chấp Nhận Các Ảnh</Button> // Add Select button for upload
+        }
       >
         <Upload
           listType="picture-card"
