@@ -7,10 +7,8 @@ export const CustomResponseSchema = z.object({
   createdBy: z.string(),
   modifiedBy: z.string(),
   status: z.enum(["ACTIVE", "INACTIVE"]),
-  optionName: z.string(),
-  optionType: z.string(),
-  additionalPrice: z.string(),
-
+  imageURL: z.string(),
+  customValue: z.string(),
 });
 
 

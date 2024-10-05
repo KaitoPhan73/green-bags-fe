@@ -6,18 +6,18 @@ import { TTableResponse } from "@/types/Table";
 import { revalidateTag } from "next/cache";
 
 // Lấy tất cả tài khoản
-export const getAllCustoms = async (accessToken: string, params?: any) => {
+export const getAllCustoms = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TCustomResponse>>(
-    "/customization-option",
+    "/product-customization",
     {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
       params,
+      next: { tags: ["custom"] },
+
     }
   );
   return response;
 };
+
 
 export const createCustomProduct = async (body: TCreateCustomProductRequest) => {
   const response = await httpBag.post<TCustomResponse>(
