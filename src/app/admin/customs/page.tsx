@@ -10,9 +10,7 @@ export default async function CustomsPage(props: any) {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("accessToken")?.value;
-  const response = await getAllCustoms(accessToken!, params);
+  const response = await getAllCustoms(params);
  
   return (
     <>
