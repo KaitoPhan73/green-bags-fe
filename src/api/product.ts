@@ -26,17 +26,15 @@ const getProductById = async (id: string) => {
   });
 };
 
-const getAllProductsActive = async (
-  params?: any
-) => {
+const getAllProductsActive = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TProductResponse>>(
     `/product/product-status-active`,
     {
       params,
-      next: { tags: ["products"] },
+      next: { tags: ["products-active"] },
     }
   );
-  return response.payload;
+  return response;
 };
 
 const createProduct = async (body: TCreateProductRequest) => {

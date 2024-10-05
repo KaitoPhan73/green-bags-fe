@@ -15,7 +15,7 @@ export const OrderResponseSchema = z.object({
 });
 
 export const CreateOrderSchema = z.object({
-  orderDate: z.string(),
+  userID: z.string(),
   totalAmount: z.number().min(0, { message: "Tổng tiền không được âm." }),
   shippingAddress: z.string(),
   status: z.enum(["ACTIVE", "INACTIVE"]),

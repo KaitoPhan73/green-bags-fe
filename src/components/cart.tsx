@@ -42,22 +42,24 @@ function Cart() {
               </Empty>
             ) : (
               <div>
-                {items.map((item) => (
-                  <div className="flex justify-between w-full py-2">
+                {items.map((item, index) => (
+                  <div className="flex justify-between w-full py-2" key={index}>
                     <div className="flex items-start gap-2">
                       <Image
-                        src={item.image}
+                        src={item.img}
                         alt="product"
                         width={48}
                         height={48}
                         className="rounded-lg"
                       />
                       <div>
-                        <p className="text-sm font-normal">{item.name}</p>
+                        <p className="text-sm font-normal">
+                          {item.productName}
+                        </p>
                         <p className="text-xs text-gray-500">{item.quantity}</p>
                       </div>
                     </div>
-                    <p className="text-sm font-normal">{item.price}</p>
+                    <p className="text-sm font-normal">{item.finalPrice}</p>
                   </div>
                 ))}
                 <Separator className="mb-2" />

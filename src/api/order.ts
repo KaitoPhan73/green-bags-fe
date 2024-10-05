@@ -8,17 +8,13 @@ import {
 } from "@/schema/order.schema";
 import { TTableResponse } from "@/types/Table";
 
-
 const getAllOrders = async (accessToken: string, params?: any) => {
-  const response = await httpBag.get<TTableResponse<TOrderResponse>>(
-    "/order",
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      params,
-    }
-  );
+  const response = await httpBag.get<TTableResponse<TOrderResponse>>("/order", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    params,
+  });
   return response;
 };
 
@@ -29,11 +25,9 @@ const getOrderById = async (id: string): Promise<TOrderResponse> => {
 };
 
 // Tạo đơn hàng mới
-const createOrder = async (
-  body: TCreateOrderRequest
-): Promise<TOrderResponse> => {
-  const response = await httpBag.post<TOrderResponse>("/order", body);
-  return response.payload;
+const createOrder = async (body: TCreateOrderRequest) => {
+  const response = await httpBag.post<TOrderResponse>("/order/create", body);
+  return response;
 };
 
 // Cập nhật đơn hàng

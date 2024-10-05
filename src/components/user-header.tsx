@@ -75,6 +75,16 @@ const UserHeader = () => {
                 Hồ Sơ
                 {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
               </DropdownMenuItem>
+              {user?.roleName === "admin" && (
+                <DropdownMenuItem
+                  onClick={() => router.push("/admin/products")}
+                >
+                  <PersonIcon style={{ marginRight: "8px" }} />
+                  Quản Lý
+                  {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+                </DropdownMenuItem>
+              )}
+
               <DropdownMenuItem>
                 <HistoryIcon style={{ marginRight: "8px" }} />
                 Lịch Sử Mua Hàng
