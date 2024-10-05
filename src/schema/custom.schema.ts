@@ -13,4 +13,16 @@ export const CustomResponseSchema = z.object({
 
 });
 
+
+export const CreateCustomProductSchema = z.object({
+  productId: z.string().uuid(),
+  optionId: z.string().uuid(),
+  imageURL: z.string().uuid(),
+  customValue: z.string().uuid(),
+  status: z.enum(["ACTIVE", "INACTIVE"]),
+  userId: z.string().uuid(),
+
+});
+
 export type TCustomResponse = z.TypeOf<typeof CustomResponseSchema>;
+export type TCreateCustomProductRequest = z.TypeOf<typeof CreateCustomProductSchema>;

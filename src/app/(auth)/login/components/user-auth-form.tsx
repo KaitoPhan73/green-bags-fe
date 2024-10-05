@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +35,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       password: "",
     },
   });
+
   const onSubmit = async (data: TLoginRequest) => {
     try {
       setIsLoading(true);
@@ -47,16 +47,27 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           user: response.payload,
         });
 
-        toast({
-          title: "Chào mừng bạn trở lại",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">Đang chuyển đến trang chủ</code>
-            </pre>
-          ),
-        });
+        // Check user role and redirect accordingly
+        const userRole = response.payload.roleName;
 
-        router.push("/");
+        if (userRole === "admin") {
+          toast({
+            title: "Chào mừng bạn trở lại",
+            description: (
+              <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                <code className="text-white">
+                  Đang chuyển đến trang quản lí
+                </code>
+              </pre>
+            ),
+          });
+          router.push("/admin/products");
+        } else {
+          toast({
+            title: "Chào mừng bạn trở lại",
+          });
+          router.push("/");
+        }
       }
     } catch (error) {
       console.error("Login error: ", error);
@@ -103,6 +114,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     <FormControl>
                       <Input
                         placeholder="Mật khẩu..."
+                        type="password" // Ensure the password is masked
                         {...field}
                         disabled={isLoading}
                       />

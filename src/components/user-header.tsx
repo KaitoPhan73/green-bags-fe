@@ -70,10 +70,9 @@ const UserHeader = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/profile")}>
                 <PersonIcon style={{ marginRight: "8px" }} />
                 Hồ Sơ
-                {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
               </DropdownMenuItem>
               {user?.roleName === "admin" && (
                 <DropdownMenuItem
@@ -81,21 +80,26 @@ const UserHeader = () => {
                 >
                   <PersonIcon style={{ marginRight: "8px" }} />
                   Quản Lý
-                  {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
                 </DropdownMenuItem>
               )}
-
-              <DropdownMenuItem>
-                <HistoryIcon style={{ marginRight: "8px" }} />
-                Lịch Sử Mua Hàng
-                {/* <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> */}
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <LocalMallIcon style={{ marginRight: "8px" }} />
-                Sản Phẩm Của Bạn
-                {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
-              </DropdownMenuItem>
+              {user?.roleName === "user" && (
+                <>
+                  <DropdownMenuItem
+                    onClick={() => router.push("/profile/orders")}
+                  >
+                    <HistoryIcon style={{ marginRight: "8px" }} />
+                    Lịch Sử Mua Hàng
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => router.push("/profile/customizes")}
+                  >
+                    <LocalMallIcon style={{ marginRight: "8px" }} />
+                    Sản Phẩm Của Bạn
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuGroup>
+
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link href="/logout">

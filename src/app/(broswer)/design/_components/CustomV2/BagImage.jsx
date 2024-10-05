@@ -10,6 +10,7 @@ import { useDrop } from "react-dnd";
 import html2canvas from "html2canvas";
 import Compressor from "compressorjs";
 import ConfirmButton from "../../UI/ModalConfirm";
+import { useRef } from "react";
 
 const StyledButton = styled(ConfirmButton)`
   background-color: #cef53d;
@@ -52,7 +53,7 @@ const BagImage = ({
   const [fullyCoveredStickers, setFullyCoveredStickers] = useState([]);
 
   const [fullyCoveredText, setFullyCoveredText] = useState([]);
-
+  
   const [, drop] = useDrop(() => ({
     accept: "sticker",
     drop: (item, monitor) => {
@@ -221,7 +222,7 @@ const BagImage = ({
                 });
               }}
               bounds="parent"
-              onClick={() => onTextClick(textItem)} // Handle text item click
+              // onClick={() => onTextClick(textItem)} // Handle text item click
             >
               <div
                 className={`relative w-full h-full group ${

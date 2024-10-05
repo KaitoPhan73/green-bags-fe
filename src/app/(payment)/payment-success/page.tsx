@@ -19,7 +19,7 @@ export default function PaymentCompletePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const orderCode = searchParams.get("orderCode");
-  const { items, clearCart, getTotal } = useCartStore();
+  const { clearCart, getTotal } = useCartStore();
   const { user, loadUserFromLocalStorage } = useUserStore();
 
   useEffect(() => {

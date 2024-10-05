@@ -1,8 +1,9 @@
 "use server";
 
 import { httpBag } from "@/lib/http";
-import { TCustomResponse } from "@/schema/custom.schema";
+import { TCreateCustomProductRequest, TCustomResponse } from "@/schema/custom.schema";
 import { TTableResponse } from "@/types/Table";
+import { revalidateTag } from "next/cache";
 
 // Lấy tất cả tài khoản
 export const getAllCustoms = async (accessToken: string, params?: any) => {
@@ -15,5 +16,15 @@ export const getAllCustoms = async (accessToken: string, params?: any) => {
       params,
     }
   );
+  return response;
+};
+
+export const createCustomProduct = async (body: TCreateCustomProductRequest) => {
+  const response = await httpBag.post<TCustomResponse>(
+    "/product-customization/create",
+    body
+  );
+  revalidateTag("custom");
+
   return response;
 };
