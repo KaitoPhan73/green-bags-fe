@@ -29,7 +29,7 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Vai trò" />
     ),
-    cell: ({ row }) => <div className="">{row.getValue("roleName")}</div>,
+    cell: ({ row }) => <div className="w-[50px]">{row.getValue("roleName")}</div>,
     enableColumnFilter: true,
   },
   {
@@ -37,7 +37,7 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Email" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="w-[100px]">{row.getValue("email")}</div>,
     enableSorting: false,
     enableHiding: false,
     enableColumnFilter: true,
@@ -52,7 +52,7 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
       <DataTableColumnHeader column={column} title="Ngày tạo" />
     ),
     cell: ({ row }) => (
-      <div className="w-[30px]">
+      <div className="w-[50px]">
         {formattedDateTime(row.getValue("createdDate"))}
       </div>
     ),
@@ -64,10 +64,17 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
       <DataTableColumnHeader column={column} title="Trạng thái" />
     ),
     cell: ({ row }) => {
+      const status = row.getValue("status");
       return (
-        <div className="flex space-x-2">
+        <div className="flex items-center space-x-2">
+          {/* Green dot for 'Hoạt động', red dot for 'Không hoạt động' */}
+          <span
+            className={`h-3 w-3 rounded-full ${
+              status === "ACTIVE" ? "bg-green-500" : "bg-red-500"
+            }`}
+          />
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("status")}
+            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
           </span>
         </div>
       );
@@ -75,11 +82,10 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
     meta: {
       filterType: "select",
       options: [
-        { label: "Hoạt động", value: "active" },
-        { label: "không hoạt động", value: "no-active" },
+        { label: "Hoạt động", value: "ACTIVE" },
+        { label: "Không hoạt động", value: "INACTIVE" },
       ],
     },
-
     enableColumnFilter: true,
   },
   {
