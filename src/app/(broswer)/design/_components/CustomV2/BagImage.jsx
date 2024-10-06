@@ -53,7 +53,7 @@ const BagImage = ({
   const [fullyCoveredStickers, setFullyCoveredStickers] = useState([]);
 
   const [fullyCoveredText, setFullyCoveredText] = useState([]);
-  
+
   const [, drop] = useDrop(() => ({
     accept: "sticker",
     drop: (item, monitor) => {
@@ -133,7 +133,7 @@ const BagImage = ({
             backgroundPosition: "center center",
             maskImage: "url('/bagsBody/BagTransparentBg.png')",
             WebkitMaskImage: "url('/bagsBody/BagTransparentBg.png')",
-            maskSize: "contain",  
+            maskSize: "contain",
             WebkitMaskSize: "contain",
             maskPosition: "center",
             WebkitMaskPosition: "center",
@@ -147,7 +147,6 @@ const BagImage = ({
           //   backgroundRepeat: "no-repeat",
           //   backgroundPosition: "center center",
           // }}
-          
         >
           <img
             src={imageUrl}
@@ -311,9 +310,9 @@ const BagImage = ({
       <StyledButton
         onClick={handleExportImage}
         className="mt-4"
-        title="Are you sure you want to export this image?"
+        title="Bạn đồng ý xuất túi của bạn ra chứ?"
       >
-        Export Image
+        Xuất ảnh
       </StyledButton>
       {imageURL && (
         <div className="mt-4">

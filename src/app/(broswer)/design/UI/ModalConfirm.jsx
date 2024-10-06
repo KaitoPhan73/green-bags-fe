@@ -31,9 +31,9 @@ const ConfirmButton = ({ onClick, className, children, title, content }) => {
     confirm({
       title: title || "Are you sure you want to export the image?",
       icon: <ExclamationCircleOutlined />,
-      content: content || "This action will export the current image.",
-      okText: "Yes",
-      cancelText: "No",
+      content: content || "Hành đông này không thể hoàn tác",
+      okText: "Xác nhận",
+      cancelText: "Từ chối",
       onOk() {
         onClick();
       },
