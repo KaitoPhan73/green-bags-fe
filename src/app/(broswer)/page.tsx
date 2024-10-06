@@ -8,6 +8,11 @@ import DesignIntroduction from "../_components/design-introduction";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function Home() {
+  // const a =
+  //   '[{"img":"https://res.cloudinary.com/dsmdqayv6/image/upload/v1728140741/blob_fnzbmm.jpg"},{"img":"https://res.cloudinary.com/dsmdqayv6/image/upload/v1728140741/blob_hf7vhq.png"},{"img":"https://res.cloudinary.com/dsmdqayv6/image/upload/v1728140743/blob_xqgrky.png"}]';
+  // const parsedArray = JSON.parse(a);
+  // console.log("ihiiiiiiiii", parsedArray);
+
   return (
     <div>
       <Banner />

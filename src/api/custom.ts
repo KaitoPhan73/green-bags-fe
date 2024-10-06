@@ -1,7 +1,7 @@
 "use server";
 
 import { httpBag } from "@/lib/http";
-import { TCreateCustomProductRequest, TCustomResponse } from "@/schema/custom.schema";
+import { TCreateCustomProductRequest, TCustomResponse, TUpdateCustomProductRequest } from "@/schema/custom.schema";
 import { TTableResponse } from "@/types/Table";
 import { revalidateTag } from "next/cache";
 
@@ -11,7 +11,7 @@ export const getAllCustoms = async (params?: any) => {
     "/product-customization",
     {
       params,
-      next: { tags: ["custom"] },
+      next: { tags: ["customs"] },
 
     }
   );
@@ -24,7 +24,23 @@ export const createCustomProduct = async (body: TCreateCustomProductRequest) => 
     "/product-customization/create",
     body
   );
-  revalidateTag("custom");
+  revalidateTag("customs");
 
   return response;
+};
+
+
+export const getCustomProductById = async (id: string) => {
+  return await httpBag.get<TCustomResponse>(`/product-customization/${id}`, {
+    next: { tags: ["customs"] },
+  });
+};
+
+export const updateCustomProduct = async (body: TUpdateCustomProductRequest) => {
+  const result = await httpBag.patch<TCustomResponse>(
+    "/product-customization/update",
+    body
+  );
+  revalidateTag("customs");
+  return result;
 };
