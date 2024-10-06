@@ -116,11 +116,9 @@ const Contact = () => {
             required
             rows={10}
           />
-          <Button type="submit">Send</Button>
-          {success && (
-            <p>Your message has been sent. We'll get back to you soon :)</p>
-          )}
-          {success === false && <p>Something went wrong, please try again.</p>}
+          <Button type="submit">Gửi</Button>
+          {success && <p>Tin nhắn của bạn đã được gửi</p>}
+          {success === false && <p>Vui lòng thử lại</p>}
         </Form>
       </Left>
       <Right>

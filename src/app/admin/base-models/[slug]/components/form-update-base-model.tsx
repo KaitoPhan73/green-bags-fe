@@ -25,6 +25,7 @@ import {
 import {
   UpdateBaseModelSchema,
   TUpdateBaseModelRequest,
+  TBaseModelResponse,
 } from "@/schema/base-model.schema"; // Import schema tương ứng
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { updateBaseModel } from "@/api/base-model";
@@ -36,7 +37,7 @@ import { CldUploadWidget } from "next-cloudinary";
 
 interface FormUpdateBaseModelProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  initialData: TUpdateBaseModelRequest;
+  initialData: TBaseModelResponse;
   categories?: TTableResponse<TCategoryResponse>["listResult"];
 }
 

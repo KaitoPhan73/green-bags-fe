@@ -4,10 +4,10 @@ import tailwindcssAnimate from "tailwindcss-animate";
 const config: Config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{js,jsx,ts,tsx}', // Adjust paths as needed
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}", // Adjust paths as needed
   ],
   prefix: "",
   theme: {
@@ -55,7 +55,7 @@ const config: Config = {
         },
       },
       zIndex: {
-        '-1': '-1',  // Thêm z-index -1
+        "-1": "-1", // Thêm z-index -1
       },
       borderRadius: {
         lg: "var(--radius)",
