@@ -6,6 +6,7 @@ import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { TProductResponse } from "@/schema/product.schema";
 import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
 import { RowAction } from "./row-action";
+import { statusProduct } from "./config";
 
 export const columns: CustomColumnDef<TProductResponse>[] = [
   // "createdDate": "2024-09-30T20:01:40.773+00:00",
@@ -20,7 +21,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
     ),
     cell: ({ row }) => <div className="">{row.getValue("productName")}</div>,
     enableSorting: true,
-    enableColumnFilter: true,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "img",
@@ -40,7 +41,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       );
     },
     enableSorting: true,
-    enableColumnFilter: true,
+    enableColumnFilter: false,
   },
 
   {
@@ -50,7 +51,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
     ),
     cell: ({ row }) => <div className="">{row.getValue("stock")}</div>,
     enableSorting: true,
-    enableColumnFilter: true,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "finalPrice",
@@ -61,7 +62,7 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       <div className="">{formatPriceVND(row.getValue("finalPrice"))}</div>
     ),
     enableSorting: true,
-    enableColumnFilter: true,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "status",
@@ -72,26 +73,30 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
       const status = row.getValue("status");
       return (
         <div className="flex items-center space-x-2">
-          {/* Green dot for 'Hoạt động', red dot for 'Không hoạt động' */}
           <span
             className={`h-3 w-3 rounded-full ${
-              status === "ACTIVE" ? "bg-green-500" : "bg-red-500"
+              status === "ACTIVE"
+                ? "bg-green-500"
+                : status === "CUSTOM"
+                ? "bg-yellow-500" // Màu sắc cho trạng thái CUSTOM
+                : "bg-red-500"
             }`}
           />
           <span className="max-w-[500px] truncate font-medium">
-            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
+            {status === "ACTIVE"
+              ? "Hoạt động"
+              : status === "CUSTOM"
+              ? "Tùy chỉnh" // Văn bản cho trạng thái CUSTOM
+              : "Không hoạt động"}
           </span>
         </div>
       );
     },
     meta: {
       filterType: "select",
-      options: [
-        { label: "Hoạt động", value: "ACTIVE" },
-        { label: "Không hoạt động", value: "INACTIVE" },
-      ],
+      options: statusProduct,
     },
-    enableColumnFilter: true,
+    enableColumnFilter: false,
   },
   {
     id: "actions",

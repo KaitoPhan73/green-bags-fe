@@ -1,23 +1,18 @@
-"use client"
-
 import PageTitle from "@/components/page-tittle";
 import CustomPage from "./_components/CustomV2/MainCustomPage/CustomPage";
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { getAllProducts } from "@/api/product";
+const page = async () => {
+  const data = await getAllProducts({ page: 1, limit: 100 });
 
-const queryClient = new QueryClient();
-const page = () => {
   return (
     <div>
-      <QueryClientProvider client={queryClient}>
-        <PageTitle title="Liên hệ với chúng tôi " />
-        <section className="py-12 md:py-24 lg:py-24">
-          <div className="md:mx-12 lg:mx-24">
-            <CustomPage />
-          </div>
-        </section>
-      </QueryClientProvider>
-
+      <PageTitle title="Liên hệ với chúng tôi " />
+      <section className="py-12 md:py-24 lg:py-24">
+        <div className="md:mx-12 lg:mx-24">
+          <CustomPage bags={data.payload.listResult} />
+        </div>
+      </section>
     </div>
   );
 };

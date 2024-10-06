@@ -5,8 +5,8 @@ import {
 } from "@/schema/momo.schema";
 
 // Hàm thanh toán Momo
-const createMomoPayment = async (body: TMomoPaymentRequest): Promise<void> => {
-  await httpBag.post("/momo-payment", body);
+const createMomoPayment = async (body: TMomoPaymentRequest) => {
+  return await httpBag.post("/momo-payment", body);
 };
 
 // Hàm lấy trạng thái thanh toán

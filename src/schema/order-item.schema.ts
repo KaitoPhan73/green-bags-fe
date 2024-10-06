@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ProductResponseSchema } from "./product.schema";
 
 export const OrderItemResponseSchema = z.object({
   id: z.string().uuid(),
@@ -8,7 +9,7 @@ export const OrderItemResponseSchema = z.object({
   modifiedBy: z.string().nullable(),
   status: z.enum(["ACTIVE", "INACTIVE"]),
   orderID: z.string().uuid(),
-  productID: z.string().uuid(),
+  product: ProductResponseSchema,
   quantity: z.number().min(1, { message: "Số lượng không hợp lệ." }),
   unitPrice: z.number().min(0, { message: "Giá không được âm." }),
 });

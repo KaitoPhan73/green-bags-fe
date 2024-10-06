@@ -1,19 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { products } from "@/constants/data";
-import AddToCartButton from "@/components/add-to-cart-btn";
 import AddToCartQuantity from "./_components/add-cart-quantity";
-const ProductDetail = ({ params }: { params: { id: string } }) => {
-  const data = products.find((product) => product.id === params.id);
+import { getProductById } from "@/api/product";
+const ProductDetail = async ({ params }: { params: { id: string } }) => {
+  const response = await getProductById(params.id);
+  const data = response.payload;
   return (
     <div className="container flex flex-col gap-8 w-[80vw] mt-20 p-8">
       <div className="flex gap-4 bg-slate-100 rounded-md p-8">
         <div className="">
           <Image
-            src={data?.image || "/path/to/default/image.jpg"}
+            src={data?.img || "/path/to/default/image.jpg"}
             width={600}
             height={600}
             alt="Product"
@@ -22,14 +20,16 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
         </div>
         <div className="flex-1 flex flex-col gap-4 justify-between">
           <div className="flex flex-col gap-4">
-            <h1 className="font-semibold text-2xl font-serif">{data?.name}</h1>
+            <h1 className="font-semibold text-2xl font-serif">
+              {data?.productName}
+            </h1>
             <div className="flex gap-4 items-center">
               <div className="flex gap-2 border-r-2 pr-4">
                 <span className="text-3xl font-semibold text-yellow-700">
-                  ${data?.price}
+                  ${data?.finalPrice}
                 </span>
                 <span className="text-lg line-through text-gray-500">
-                  ${data?.price}
+                  ${data?.finalPrice}
                 </span>
               </div>
               <div className="flex gap-2">
@@ -42,14 +42,6 @@ const ProductDetail = ({ params }: { params: { id: string } }) => {
                 ))}
               </div>
               <div className="text-gray-500">99 Reviews</div>
-            </div>
-            <div>
-              <span>Bag color</span>
-              <div className="flex gap-4 items-center m-4">
-                <div className="w-8 h-8 rounded-full bg-red-500"></div>
-                <div className="w-8 h-8 rounded-full bg-yellow-500"></div>
-                <div className="w-8 h-8 rounded-full bg-green-500"></div>
-              </div>
             </div>
             <div>
               <span>Bag size</span>

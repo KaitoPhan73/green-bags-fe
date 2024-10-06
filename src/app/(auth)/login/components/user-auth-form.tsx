@@ -35,7 +35,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       password: "",
     },
   });
-  
+
   const onSubmit = async (data: TLoginRequest) => {
     try {
       setIsLoading(true);
@@ -51,19 +51,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         const userRole = response.payload.roleName;
 
         if (userRole === "admin") {
+          toast({
+            title: "Chào mừng bạn trở lại",
+            description: (
+              <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                <code className="text-white">
+                  Đang chuyển đến trang quản lí
+                </code>
+              </pre>
+            ),
+          });
           router.push("/admin/products");
         } else {
+          toast({
+            title: "Chào mừng bạn trở lại",
+          });
           router.push("/");
         }
-
-        toast({
-          title: "Chào mừng bạn trở lại",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">Đang chuyển đến trang quản lí</code>
-            </pre>
-          ),
-        });
       }
     } catch (error) {
       console.error("Login error: ", error);

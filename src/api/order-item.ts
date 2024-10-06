@@ -28,7 +28,10 @@ const getOrderItemById = async (id: string): Promise<TOrderItemResponse> => {
 const createOrderItem = async (
   body: TCreateOrderItemRequest
 ): Promise<TOrderItemResponse> => {
-  const response = await httpBag.post<TOrderItemResponse>("/order-item", body);
+  const response = await httpBag.post<TOrderItemResponse>(
+    "/order-item/create",
+    body
+  );
   return response.payload;
 };
 

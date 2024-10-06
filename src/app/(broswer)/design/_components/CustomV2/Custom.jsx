@@ -12,9 +12,7 @@ import {
 } from "../../../../../api/Custom/custom";
 import { createCustomProduct } from "@/api/custom";
 
- const CustomBagV2 = () => {
-
-  
+const CustomBagV2 = ({ bags }) => {
   const [step, setStep] = useState(1);
   const [selectedBagId, setSelectedBagId] = useState(null);
   const [selectedColor, setSelectedColor] = useState("#FFFFFF");
@@ -74,75 +72,79 @@ import { createCustomProduct } from "@/api/custom";
     updateCustomNameMutation({ customBagId: bagId, name: productName });
   };
 
-// Function to handle image selection and upload
-const handleImageSelect = async (image) => {
-  // Update the selected image state
-  setSelectedImage(image);
-  
-  // Upload the image to Cloudinary
-  await uploadImageToCloudinary(image);
-};
+  // Function to handle image selection and upload
+  const handleImageSelect = async (image) => {
+    // Update the selected image state
+    setSelectedImage(image);
 
-// Function to upload the image to Cloudinary
-const uploadImageToCloudinary = async (image) => {
-  const formData = new FormData();
-  formData.append("file", image);
-  formData.append("upload_preset", "greenbag"); // Cloudinary preset
-  formData.append("cloud_name", "dsmdqayv6"); // Replace with your Cloudinary cloud name
+    // Upload the image to Cloudinary
+    await uploadImageToCloudinary(image);
+  };
 
-  try {
-    const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
-      formData
-    );
-
-    console.log("Upload thành công. Dữ liệu nhận được từ Cloudinary:", response.data);
-    
-    setImageURL(response.data.secure_url);
-  } catch (error) {
-    console.error("Tải lên ảnh thất bại:", error);
-  }
-};
-
-
-const handlePostCustomBag = async () => {
-  if (compressedBlob) {
-    const file = new File([compressedBlob], "custom-bag.jpg", {
-      type: "image/jpeg",
-    });
-
+  // Function to upload the image to Cloudinary
+  const uploadImageToCloudinary = async (image) => {
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "greenbag"); // Replace with your upload preset
+    formData.append("file", image);
+    formData.append("upload_preset", "greenbag"); // Cloudinary preset
+    formData.append("cloud_name", "dsmdqayv6"); // Replace with your Cloudinary cloud name
 
     try {
-      // Call Cloudinary API to upload the image
-      const response = await fetch(`https://api.cloudinary.com/v1_1/dsmdqayv6/image/upload`, {
-        method: 'POST',
-        body: formData,
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        formData
+      );
+
+      console.log(
+        "Upload thành công. Dữ liệu nhận được từ Cloudinary:",
+        response.data
+      );
+
+      setImageURL(response.data.secure_url);
+    } catch (error) {
+      console.error("Tải lên ảnh thất bại:", error);
+    }
+  };
+
+  const handlePostCustomBag = async () => {
+    if (compressedBlob) {
+      const file = new File([compressedBlob], "custom-bag.jpg", {
+        type: "image/jpeg",
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to upload image');
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "greenbag"); // Replace with your upload preset
+
+      try {
+        // Call Cloudinary API to upload the image
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/dsmdqayv6/image/upload`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to upload image");
+        }
+
+        const result = await response.json();
+        console.log("Image uploaded successfully:", result);
+
+        // If needed, save the URL to state or perform other actions
+        const imageUrl = result.secure_url; // Uploaded image URL
+        console.log("Image URL:", imageUrl);
+
+        // Call function to handle saved image
+        postCustomBagMutation({ input: { imageUrl }, selectedColor });
+      } catch (error) {
+        console.error("Error uploading image:", error);
       }
-
-      const result = await response.json();
-      console.log('Image uploaded successfully:', result);
-
-      // If needed, save the URL to state or perform other actions
-      const imageUrl = result.secure_url; // Uploaded image URL
-      console.log('Image URL:', imageUrl);
-
-      // Call function to handle saved image
-      postCustomBagMutation({ input: { imageUrl }, selectedColor });
-      
-    } catch (error) {
-      console.error("Error uploading image:", error);
+    } else {
+      console.error("Image Blob is missing");
     }
-  } else {
-    console.error("Image Blob is missing");
-  }
-};
+  };
 
   useEffect(() => {
     if (compressedBlob && !postCalled.current) {
@@ -193,20 +195,20 @@ const handlePostCustomBag = async () => {
       textAlign: textItem.textAlign,
     });
     setStep(3);
-  };  
+  };
   // const handleExportImage = async () => {
   //   handlePostCustomBag();
-  
+
   //   try {
   //     const imageUrls = [];
-  
+
   //     const originalCanvas = await html2canvas(document.querySelector("#bagCanvas"));
   //     const resizedCanvas = document.createElement("canvas");
   //     const ctx = resizedCanvas.getContext("2d");
-  
+
   //     const MAX_SIZE = 800;
   //     let { width, height } = originalCanvas;
-  
+
   //     if (width > height) {
   //       if (width > MAX_SIZE) {
   //         height *= MAX_SIZE / width;
@@ -218,11 +220,11 @@ const handlePostCustomBag = async () => {
   //         height = MAX_SIZE;
   //       }
   //     }
-  
+
   //     resizedCanvas.width = width;
   //     resizedCanvas.height = height;
   //     ctx.drawImage(originalCanvas, 0, 0, width, height);
-  
+
   //     await new Promise((resolve) => {
   //       resizedCanvas.toBlob(
   //         (blob) => {
@@ -237,12 +239,12 @@ const handlePostCustomBag = async () => {
   //         0.6
   //       );
   //     });
-  
+
   //     await handleUploadImagesFromLocalStorage(imageUrls);
-  
+
   //     console.log("Image export process finished.");
   //     setImageURL(imageUrls);
-  
+
   //     const postData = {
   //       productId: "d2539652-5628-41ed-9011-abc620968a1c",
   //       optionId: "32113384-c769-44f9-9ea0-4f81b018f011",
@@ -251,15 +253,15 @@ const handlePostCustomBag = async () => {
   //       status: "ACTIVE",
   //       userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
   //     };
-  
+
   //     console.log("Posting to API with data:", postData);
   //     await postToApi(postData);
-  
+
   //   } catch (err) {
   //     console.error("An error occurred during the export process:", err);
-  //   }  
+  //   }
   // };
-  
+
   // const postToApi = async (data) => {
   //   try {
   //     createCustomProduct(data);
@@ -267,7 +269,7 @@ const handlePostCustomBag = async () => {
   //     console.error("Error posting to API:", error);
   //   }
   // };
-  
+
   // // Function to upload an image blob to Cloudinary (unchanged)
   // const uploadToCloudinary = (blob, callback) => {
   //   new Compressor(blob, {
@@ -276,7 +278,7 @@ const handlePostCustomBag = async () => {
   //       const formData = new FormData();
   //       formData.append("file", compressedBlob);
   //       formData.append("upload_preset", "greenbag");
-  
+
   //       fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
   //         method: "POST",
   //         body: formData,
@@ -297,21 +299,21 @@ const handlePostCustomBag = async () => {
   //     },
   //   });
   // };
-  
+
   // // Function to upload all images from localStorage and concatenate them into the imageUrls array (unchanged)
   // const handleUploadImagesFromLocalStorage = async (imageUrls) => {
   //   try {
   //     const existingImages = JSON.parse(localStorage.getItem("uploadedImages") || "[]");
-  
+
   //     if (existingImages.length === 0) {
   //       console.log("No images in localStorage to upload.");
   //       return;
   //     }
-  
+
   //     for (const localImageUrl of existingImages) {
   //       const response = await fetch(localImageUrl);
   //       const blob = await response.blob();
-  
+
   //       await new Promise((resolve) => {
   //         uploadToCloudinary(blob, (imageUrl) => {
   //           console.log("Local image uploaded:", imageUrl);
@@ -320,152 +322,158 @@ const handlePostCustomBag = async () => {
   //         });
   //       });
   //     }
-  
+
   //     console.log("All images from localStorage have been uploaded to Cloudinary.");
   //   } catch (err) {
   //     console.error("An error occurred during the upload process:", err);
   //   }
   // };
-  
+
   const handleExportImage = async () => {
     handlePostCustomBag();
 
     try {
-        const imageUrls = [];
+      const imageUrls = [];
 
-        const originalCanvas = await html2canvas(document.querySelector("#bagCanvas"));
-        const resizedCanvas = document.createElement("canvas");
-        const ctx = resizedCanvas.getContext("2d");
+      const originalCanvas = await html2canvas(
+        document.querySelector("#bagCanvas")
+      );
+      const resizedCanvas = document.createElement("canvas");
+      const ctx = resizedCanvas.getContext("2d");
 
-        const MAX_SIZE = 800;
-        let { width, height } = originalCanvas;
+      const MAX_SIZE = 800;
+      let { width, height } = originalCanvas;
 
-        // Resize canvas if necessary
-        if (width > height) {
-            if (width > MAX_SIZE) {
-                height *= MAX_SIZE / width;
-                width = MAX_SIZE;
-            }
-        } else {
-            if (height > MAX_SIZE) {
-                width *= MAX_SIZE / height;
-                height = MAX_SIZE;
-            }
+      // Resize canvas if necessary
+      if (width > height) {
+        if (width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
         }
+      } else {
+        if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+      }
 
-        resizedCanvas.width = width;
-        resizedCanvas.height = height;
-        ctx.drawImage(originalCanvas, 0, 0, width, height);
+      resizedCanvas.width = width;
+      resizedCanvas.height = height;
+      ctx.drawImage(originalCanvas, 0, 0, width, height);
+
+      await new Promise((resolve) => {
+        resizedCanvas.toBlob(
+          (blob) => {
+            uploadToCloudinary(blob, (imageUrl) => {
+              console.log("Canvas image uploaded:", imageUrl);
+              imageUrls.push(imageUrl);
+              setStep(3);
+              resolve();
+            });
+          },
+          "image/jpeg",
+          0.6
+        );
+      });
+
+      await handleUploadImagesFromLocalStorage(imageUrls);
+
+      console.log("Image export process finished.");
+      setImageURL(imageUrls);
+
+      // Construct customValue as a JSON string in the desired format
+      const customValue = JSON.stringify(
+        imageUrls.map((url) => url) // Create array of objects with "img" as key
+      );
+      const postData = {
+        productId: "d2539652-5628-41ed-9011-abc620968a1c",
+        optionId: "bea14739-6b7c-4855-a698-0f19dc708576",
+        imageURL: imageUrls[0],
+        customValue: customValue, // Set the customValue to the constructed JSON string
+        status: "PROCESSING",
+        userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
+      };
+
+      console.log("Posting to API with data:", postData);
+      await postToApi(postData);
+    } catch (err) {
+      console.error("An error occurred during the export process:", err);
+    }
+  };
+
+  const postToApi = async (data) => {
+    try {
+      await createCustomProduct(data);
+    } catch (error) {
+      console.error("Error posting to API:", error);
+    }
+  };
+  console.log("selectedBagId", selectedBagId);
+  // Function to upload an image blob to Cloudinary (unchanged)
+  const uploadToCloudinary = (blob, callback) => {
+    new Compressor(blob, {
+      quality: 0.6,
+      success(compressedBlob) {
+        const formData = new FormData();
+        formData.append("file", compressedBlob);
+        formData.append("upload_preset", "greenbag");
+
+        fetch(
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        )
+          .then(async (response) => {
+            if (!response.ok) {
+              throw new Error(`Upload failed: ${response.statusText}`);
+            }
+            const data = await response.json();
+            callback(data.secure_url);
+          })
+          .catch((err) => {
+            console.error("Image upload failed:", err);
+          });
+      },
+      error(err) {
+        console.error("Image compression failed:", err.message);
+      },
+    });
+  };
+
+  // Function to upload all images from localStorage and concatenate them into the imageUrls array (unchanged)
+  const handleUploadImagesFromLocalStorage = async (imageUrls) => {
+    try {
+      const existingImages = JSON.parse(
+        localStorage.getItem("uploadedImages") || "[]"
+      );
+
+      if (existingImages.length === 0) {
+        console.log("No images in localStorage to upload.");
+        return;
+      }
+
+      for (const localImageUrl of existingImages) {
+        const response = await fetch(localImageUrl);
+        const blob = await response.blob();
 
         await new Promise((resolve) => {
-            resizedCanvas.toBlob(
-                (blob) => {
-                    uploadToCloudinary(blob, (imageUrl) => {
-                        console.log("Canvas image uploaded:", imageUrl);
-                        imageUrls.push(imageUrl);
-                        setStep(3);
-                        resolve();
-                    });
-                },
-                "image/jpeg",
-                0.6
-            );
+          uploadToCloudinary(blob, (imageUrl) => {
+            console.log("Local image uploaded:", imageUrl);
+            imageUrls.push(imageUrl);
+            resolve();
+          });
         });
+      }
 
-        await handleUploadImagesFromLocalStorage(imageUrls);
-
-        console.log("Image export process finished.");
-        setImageURL(imageUrls);
-
-        // Construct customValue as a JSON string in the desired format
-        const customValue = JSON.stringify(
-            imageUrls.map(url => ({ img: url })) // Create array of objects with "img" as key
-        );
-
-        const postData = {
-            productId: "d2539652-5628-41ed-9011-abc620968a1c",
-            optionId: "32113384-c769-44f9-9ea0-4f81b018f011",
-            imageURL: imageUrls[0],
-            customValue: customValue, // Set the customValue to the constructed JSON string
-            status: "ACTIVE",
-            userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
-        };
-
-        console.log("Posting to API with data:", postData);
-        await postToApi(postData);
-
+      console.log(
+        "All images from localStorage have been uploaded to Cloudinary."
+      );
     } catch (err) {
-        console.error("An error occurred during the export process:", err);
-    }  
-};
-
-const postToApi = async (data) => {
-    try {
-        createCustomProduct(data);
-    } catch (error) {
-        console.error("Error posting to API:", error);
+      console.error("An error occurred during the upload process:", err);
     }
-};
-
-// Function to upload an image blob to Cloudinary (unchanged)
-const uploadToCloudinary = (blob, callback) => {
-    new Compressor(blob, {
-        quality: 0.6,
-        success(compressedBlob) {
-            const formData = new FormData();
-            formData.append("file", compressedBlob);
-            formData.append("upload_preset", "greenbag");
-
-            fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
-                method: "POST",
-                body: formData,
-            })
-                .then(async (response) => {
-                    if (!response.ok) {
-                        throw new Error(`Upload failed: ${response.statusText}`);
-                    }
-                    const data = await response.json();
-                    callback(data.secure_url);
-                })
-                .catch((err) => {
-                    console.error("Image upload failed:", err);
-                });
-        },
-        error(err) {
-            console.error("Image compression failed:", err.message);
-        },
-    });
-};
-
-// Function to upload all images from localStorage and concatenate them into the imageUrls array (unchanged)
-const handleUploadImagesFromLocalStorage = async (imageUrls) => {
-    try {
-        const existingImages = JSON.parse(localStorage.getItem("uploadedImages") || "[]");
-
-        if (existingImages.length === 0) {
-            console.log("No images in localStorage to upload.");
-            return;
-        }
-
-        for (const localImageUrl of existingImages) {
-            const response = await fetch(localImageUrl);
-            const blob = await response.blob();
-
-            await new Promise((resolve) => {
-                uploadToCloudinary(blob, (imageUrl) => {
-                    console.log("Local image uploaded:", imageUrl);
-                    imageUrls.push(imageUrl);
-                    resolve();
-                });
-            });
-        }
-
-        console.log("All images from localStorage have been uploaded to Cloudinary.");
-    } catch (err) {
-        console.error("An error occurred during the upload process:", err);
-    }
-};
-
+  };
 
   console.log("Compressed Blob:", compressedBlob);
   console.log("Image URL:", imageURL); // Log the image URL for debugging
@@ -480,7 +488,7 @@ const handleUploadImagesFromLocalStorage = async (imageUrls) => {
       <div className="p-4 max-w-7xl mx-auto">
         <CustomBagSteps current={step - 1} steps={steps} />
       </div>
-      {step === 1 && <BagSlider onBagSelect={handleBagSelect} />}
+      {step === 1 && <BagSlider onBagSelect={handleBagSelect} bags={bags} />}
       {step === 2 && (
         <BagSelected
           selectedBagId={selectedBagId}

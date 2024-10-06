@@ -12,6 +12,8 @@ export default async function ProductsPage(props: any) {
   };
 
   const response = await getAllCategories(params);
+  revalidateTag("categories-active");
+  revalidateTag("categories");
 
   return (
     <>

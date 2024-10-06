@@ -46,7 +46,7 @@ export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
 
       if (response.status === 200) {
         setIsLoading(false);
-        router.push("/");
+        router.push("/login");
       }
       toast({
         title: "Đăng ký thành công",

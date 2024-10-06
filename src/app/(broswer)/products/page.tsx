@@ -1,7 +1,7 @@
 import React from "react";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
-import { getAllProducts } from "@/api/product";
+import { getAllProducts, getAllProductsActive } from "@/api/product";
 import { getAllCategoriesActive } from "@/api/category";
 import { revalidateTag } from "next/cache";
 const page = async (props: any) => {
@@ -13,18 +13,19 @@ const page = async (props: any) => {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 10,
   };
-  const product = getAllProducts(params);
+  revalidateTag("products");
+  revalidateTag("products-active");
+  const product = getAllProductsActive(params);
   const category = getAllCategoriesActive({
     page: 1,
     limit: 1000,
   });
-  revalidateTag("products");
-  revalidateTag("products-active");
+
   const [productResponse, categoryResponse] = await Promise.all([
     product,
     category,
   ]);
-  console.log("productResponse", productResponse);
+  console.log("productResponse", productResponse.payload);
   return (
     <div>
       <section className="pt-12 md:pt-24 lg:pt-24">

@@ -23,6 +23,14 @@ import {
   UpdateProductSchema,
 } from "@/schema/product.schema";
 import { updateProduct } from "@/api/product";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { statusProduct } from "../../_components/config";
 
 interface FormUpdateProductProps extends React.HTMLAttributes<HTMLDivElement> {
   initialData: TUpdateProductRequest;
@@ -41,13 +49,13 @@ export function FormUpdateProduct({
   });
   // console.log("noooo", initialData),
   const convertFileToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-};
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   const onSubmit = async (data: TUpdateProductRequest) => {
     // console.log(data);
@@ -189,10 +197,25 @@ export function FormUpdateProduct({
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Trạng Thái</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Status..." {...field} />
-                  </FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormLabel>Trạng thái</FormLabel>
+
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn trạng thái" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {statusProduct.map((item, index) => (
+                        <SelectItem key={index} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
