@@ -13,7 +13,7 @@ export default async function CustomsPage(props: any) {
   };
   
   const response = await getAllCustoms(params);
-  revalidateTag("customs");
+  revalidateTag("custom");
 
   return (
     <>

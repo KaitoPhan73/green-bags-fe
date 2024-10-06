@@ -23,7 +23,7 @@ const UpdateCustomProduct = async ({ params }: { params: { slug: string } }) => 
         <FormUpdateCustomProduct
           initialData={customProductResponse.payload}
           options={optionResponse.payload.listResult}
-          product={productResponse.listResult}
+          product={productResponse.payload.listResult}
         />
       </div>
     </>

@@ -159,7 +159,6 @@ export const columns: CustomColumnDef<TCustomResponse>[] = [
     enableSorting: false,
     enableColumnFilter: false,
   },
-  
   {
     accessorKey: "status",
     header: ({ column }) => (
