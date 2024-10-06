@@ -16,9 +16,19 @@ const getAllOrders = async (params?: any) => {
 };
 
 // Lấy đơn hàng theo ID
-const getOrderById = async (id: string): Promise<TOrderResponse> => {
+const getOrderById = async (id: string) => {
   const response = await httpBag.get<TOrderResponse>(`/order/${id}`);
-  return response.payload;
+  return response;
+};
+
+const getOrdersByUserId = async (userId: string, param?: any) => {
+  const response = await httpBag.get<TTableResponse<TOrderResponse>>(
+    `/order/user/${userId}`,
+    {
+      params: param,
+    }
+  );
+  return response;
 };
 
 // Tạo đơn hàng mới
@@ -59,4 +69,5 @@ export {
   updateOrder,
   deleteOrder,
   getAllOrdersActive,
+  getOrdersByUserId,
 };

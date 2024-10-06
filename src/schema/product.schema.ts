@@ -32,7 +32,7 @@ export const CreateProductSchema = z.object({
     .max(100000000, {
       message: "Giá sản phẩm không được vượt quá 100,000,000",
     }),
-  status: z.enum(["ACTIVE", "INACTIVE"]),
+  status: z.enum(["ACTIVE", "INACTIVE", "CUSTOM"]),
   img: z.string(),
 });
 
@@ -40,15 +40,15 @@ export const UpdateProductSchema = z.object({
   id: z.string(),
   baseModelID: z.string().uuid(),
   productName: z.string().optional(),
-  stock: z.string(),
-  finalPrice: z.string(),
-  description: z.string().optional(),
+  stock: z.coerce.number().optional(),
+  finalPrice: z.coerce.number().optional(),
+  description: z.string().nullable().optional(),
   createdDate: z.string(),
   modifiedDate: z.string().nullable(),
   createdBy: z.string().nullable(),
   modifiedBy: z.string().nullable(),
   img: z.string().optional(),
-  status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
+  status: z.enum(["ACTIVE", "INACTIVE", "CUSTOM"]).optional(),
 });
 
 export type TCreateProductRequest = z.TypeOf<typeof CreateProductSchema>;

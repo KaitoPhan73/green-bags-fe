@@ -1,23 +1,21 @@
 import { Separator } from "@/components/ui/separator";
-import HistoryList from "./history-list";
+import HistoryList from "./_components/history-list";
 import { cookies } from "next/headers";
-import BookingApi from "@/actions/booking";
+import { getOrdersByUserId } from "@/api/order";
 
 async function page(props: any) {
   const cookieStore = cookies();
   const storeUser = cookieStore.get("user")?.value;
-  const accessToken = cookieStore.get("accessToken")?.value;
-  const userId = JSON.parse(storeUser!)._id;
+  const userId = JSON.parse(storeUser!).id;
   const params = {
     page: props.searchParams.page || 1,
     limit: props.searchParams.pageSize || 6,
-    userId: userId,
   };
-  const response = await BookingApi.getBookings(params, accessToken);
+  const response = await getOrdersByUserId(userId, params);
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">History Booking</h3>
+        <h3 className="text-lg font-medium">Lịch sử đơn hàng của bạn</h3>
       </div>
       <Separator />
       <HistoryList data={response.payload} params={params} />

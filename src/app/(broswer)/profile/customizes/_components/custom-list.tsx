@@ -1,21 +1,21 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import PaginationFilter from "@/components/pagination-filter";
 import { TTableResponse } from "@/types/Table";
 import { motion } from "framer-motion";
-import { TBookingResponse } from "@/schemaValidations/booking.schema";
-import { formatPriceVND } from "@/lib/utils";
+import { formatPriceVND } from "@/lib/formatter";
+import PaginationFilter from "@/components/pagination-filter";
+import { TCustomResponse } from "@/schema/custom.schema";
 
 type Props = {
-  data: TTableResponse<TBookingResponse>;
+  data: TTableResponse<TCustomResponse>;
   params: any;
 };
 
-const HistoryList = ({ data, params }: Props) => {
+const CustomList = ({ data, params }: Props) => {
   return (
     <div>
-      {data.items.length > 0 ? (
+      {data.listResult.length > 0 ? (
         <>
           {/* Header */}
           <div className="hidden lg:grid grid-cols-3 py-3 gap-4">
@@ -23,16 +23,16 @@ const HistoryList = ({ data, params }: Props) => {
               No.
             </div>
             <div className="font-normal text-xl leading-8 text-gray-500">
-              Status
+              Trạng thái
             </div>
             <div className="font-normal text-xl leading-8 text-gray-500 text-center">
-              Total Price
+              Tổng tiền
             </div>
           </div>
 
           {/* Items */}
-          {data.items.map((item, index) => (
-            <Link key={index} href={`history/${item._id}`}>
+          {data.listResult.map((item, index) => (
+            <Link key={index} href={`customizes/${item.id}`}>
               <section key={index} className="w-full mx-auto mt-5 mb-5">
                 <div className="grid grid-cols-3 gap-4 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
                   {/* No. */}
@@ -45,14 +45,20 @@ const HistoryList = ({ data, params }: Props) => {
                   {/* Status */}
                   <div className=" py-6 flex items-center justify-start">
                     <span className="text-lg font-bold text-black truncate capitalize">
-                      {item.status}
+                      {item.status === "PROCESSING"
+                        ? "Đang xử lý"
+                        : "Đã hoàn thành"}
                     </span>
                   </div>
 
                   {/* Total Price */}
                   <div className=" py-6 flex items-center justify-center">
                     <p className="text-lg font-semibold text-black">
-                      {formatPriceVND(item.totalPrice)}
+                      {["PROCESSING", "ACTIVE", "INACTIVE"].includes(
+                        item.status
+                      )
+                        ? "Đang chờ xác nhận"
+                        : formatPriceVND(item.totalPrice)}
                     </p>
                   </div>
                 </div>
@@ -60,7 +66,7 @@ const HistoryList = ({ data, params }: Props) => {
             </Link>
           ))}
           <div className="flex justify-center mt-5 mb-5">
-            <PaginationFilter page={params.page} totalPage={data.totalPages} />
+            <PaginationFilter page={params.page} totalPage={data.totalPage} />
           </div>
         </>
       ) : (
@@ -78,7 +84,7 @@ const HistoryList = ({ data, params }: Props) => {
           />
 
           <h1 className="font-titleFont text-xl font-bold uppercase">
-            History is empty!
+            Giỏ hàng trống
           </h1>
         </motion.div>
       )}
@@ -86,4 +92,4 @@ const HistoryList = ({ data, params }: Props) => {
   );
 };
 
-export default HistoryList;
+export default CustomList;

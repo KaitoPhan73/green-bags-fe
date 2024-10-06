@@ -1,4 +1,5 @@
 import z from "zod";
+import { OrderItemResponseSchema } from "./order-item.schema";
 
 // Schema cho Order
 export const OrderResponseSchema = z.object({
@@ -12,6 +13,7 @@ export const OrderResponseSchema = z.object({
   totalAmount: z.number(),
   shippingAddress: z.string(),
   orderStatus: z.string(),
+  orderItems: z.array(OrderItemResponseSchema),
 });
 
 export const CreateOrderSchema = z.object({

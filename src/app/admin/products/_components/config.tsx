@@ -7,4 +7,8 @@ export const statusProduct = [
     label: "Không hiệu lực",
     value: "INACTIVE",
   },
+  {
+    label: "Tùy chỉnh",
+    value: "CUSTOM",
+  },
 ];
