@@ -259,17 +259,19 @@ const CustomBagV2 = ({ bags }) => {
         imageUrls.map((url) => url) // Create array of objects with "img" as key
       );
       const postData = {
-        productId: "d2539652-5628-41ed-9011-abc620968a1c",
+        productId: "4c090f5b-3a7e-40f2-a1cd-3d42a948c013",
         optionId: "bea14739-6b7c-4855-a698-0f19dc708576",
         imageURL: imageUrls[0],
         customValue: customValue, // Set the customValue to the constructed JSON string
         status: "PROCESSING",
-        userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
+        userId: user.id,
         totalPrice: 10000,
       };
 
       console.log("Posting to API with data:", postData);
       await postToApi(postData);
+      localStorage.removeItem("uploadedImages");
+
     } catch (err) {
       console.error("An error occurred during the export process:", err);
     }
