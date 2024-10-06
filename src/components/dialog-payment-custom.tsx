@@ -109,8 +109,8 @@ export function DialogPaymentCustom({ data }: { data: TCustomResponse }) {
       const response = await createPayment({
         orderId: createdOrder.id,
         description: "Thanh toán ngay",
-        returnUrl: `${envConfig.NEXT_PUBLIC_URL}/payment-success`,
-        cancelUrl: `${envConfig.NEXT_PUBLIC_URL}/cart`,
+        returnUrl: `${envConfig.NEXT_PUBLIC_URL}/payment-custom-success`,
+        cancelUrl: `${envConfig.NEXT_PUBLIC_URL}`,
       });
 
       if (response.status === 200) {

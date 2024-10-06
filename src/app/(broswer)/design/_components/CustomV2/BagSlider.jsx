@@ -44,7 +44,7 @@ const BagSlider = ({ onBagSelect, bags }) => {
                     onClick={() => onBagSelect(bag.id)}
                     className=" absolute inset-x-0 bottom-56 mx-auto p-1 bg-black text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1/2 w-40 text-lg hover:bg-white hover:text-black uppercase"
                   >
-                    I Like This
+                    Chọn
                   </button>
                 </div>
               </div>

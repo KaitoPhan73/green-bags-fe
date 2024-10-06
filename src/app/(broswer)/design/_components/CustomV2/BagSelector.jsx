@@ -229,7 +229,7 @@ const BagSelected = ({
             onClick={onSwapProduct}
             className="mt-4 bg-gray-800 text-white p-2 rounded-md hover:bg-gray-700 w-[200px]"
           >
-            Swap Product
+            Đổi sản phẩm
           </Button>
         </div>
       </div>

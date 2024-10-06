@@ -58,20 +58,20 @@ const CustomPage = ({ bags }) => {
                 <div className="max-w-md">
                   <div>
                     <h1 className="text-[100px] text-left text-xl font-semibold mb-4 text-red relative z-1">
-                      <span className="relative">Custom Your Bag.</span>
+                      <span className="relative">Thiết kế túi của bạn</span>
                       <br />
                     </h1>
                   </div>
                   <p className="text-lg mb-8 w-[70%] text-black text-left z-1">
-                    Discover the world of custom tote bags with Nghich – your
-                    one-stop solution for personalized totes in multiple styles,
-                    materials, and print techniques.
+                    Khám phá thế giới túi tote tùy chỉnh với Nghich – giải pháp
+                    trọn gói cho những chiếc túi tote cá nhân hóa với nhiều kiểu
+                    dáng, chất liệu và kỹ thuật in khác nhau.
                   </p>
                   <button
                     onClick={scrollToCustomBag}
                     className="bg-lime-400 text-brown font-medium rounded-lg text-sm px-10 py-3 transition duration-300 ease-in-out hover:bg-lime-500"
                   >
-                    Start Designing <ArrowDownOutlined />
+                    Bắt đầu thiết kế <ArrowDownOutlined />
                   </button>
                 </div>
               </Grid>

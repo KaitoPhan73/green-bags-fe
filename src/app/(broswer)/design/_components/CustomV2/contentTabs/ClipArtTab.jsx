@@ -72,8 +72,10 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
 
   // Change to store files without uploading immediately
   const handleUploadChange = ({ fileList }) => {
-    setTempUploadFiles(fileList.map(file => file.originFileObj)); // Store files temporarily
-    setUploadedImages(fileList.map((file) => URL.createObjectURL(file.originFileObj)));
+    setTempUploadFiles(fileList.map((file) => file.originFileObj)); // Store files temporarily
+    setUploadedImages(
+      fileList.map((file) => URL.createObjectURL(file.originFileObj))
+    );
   };
 
   // Function to upload selected files when the Select button is clicked
@@ -104,12 +106,12 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
 
   // const handleUploadSelect = async () => {
   //   const uploadedImageUrls = [];
-  
+
   //   for (const file of tempUploadFiles) {
   //     const formData = new FormData();
   //     formData.append("file", file);
   //     formData.append("upload_preset", "greenbag"); // Replace with your Cloudinary upload preset
-  
+
   //     try {
   //       const response = await axios.post(
   //         `https://api.cloudinary.com/v1_1/dsmdqayv6/image/upload`, // Replace with your Cloudinary cloud name
@@ -121,14 +123,14 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
   //       message.error("Failed to upload image. Please try again.");
   //     }
   //   }
-  
+
   //   // Save uploaded image URLs to localStorage
   //   if (uploadedImageUrls.length > 0) {
   //     const existingImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
   //     const updatedImages = [...existingImages, ...uploadedImageUrls];
   //     localStorage.setItem('uploadedImages', JSON.stringify(updatedImages));
   //   }
-  
+
   //   setUploadedImages(uploadedImageUrls);
   //   setTempUploadFiles([]); // Clear temporary files after upload
   //   setIsUploadModalVisible(false); // Close the upload modal after upload
@@ -136,49 +138,50 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
 
   const handleUploadSelect = async () => {
     const uploadedImageUrls = [];
-  
+
     for (const file of tempUploadFiles) {
       const reader = new FileReader();
-  
+
       // Convert file to base64 string
       reader.onload = () => {
         const base64String = reader.result;
-  
+
         // Push the base64 string to the array
         if (typeof base64String === "string") {
           uploadedImageUrls.push(base64String);
         }
-  
+
         // Save base64 images to localStorage after processing all files
         if (uploadedImageUrls.length === tempUploadFiles.length) {
-          const existingImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+          const existingImages = JSON.parse(
+            localStorage.getItem("uploadedImages") || "[]"
+          );
           const updatedImages = [...existingImages, ...uploadedImageUrls];
-          localStorage.setItem('uploadedImages', JSON.stringify(updatedImages));
-  
+          localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
+
           setUploadedImages(uploadedImageUrls); // Update state with uploaded images
           setTempUploadFiles([]); // Clear temporary files after upload
           setIsUploadModalVisible(false); // Close the upload modal after upload
         }
       };
-  
+
       reader.onerror = () => {
         console.error("Error reading file:", file.name);
         message.error("Failed to read file. Please try again.");
       };
-  
+
       // Read the file as a base64 string
       reader.readAsDataURL(file);
     }
   };
-  
-  
 
   return (
     <div>
       <div className="m-4 ml-10">
-        <h2 className="font-bold text-lg">ADD AN IMAGE TO YOUR DESIGN</h2>
+        <h2 className="font-bold text-lg">Thêm một bức ảnh nào</h2>
         <p className="text-gray-600 text-[12px]">
-          Browse Our Clip Art Catalog Or Upload Your Own Image.
+          Duyệt qua Danh mục Clip Art của chúng tôi hoặc tải lên hình ảnh của
+          riêng bạn.
         </p>
       </div>
       <div className="mt-10 mx-6">
@@ -191,7 +194,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
             >
               CLIP ART
             </Button>
-            <p className="ml-4">Browse Thousands Of Images</p>
+            <p className="ml-4">Ngàn bức tranh</p>
           </div>
           <p className="mr-6" onClick={showModal}>
             <RightOutlined />
@@ -206,7 +209,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
             >
               UPLOAD IMAGES
             </Button>
-            <p className="ml-4">Upload Your Own Pictures Or Logo</p>
+            <p className="ml-4">Tải ảnh của bạn</p>
           </div>
           <p className="mr-6" onClick={showUploadModal}>
             <RightOutlined />
@@ -221,7 +224,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
             >
               MY IMAGES
             </Button>
-            <p className="ml-4">Choose From Your Saved Images</p>
+            <p className="ml-4">Chọn ảnh của bạn</p>
           </div>
           <p className="mr-6" onClick={showMyImagesModal}>
             <RightOutlined />
@@ -259,7 +262,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
       </StyledModal>
 
       <StyledModal
-        title="My Images"
+        title="Ảnh của tôi"
         open={isMyImagesModalVisible}
         onCancel={handleMyImagesCancel}
         footer={null}
@@ -288,7 +291,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
       </StyledModal>
 
       <StyledModal
-        title="Clip Art"
+        title="Vẽ ảnh"
         open={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}

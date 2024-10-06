@@ -49,9 +49,9 @@ const InputTextTab = ({
 
   return (
     <div className="m-4 ml-10">
-      <h2 className="font-bold text-lg">ENTER YOUR TEXT BELOW</h2>
+      <h2 className="font-bold text-lg">Nhập chữ của bạn phía bên dưới</h2>
       <p className="text-gray-600 text-[12px]">
-        Text, Quotation,...Which You Like
+        Văn bản, Trích dẫn,...Bạn thích cái nào
       </p>
       <div className=" mt-10 w-[90%]">
         <TextArea
@@ -71,11 +71,11 @@ const InputTextTab = ({
       </div>
       <div className="text-gray-400 mt-4 text-[9px] mt-16 w-4/5 m-4 ">
         <p>
-          A Tote Bag Is A Large, Typically Unlined Bag With Two Handles That Are
-          Attached To The Sides Of The Bag. Tote Bags Are Typically Made From
-          Durable Materials Such As Canvas, Cotton, Or Denim, And They Are Often
-          Used For Carrying Groceries, Books, Or Other Items. They Are Also
-          Popular As A Fashion Accessory.
+          Túi Tote là một chiếc túi lớn, thường không lót, có hai quai xách gắn
+          vào hai bên túi. Túi Tote thường được làm từ các vật liệu bền như vải
+          bạt, vải cotton hoặc vải denim, và thường được dùng để đựng đồ tạp
+          hóa, sách hoặc các vật dụng khác. Chúng cũng được ưa chuộng như một
+          phụ kiện thời trang.
         </p>
       </div>
     </div>
