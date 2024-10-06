@@ -9,12 +9,7 @@ export const CustomResponseSchema = z.object({
   modifiedDate: z.string(),
   createdBy: z.string(),
   modifiedBy: z.string(),
-  status: z.enum([
-    "PROCESSING",
-    "CANCELLED",
-    "ACCEPTED",
-    "COMPLETED",
-  ]), // Cập nhật status ở đây
+  status: z.enum(["PROCESSING", "CANCELLED", "ACCEPTED", "COMPLETED"]), // Cập nhật status ở đây
   imageURL: z.string(),
   customValue: z.string(),
   totalPrice: z.number(),
@@ -34,7 +29,9 @@ export const CreateCustomProductSchema = z.object({
 // Update Custom Product Schema
 export const UpdateCustomProductSchema = z.object({
   id: z.string().uuid(),
-  status: z.enum(["PROCESSING", "CANCELLED", "ACCEPTED", "COMPLETED"]).optional(),
+  status: z
+    .enum(["PROCESSING", "CANCELLED", "ACCEPTED", "COMPLETED"])
+    .optional(),
   optionId: z.string().uuid(),
   imageURL: z.string(),
   customValue: z.string(),
@@ -42,8 +39,11 @@ export const UpdateCustomProductSchema = z.object({
   productID: ProductResponseSchema,
 });
 
-
 // Type Definitions
 export type TCustomResponse = z.TypeOf<typeof CustomResponseSchema>;
-export type TCreateCustomProductRequest = z.TypeOf<typeof CreateCustomProductSchema>;
-export type TUpdateCustomProductRequest = z.TypeOf<typeof UpdateCustomProductSchema>;
+export type TCreateCustomProductRequest = z.TypeOf<
+  typeof CreateCustomProductSchema
+>;
+export type TUpdateCustomProductRequest = z.TypeOf<
+  typeof UpdateCustomProductSchema
+>;

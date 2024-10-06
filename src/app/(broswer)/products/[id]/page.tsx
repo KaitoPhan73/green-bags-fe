@@ -3,6 +3,7 @@ import Image from "next/image";
 import { products } from "@/constants/data";
 import AddToCartQuantity from "./_components/add-cart-quantity";
 import { getProductById } from "@/api/product";
+import { formatPriceVND } from "@/lib/formatter";
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
   const response = await getProductById(params.id);
   const data = response.payload;
@@ -26,27 +27,16 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
             <div className="flex gap-4 items-center">
               <div className="flex gap-2 border-r-2 pr-4">
                 <span className="text-3xl font-semibold text-yellow-700">
-                  ${data?.finalPrice}
-                </span>
-                <span className="text-lg line-through text-gray-500">
-                  ${data?.finalPrice}
+                  {formatPriceVND(data?.finalPrice)}
                 </span>
               </div>
-              <div className="flex gap-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-6 w-6 text-yellow-400"
-                    fill="currentColor"
-                  />
-                ))}
-              </div>
-              <div className="text-gray-500">99 Reviews</div>
+
+              <div className="text-gray-500">10 Reviews</div>
             </div>
             <div>
-              <span>Bag size</span>
+              <span>Mô tả</span>
             </div>
-            <p>{data?.description}</p>
+            <p className="text-lg">{data?.description}</p>
           </div>
           <AddToCartQuantity data={data} />
         </div>
