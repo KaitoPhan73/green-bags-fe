@@ -12,6 +12,8 @@ const CustomPage = ({ bags }) => {
   const customBagRef = useRef(null);
 
   const scrollToElement = (element) => {
+    // console.log("Scrolling to element:", element);
+
     const startY = window.pageYOffset;
     const targetY = element.getBoundingClientRect().top + startY;
     const distance = targetY - startY;
@@ -33,6 +35,7 @@ const CustomPage = ({ bags }) => {
   };
 
   const scrollToCustomBag = () => {
+    // console.log(customBagRef.current);
     if (customBagRef.current) {
       scrollToElement(customBagRef.current);
     }
