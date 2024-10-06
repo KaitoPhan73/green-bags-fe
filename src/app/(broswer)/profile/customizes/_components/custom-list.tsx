@@ -43,21 +43,36 @@ const CustomList = ({ data, params }: Props) => {
                   </div>
 
                   {/* Status */}
-                  <div className=" py-6 flex items-center justify-start">
+                  <div className="py-6 flex items-center justify-start">
                     <span className="text-lg font-bold text-black truncate capitalize">
                       {item.status === "PROCESSING"
                         ? "Đang xử lý"
-                        : "Đã hoàn thành"}
+                        : item.status === "ACCEPTED"
+                        ? "Đã được chấp nhận"
+                        : item.status === "COMPLETED"
+                        ? "Đã hoàn thành"
+                        : item.status === "CANCELLED"
+                        ? "Đã bị hủy"
+                        : "Trạng thái không xác định"}
                     </span>
                   </div>
 
                   {/* Total Price */}
                   <div className=" py-6 flex items-center justify-center">
                     <p className="text-lg font-semibold text-black">
-                      {["PROCESSING", "ACTIVE", "INACTIVE"].includes(
-                        item.status
-                      )
-                        ? "Đang chờ xác nhận"
+                      {[
+                        "PROCESSING",
+                        "CANCELLED",
+                        "ACCEPTED",
+                        "COMPLETED",
+                      ].includes(item.status)
+                        ? item.status === "PROCESSING"
+                          ? "Đang chờ xác nhận"
+                          : item.status === "CANCELLED"
+                          ? "Đã hủy"
+                          : item.status === "ACCEPTED"
+                          ? "Đã xác nhận"
+                          : "Hoàn thành"
                         : formatPriceVND(item.totalPrice)}
                     </p>
                   </div>

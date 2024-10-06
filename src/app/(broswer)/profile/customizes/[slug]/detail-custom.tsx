@@ -11,12 +11,33 @@ import {
 import { DialogPaymentCustom } from "@/components/dialog-payment-custom";
 import { formattedDateTime } from "@/lib/formatter";
 import { DialogImg } from "../_components/dialog-img";
+import { useToast } from "@/hooks/use-toast";
+import { updateCustomProductStatus } from "@/api/custom";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   data: TCustomResponse;
 };
 
 const CustomDetail = ({ data }: Props) => {
+  const { toast } = useToast();
+  const handleCancelOrder = async () => {
+    try {
+      const customObject = {
+        id: data.id,
+        status: "CANCELLED",
+      };
+      const custom = await updateCustomProductStatus(customObject);
+      toast({
+        title: " Đã hủy.",
+      });
+    } catch (error) {
+      console.error("Lỗi khi hủy đơn hàng:", error);
+      toast({
+        title: `Lỗi khi hủy: ${error}`,
+      });
+    }
+  };
   return (
     <div>
       {/* Header */}
@@ -118,7 +139,19 @@ const CustomDetail = ({ data }: Props) => {
 
           {/* Thanh toán */}
           <div className="px-4 py-6 flex items-center justify-center">
-            <DialogPaymentCustom data={data} />
+            {data.status === "ACCEPTED" ? (
+              <DialogPaymentCustom data={data} />
+            ) : data.status === "PROCESSING" ? (
+              <Button className="" onClick={handleCancelOrder}>
+                Hủy
+              </Button>
+            ) : data.status === "COMPLETED" ? (
+              <p className="text-green-500 font-semibold">Hoàn thành</p>
+            ) : data.status === "CANCELLED" ? (
+              <p className="text-gray-500 font-semibold">Đã Hủy.</p>
+            ) : (
+              <p className="text-red-500 font-semibold">Chờ xác nhận.</p>
+            )}
           </div>
         </div>
       </section>

@@ -1,6 +1,10 @@
 "use client";
 
-import { getCustomsById } from "@/api/custom";
+import {
+  getCustomsById,
+  updateCustomProduct,
+  updateCustomProductStatus,
+} from "@/api/custom";
 import { createOrder } from "@/api/order";
 import { createOrderItem } from "@/api/order-item";
 import { getPaymentStatus } from "@/api/payment";
@@ -44,11 +48,10 @@ export default function PaymentCompletePage() {
           id: customId,
           status: "COMPLETED",
         };
-        // const custom = await updateCus;
+        const custom = await updateCustomProductStatus(customObject);
         setMessage("Thanh toán thành công đang về trang chủ...");
 
-        localStorage.removeItem("cart-storage");
-        clearCart();
+        localStorage.removeItem("custom-id");
       } else {
         setMessage("Thanh toán thất bại");
       }

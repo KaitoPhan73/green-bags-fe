@@ -12,7 +12,8 @@ export const ProductResponseSchema = z.object({
   modifiedBy: z.string().nullable(),
   status: z.enum(["ACTIVE", "INACTIVE"]),
   baseModelID: z.string().uuid(),
-  finalPrice:  z.coerce.number(),
+  finalPrice: z.coerce.number(),
+  description: z.string(),
 });
 
 export const CreateProductSchema = z.object({
