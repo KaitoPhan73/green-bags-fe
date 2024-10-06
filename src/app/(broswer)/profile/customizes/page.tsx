@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import CustomList from "./_components/custom-list";
 import { cookies } from "next/headers";
 import { getAllCustomsByUserId } from "@/api/custom";
+import { revalidateTag } from "next/cache";
 
 async function page(props: any) {
   const cookieStore = cookies();
@@ -12,6 +13,7 @@ async function page(props: any) {
     limit: props.searchParams.pageSize || 6,
   };
   const response = await getAllCustomsByUserId(userId, params);
+  revalidateTag("custom");
   return (
     <div className="space-y-6">
       <div>

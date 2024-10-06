@@ -31,7 +31,7 @@ export const getAllCustomsByUserId = async (userId: string, params?: any) => {
   return response;
 };
 
-export const getAllCustomsById = async (id: string) => {
+export const getCustomsById = async (id: string) => {
   const response = await httpBag.get<TCustomResponse>(
     `/product-customization/${id}`,
     {

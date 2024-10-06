@@ -1,10 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { TOrderItemResponse } from "@/schema/order-item.schema";
-import { getProductById } from "@/api/product";
-import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
+import { FaEye } from "react-icons/fa";
 import { TCustomResponse } from "@/schema/custom.schema";
 import {
   Tooltip,
@@ -12,7 +8,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+import { DialogPaymentCustom } from "@/components/dialog-payment-custom";
+import { formattedDateTime } from "@/lib/formatter";
+import { DialogImg } from "../_components/dialog-img";
 
 type Props = {
   data: TCustomResponse;
@@ -35,6 +33,9 @@ const CustomDetail = ({ data }: Props) => {
         <div className="font-normal text-xl leading-8 text-gray-500 text-center">
           Giá (VND)
         </div>
+        <div className="font-normal text-xl leading-8 text-gray-500 text-center">
+          Thanh toán
+        </div>
       </div>
 
       <section className="w-full mx-auto mt-5 mb-5">
@@ -48,12 +49,7 @@ const CustomDetail = ({ data }: Props) => {
 
           {/* Số Lượng */}
           <div className="px-4 py-6 flex items-center justify-center">
-            <Image
-              src={data.imageURL || "/no-image.png"}
-              alt="Product Image"
-              width={100}
-              height={100}
-            />
+            <DialogImg imgURL={data.imageURL} />
           </div>
 
           {/* Ngày Đặt */}
@@ -68,23 +64,48 @@ const CustomDetail = ({ data }: Props) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Button>Xem ảnh thành phần</Button>
+                  <div className="px-4 py-6 flex items-center justify-center">
+                    <FaEye className="h-6 w-6" />
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent>
                   <div className="flex flex-col gap-4">
-                    {data.customValue &&
-                    Array.isArray(JSON.parse(data.customValue)) &&
-                    JSON.parse(data.customValue).length > 0 ? (
-                      JSON.parse(data.customValue).map(
-                        (img: string, index: number) => (
-                          <Image
-                            key={index}
-                            src={img}
-                            alt="Custom Image"
-                            width={100}
-                            height={100}
-                          />
-                        )
+                    {data.customValue ? (
+                      // Kiểm tra xem customValue có phải là chuỗi hay không
+                      typeof data.customValue === "string" ? (
+                        // Nếu là chuỗi, kiểm tra xem nó có phải là hình ảnh hay không
+                        (() => {
+                          try {
+                            const parsedValue = JSON.parse(data.customValue);
+                            // Nếu parse thành công và là mảng
+                            if (
+                              Array.isArray(parsedValue) &&
+                              parsedValue.length > 0
+                            ) {
+                              console.log(parsedValue);
+                              return parsedValue.map(
+                                (img: string, index: number) => (
+                                  <Image
+                                    key={index}
+                                    src={img}
+                                    alt="Custom Image"
+                                    width={100}
+                                    height={100}
+                                  />
+                                )
+                              );
+                            } else {
+                              // Nếu không phải là mảng, in ra giá trị chuỗi
+                              return <p>{data.customValue}</p>;
+                            }
+                          } catch (error) {
+                            // Nếu parse gặp lỗi, coi như là một chuỗi đơn giản và in ra
+                            return <p>{data.customValue}</p>;
+                          }
+                        })()
+                      ) : (
+                        // Nếu không phải là chuỗi, hiển thị thông báo
+                        <p>Không có ảnh</p>
                       )
                     ) : (
                       <p>Không có ảnh</p>
@@ -93,6 +114,11 @@ const CustomDetail = ({ data }: Props) => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
+          </div>
+
+          {/* Thanh toán */}
+          <div className="px-4 py-6 flex items-center justify-center">
+            <DialogPaymentCustom data={data} />
           </div>
         </div>
       </section>
