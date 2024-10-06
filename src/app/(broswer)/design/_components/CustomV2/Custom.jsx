@@ -13,7 +13,7 @@ import {
 import { createCustomProduct } from "@/api/custom";
 import useUserStore from "@/store/userStore";
 
-const CustomBagV2 = () => {
+const CustomBagV2 = ({ bags }) => {
   const [step, setStep] = useState(1);
   const [selectedBagId, setSelectedBagId] = useState(null);
   const [selectedColor, setSelectedColor] = useState("#FFFFFF");
@@ -203,160 +203,21 @@ const CustomBagV2 = () => {
     setStep(3);
   };
 
-  //   const handleExportImage = async () => {
-  //     handlePostCustomBag();
-
-  //     try {
-  //         const imageUrls = [];
-
-  //         const originalCanvas = await html2canvas(document.querySelector("#bagCanvas"));
-  //         const resizedCanvas = document.createElement("canvas");
-  //         const ctx = resizedCanvas.getContext("2d");
-
-  //         const MAX_SIZE = 800;
-  //         let { width, height } = originalCanvas;
-
-  //         // Resize canvas if necessary
-  //         if (width > height) {
-  //             if (width > MAX_SIZE) {
-  //                 height *= MAX_SIZE / width;
-  //                 width = MAX_SIZE;
-  //             }
-  //         } else {
-  //             if (height > MAX_SIZE) {
-  //                 width *= MAX_SIZE / height;
-  //                 height = MAX_SIZE;
-  //             }
-  //         }
-
-  //         resizedCanvas.width = width;
-  //         resizedCanvas.height = height;
-  //         ctx.drawImage(originalCanvas, 0, 0, width, height);
-
-  //         await new Promise((resolve) => {
-  //             resizedCanvas.toBlob(
-  //                 (blob) => {
-  //                     uploadToCloudinary(blob, (imageUrl) => {
-  //                         console.log("Canvas image uploaded:", imageUrl);
-  //                         imageUrls.push(imageUrl);
-  //                         setStep(3);
-  //                         resolve();
-  //                     });
-  //                 },
-  //                 "image/jpeg",
-  //                 0.6
-  //             );
-  //         });
-
-  //         await handleUploadImagesFromLocalStorage(imageUrls);
-
-  //         console.log("Image export process finished.");
-  //         setImageURL(imageUrls);
-
-  //         // Construct customValue as a JSON string in the desired format
-  //         const customValue = JSON.stringify(
-  //             imageUrls.map(url => ({ img: url })) // Create array of objects with "img" as key
-  //         );
-
-  //         const postData = {
-  //             productId: "d2539652-5628-41ed-9011-abc620968a1c",
-  //             optionId: "32113384-c769-44f9-9ea0-4f81b018f011",
-  //             imageURL: imageUrls[0],
-  //             customValue: customValue, // Set the customValue to the constructed JSON string
-  //             status: "ACTIVE",
-  //             userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
-  //         };
-
-  //         console.log("Posting to API with data:", postData);
-  //         await postToApi(postData);
-
-  //     } catch (err) {
-  //         console.error("An error occurred during the export process:", err);
-  //     }
-  // };
-
-  // const postToApi = async (data) => {
-  //     try {
-  //         createCustomProduct(data);
-  //     } catch (error) {
-  //         console.error("Error posting to API:", error);
-  //     }
-  // };
-
-  // // Function to upload an image blob to Cloudinary (unchanged)
-  // const uploadToCloudinary = (blob, callback) => {
-  //     new Compressor(blob, {
-  //         quality: 0.6,
-  //         success(compressedBlob) {
-  //             const formData = new FormData();
-  //             formData.append("file", compressedBlob);
-  //             formData.append("upload_preset", "greenbag");
-
-  //             fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
-  //                 method: "POST",
-  //                 body: formData,
-  //             })
-  //                 .then(async (response) => {
-  //                     if (!response.ok) {
-  //                         throw new Error(`Upload failed: ${response.statusText}`);
-  //                     }
-  //                     const data = await response.json();
-  //                     callback(data.secure_url);
-  //                 })
-  //                 .catch((err) => {
-  //                     console.error("Image upload failed:", err);
-  //                 });
-  //         },
-  //         error(err) {
-  //             console.error("Image compression failed:", err.message);
-  //         },
-  //     });
-  // };
-
-  // // Function to upload all images from localStorage and concatenate them into the imageUrls array (unchanged)
-  // const handleUploadImagesFromLocalStorage = async (imageUrls) => {
-  //     try {
-  //         const existingImages = JSON.parse(localStorage.getItem("uploadedImages") || "[]");
-
-  //         if (existingImages.length === 0) {
-  //             console.log("No images in localStorage to upload.");
-  //             return;
-  //         }
-
-  //         for (const localImageUrl of existingImages) {
-  //             const response = await fetch(localImageUrl);
-  //             const blob = await response.blob();
-
-  //             await new Promise((resolve) => {
-  //                 uploadToCloudinary(blob, (imageUrl) => {
-  //                     console.log("Local image uploaded:", imageUrl);
-  //                     imageUrls.push(imageUrl);
-  //                     resolve();
-  //                 });
-  //             });
-  //         }
-
-  //         console.log("All images from localStorage have been uploaded to Cloudinary.");
-  //     } catch (err) {
-  //         console.error("An error occurred during the upload process:", err);
-  //     }
-  // };
 
   const handleExportImage = async () => {
     handlePostCustomBag();
   
     try {
       const imageUrls = [];
-  
+
       const originalCanvas = await html2canvas(
         document.querySelector("#bagCanvas")
       );
       const resizedCanvas = document.createElement("canvas");
-      const ctx = resizedCanvas.getContext("2d");
-  
+      const ctx = resizedCanvas.getContext("2d");  
       const MAX_SIZE = 800;
       let { width, height } = originalCanvas;
-  
+
       if (width > height) {
         if (width > MAX_SIZE) {
           height *= MAX_SIZE / width;
@@ -368,11 +229,11 @@ const CustomBagV2 = () => {
           height = MAX_SIZE;
         }
       }
-  
+
       resizedCanvas.width = width;
       resizedCanvas.height = height;
       ctx.drawImage(originalCanvas, 0, 0, width, height);
-  
+
       await new Promise((resolve) => {
         resizedCanvas.toBlob(
           (blob) => {
@@ -387,38 +248,32 @@ const CustomBagV2 = () => {
           0.6
         );
       });
-  
+
       await handleUploadImagesFromLocalStorage(imageUrls);
-  
+
       console.log("Image export process finished.");
       setImageURL(imageUrls);
-  
-      let customValue = JSON.stringify(imageUrls);
-      customValue = customValue.replace(/"/g, '\\"');
-      console.log("Custom Value with backslashes:", customValue);
-  
+
+      // Construct customValue as a JSON string in the desired format
+      const customValue = JSON.stringify(
+        imageUrls.map((url) => url) // Create array of objects with "img" as key
+      );
       const postData = {
-        productId: "4c090f5b-3a7e-40f2-a1cd-3d42a948c013",
+        productId: "d2539652-5628-41ed-9011-abc620968a1c",
         optionId: "bea14739-6b7c-4855-a698-0f19dc708576",
         imageURL: imageUrls[0],
-        customValue: customValue,
+        customValue: customValue, // Set the customValue to the constructed JSON string
         status: "PROCESSING",
         userId: "02dcc44a-6a77-4c73-8ca6-cb4b268ff37a",
         totalPrice: 10000,
       };
-  
+
       console.log("Posting to API with data:", postData);
       await postToApi(postData);
-  
-      // Xóa localStorage sau khi hoàn thành tất cả các bước
-      localStorage.removeItem("uploadedImages");
-      console.log("Local storage cleared after upload.");
-      
     } catch (err) {
       console.error("An error occurred during the export process:", err);
     }
   };
-  
   const postToApi = async (data) => {
     try {
       await createCustomProduct(data);
@@ -426,7 +281,8 @@ const CustomBagV2 = () => {
       console.error("Error posting to API:", error);
     }
   };
-  
+  console.log("selectedBagId", selectedBagId);
+  // Function to upload an image blob to Cloudinary (unchanged)
   const uploadToCloudinary = (blob, callback) => {
     new Compressor(blob, {
       quality: 0.6,
@@ -434,7 +290,6 @@ const CustomBagV2 = () => {
         const formData = new FormData();
         formData.append("file", compressedBlob);
         formData.append("upload_preset", "greenbag");
-  
         fetch(
           `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
           {
@@ -458,31 +313,30 @@ const CustomBagV2 = () => {
       },
     });
   };
-  
+
   const handleUploadImagesFromLocalStorage = async (imageUrls) => {
     try {
       const existingImages = JSON.parse(
         localStorage.getItem("uploadedImages") || "[]"
       );
-  
+
       if (existingImages.length === 0) {
         console.log("No images in localStorage to upload.");
         return;
       }
-  
+
       for (const localImageUrl of existingImages) {
         const response = await fetch(localImageUrl);
         const blob = await response.blob();
-  
+
         await new Promise((resolve) => {
           uploadToCloudinary(blob, (imageUrl) => {
             console.log("Local image uploaded:", imageUrl);
-            imageUrls.push(imageUrl); // Thêm URL ảnh upload vào mảng
+            imageUrls.push(imageUrl);
             resolve();
           });
         });
       }
-  
       console.log(
         "All images from localStorage have been uploaded to Cloudinary."
       );
@@ -491,7 +345,6 @@ const CustomBagV2 = () => {
     }
   };
   
-
   console.log("Compressed Blob:", compressedBlob);
   console.log("Image URL:", imageURL);
 
@@ -505,7 +358,7 @@ const CustomBagV2 = () => {
       <div className="p-4 max-w-7xl mx-auto">
         <CustomBagSteps current={step - 1} steps={steps} />
       </div>
-      {step === 1 && <BagSlider onBagSelect={handleBagSelect} />}
+      {step === 1 && <BagSlider onBagSelect={handleBagSelect} bags={bags} />}
       {step === 2 && (
         <BagSelected
           selectedBagId={selectedBagId}

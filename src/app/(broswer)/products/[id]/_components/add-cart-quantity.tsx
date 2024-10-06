@@ -1,10 +1,11 @@
 "use client";
 import AddToCartButton from "@/components/add-to-cart-btn";
 import { Input } from "@/components/ui/input";
-import { Product } from "@/types/Cart";
+import { TProductResponse } from "@/schema/product.schema";
+
 import React, { useState } from "react";
 type Props = {
-  data: Product;
+  data: TProductResponse;
 };
 const AddToCartQuantity = ({ data }: Props) => {
   const [quantity, setQuantity] = useState(1);

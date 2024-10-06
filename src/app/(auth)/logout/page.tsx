@@ -1,11 +1,13 @@
 "use client";
 import authClient from "@/api/client/auth";
+import useUserStore from "@/store/userStore";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
 function LogoutLogic() {
   const router = useRouter();
   const pathname = usePathname();
+  const { user, clearUser } = useUserStore();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -15,6 +17,7 @@ function LogoutLogic() {
       try {
         localStorage.clear();
         sessionStorage.clear();
+        clearUser();
         await authClient.logoutFromNextClientToNextServer(true, signal);
         router.push(`/login?redirectFrom=${pathname}`);
       } catch (error) {

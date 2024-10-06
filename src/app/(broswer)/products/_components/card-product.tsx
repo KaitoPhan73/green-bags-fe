@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { TProductResponse } from "@/schema/product.schema";
 import { Variants } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,12 +16,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 type CardProps = {
   index: number;
-  item: {
-    image: string;
-    name: string;
-    price: number;
-    id: number;
-  };
+  item: TProductResponse;
 };
 
 const isLarge = (index: number) => {
@@ -61,8 +57,8 @@ const CardProduct = ({ item, index }: CardProps) => {
           }`}
         >
           <Image
-            src={item.image}
-            alt={item.name}
+            src={item.img ? item.img : "/images/blue-sky.jpg"}
+            alt={item.productName ? item.productName : "Product Name"}
             layout="fill"
             className="rounded-lg object-cover"
           />
@@ -74,9 +70,11 @@ const CardProduct = ({ item, index }: CardProps) => {
           }`}
         >
           <div className="p-4 flex-1">
-            <h3 className="text-lg sm:text-xl font-semibold">{item.name}</h3>
+            <h3 className="text-lg sm:text-xl font-semibold">
+              {item.productName ? item.productName : "Product Name"}
+            </h3>
             <p className="text-gray-700 text-sm sm:text-base">
-              {item.price} VND
+              {item.finalPrice} VND
             </p>
           </div>
           <div className="ml-4">

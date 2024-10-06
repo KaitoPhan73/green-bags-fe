@@ -32,7 +32,7 @@ export default function Banner({ className }: Props) {
       onMouseEnter={plugin.current.stop}
       onMouseLeave={handleMouseLeave}
     >
-      <CarouselContent>
+      <CarouselContent className="h-screen">
         {items.map((item, index) => (
           <CarouselItem key={index}>
             <section className="bg-gray-50 dark:bg-gray-800 py-20">

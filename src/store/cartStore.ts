@@ -1,11 +1,12 @@
-import { CartItem, Product } from "@/types/Cart";
+import { TProductResponse } from "@/schema/product.schema";
+import { CartItem } from "@/types/Cart";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface CartStore {
   items: CartItem[];
-  addItem: (item: Product, quantity: number) => void;
+  addItem: (item: TProductResponse, quantity: number) => void;
   removeItem: (itemId: string) => void;
   updateItemQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
@@ -16,12 +17,12 @@ const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (item: Product, quantity: number) => {
+      addItem: (item: TProductResponse, quantity: number) => {
         set((state) => {
           const existingItem = state.items.find((i) => i.id === item.id);
           if (existingItem) {
             toast.success(
-              `Đã thêm ${quantity} sản phẩm "${item.name}" vào giỏ hàng.`
+              `Đã thêm ${quantity} sản phẩm "${item.productName}" vào giỏ hàng.`
             );
             return {
               items: state.items.map((i) =>
@@ -30,7 +31,7 @@ const useCartStore = create<CartStore>()(
             };
           } else {
             toast.success(
-              `Đã thêm ${quantity} sản phẩm "${item.name}" vào giỏ hàng.`
+              `Đã thêm ${quantity} sản phẩm "${item.productName}" vào giỏ hàng.`
             );
             return { items: [...state.items, { ...item, quantity }] };
           }
@@ -41,7 +42,7 @@ const useCartStore = create<CartStore>()(
           const itemToRemove = state.items.find((item) => item.id === itemId);
           if (itemToRemove) {
             toast.success(
-              `Sản phẩm "${itemToRemove.name}" đã được xóa khỏi giỏ hàng.`
+              `Sản phẩm "${itemToRemove.finalPrice}" đã được xóa khỏi giỏ hàng.`
             );
           }
           return {
@@ -62,7 +63,7 @@ const useCartStore = create<CartStore>()(
       getTotal: () => {
         const items = get().items;
         return items.reduce(
-          (total, item) => total + item.price * item.quantity,
+          (total, item) => total + item.finalPrice * item.quantity,
           0
         );
       },

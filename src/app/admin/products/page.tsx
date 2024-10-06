@@ -18,8 +18,9 @@ export default async function ProductsPage(props: any) {
     getAllProducts(params),
     getAllBaseModelsActive(params) || [],
   ]);
-  // console.log("hihihihihi:", baseModelResponse);
   revalidateTag("products");
+  revalidateTag("products-active");
+  // console.log("hihihihihi:", baseModelResponse);
   revalidateTag("base-models-active");
   return (
     <>

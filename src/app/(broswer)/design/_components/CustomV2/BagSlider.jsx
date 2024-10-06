@@ -5,10 +5,13 @@ import "tailwindcss/tailwind.css";
 import bags from "../../../../../utils/Bags";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import CustomSteps from "../../UI/StepCartCustom";
+import { useQuery } from "react-query";
+import { productApi } from "@/api/client/product";
+import page from "@/app/(broswer)/about/page";
 
-const BagSlider = ({ onBagSelect }) => {
+const BagSlider = ({ onBagSelect, bags }) => {
   const carouselRef = useRef(null);
-
+  console.log("bags", bags);
   const handleNext = () => {
     carouselRef.current.next();
   };
@@ -16,6 +19,8 @@ const BagSlider = ({ onBagSelect }) => {
   const handlePrev = () => {
     carouselRef.current.prev();
   };
+  const filteredData = bags?.filter((item) => item.status === "CUSTOM") || [];
+  console.log("filteredData", filteredData);
   return (
     <>
       <div className="max-w-screen-lg mx-auto my-8 relative">
@@ -26,12 +31,12 @@ const BagSlider = ({ onBagSelect }) => {
           className="custom-slider"
           ref={carouselRef}
         >
-          {bags.map((bag) =>
-            bag && bag.image ? ( // Add this check to ensure bag and bag.image are not null or undefined
+          {filteredData.map((bag) =>
+            bag && bag.img ? ( // Add this check to ensure bag and bag.image are not null or undefined
               <div key={bag.id} className="relative group p-10 w-[300px]">
                 <div className="relative w-full h-[500px] hover:scale-110">
                   <img
-                    src={bag.image}
+                    src={bag.img}
                     alt={`Bag ${bag.id}`}
                     className="w-full h-full object-cover transition-shadow duration-300 group-hover:shadow-lg rounded-lg"
                   />

@@ -60,17 +60,17 @@ const ColorSwatch = ({ color, onSelect }) => (
 const DigitalPrinting = ({ onColorSelect }) => {
   return (
     <div className="m-4 ml-10">
-      <h1 className="font-bold text-lg">WHITE TOTE CANVAS</h1>
+      <h1 className="font-bold text-lg">VẢI TÚI TRẮNG</h1>
       <p className="text-gray-600 text-[12px]">
-        Product: Gildan Cotton Tee, sports grey Decoration: 
+        Sản phẩm: Áo thun cotton Gildan, màu xám thể thao
       </p>
       <p className="text-gray-600 text-[12px]">
-        Digital Print: Front: yes, Back: no
+        In kỹ thuật số: Mặt trước: có, Mặt sau: không
       </p>
       <div className="w-4/5 mt-10">
         <div className="flex my-4 text-[12px] ">
-          <h3 className="text-black font-bold mr-4">Digital Printing </h3>
-          <p>(No Minimum - Ship in 1-2 Days)</p>
+          <h3 className="text-black font-bold mr-4">In kỹ thuật số </h3>
+          <p>(giao hàng từ 1 - 2 ngày)</p>
         </div>
         <div className="grid grid-cols-10 gap-2">
           {digitalPrintingColors.map((color) => (
@@ -88,11 +88,11 @@ const DigitalPrinting = ({ onColorSelect }) => {
           ))}
         </div> */}
         <p className="text-gray-400 mt-4 text-[15px] mt-16">
-          A Tote Bag Is A Large, Typically Unlined Bag With Two Handles That Are
-          Attached To The Sides Of The Bag. Tote Bags Are Typically Made From
-          Durable Materials Such As Canvas, Cotton, Or Denim, And They Are Often
-          Used For Carrying Groceries, Books, Or Other Items. They Are Also
-          Popular As A Fashion Accessory.
+          Túi tote là một chiếc túi lớn, thường không có đường viền, có hai tay
+          cầm Gắn vào hai bên của túi. Túi tote thường được làm từ Các vật liệu
+          bền như vải, cotton hoặc denim và chúng thường Được sử dụng để đựng
+          hàng tạp hóa, sách hoặc các vật dụng khác. Họ cũng vậy Phổ biến như
+          một phụ kiện thời trang.
         </p>
       </div>
     </div>

@@ -2,10 +2,10 @@
 import React from "react";
 import useCartStore from "../store/cartStore";
 import { Button } from "./ui/button";
-import { Product } from "@/types/Cart";
+import { TProductResponse } from "@/schema/product.schema";
 
 interface AddToCartButtonProps {
-  product: Product;
+  product: TProductResponse;
   quantity: number;
 }
 

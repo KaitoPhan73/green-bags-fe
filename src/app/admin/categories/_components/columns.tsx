@@ -101,20 +101,15 @@ export const columns: CustomColumnDef<TCategoryResponse>[] = [
     cell: ({ row }) => {
       const status = row.getValue("status");
       return (
-        <div className="flex space-x-2">
+        <div className="flex items-center space-x-2">
+          {/* Green dot for 'Hoạt động', red dot for 'Không hoạt động' */}
+          <span
+            className={`h-3 w-3 rounded-full ${
+              status === "ACTIVE" ? "bg-green-500" : "bg-red-500"
+            }`}
+          />
           <span className="max-w-[500px] truncate font-medium">
-            {status === "ACTIVE" ? (
-              <Badge
-                variant="outline"
-                className="border-2 border-green-500 p-1"
-              >
-                Hoạt động
-              </Badge>
-            ) : (
-              <Badge variant="destructive" className="p-1">
-                Không hoạt động
-              </Badge>
-            )}
+            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
           </span>
         </div>
       );

@@ -1,13 +1,5 @@
-export type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  color: string;
-  size: string;
-  image: string;
-};
+import { TProductResponse } from "@/schema/product.schema";
 
-export interface CartItem extends Product {
+export interface CartItem extends TProductResponse {
   quantity: number;
 }

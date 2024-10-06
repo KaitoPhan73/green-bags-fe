@@ -8,29 +8,33 @@ import {
 } from "@/schema/order.schema";
 import { TTableResponse } from "@/types/Table";
 
-
 const getAllOrders = async (params?: any) => {
+  const response = await httpBag.get<TTableResponse<TOrderResponse>>("/order", {
+    params,
+  });
+  return response;
+};
+
+// Lấy đơn hàng theo ID
+const getOrderById = async (id: string) => {
+  const response = await httpBag.get<TOrderResponse>(`/order/${id}`);
+  return response;
+};
+
+const getOrdersByUserId = async (userId: string, param?: any) => {
   const response = await httpBag.get<TTableResponse<TOrderResponse>>(
-    "/order",
+    `/order/user/${userId}`,
     {
-      params,
+      params: param,
     }
   );
   return response;
 };
 
-// Lấy đơn hàng theo ID
-const getOrderById = async (id: string): Promise<TOrderResponse> => {
-  const response = await httpBag.get<TOrderResponse>(`/order/${id}`);
-  return response.payload;
-};
-
 // Tạo đơn hàng mới
-const createOrder = async (
-  body: TCreateOrderRequest
-): Promise<TOrderResponse> => {
-  const response = await httpBag.post<TOrderResponse>("/order", body);
-  return response.payload;
+const createOrder = async (body: TCreateOrderRequest) => {
+  const response = await httpBag.post<TOrderResponse>("/order/create", body);
+  return response;
 };
 
 // Cập nhật đơn hàng
@@ -65,4 +69,5 @@ export {
   updateOrder,
   deleteOrder,
   getAllOrdersActive,
+  getOrdersByUserId,
 };
