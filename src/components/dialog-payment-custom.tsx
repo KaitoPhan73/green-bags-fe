@@ -101,6 +101,9 @@ export function DialogPaymentCustom({ data }: { data: TCustomResponse }) {
     setIsLoading(true); // Bắt đầu loading
     try {
       const createdProduct = await handleProduct(); // Gọi hàm tạo sản phẩm trước
+      if (!createdProduct) {
+        throw new Error("Failed to create product");
+      }
       const { createdOrder } = await handleOrder(createdProduct.id); // Gọi hàm tạo đơn hàng và truyền vào product.id
       console.log("createdOrder", createdOrder);
       const response = await createPayment({

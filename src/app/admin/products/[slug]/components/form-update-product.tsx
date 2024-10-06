@@ -33,7 +33,7 @@ import {
 import { statusProduct } from "../../_components/config";
 
 interface FormUpdateProductProps extends React.HTMLAttributes<HTMLDivElement> {
-  initialData: TUpdateProductRequest;
+  initialData: TProductResponse;
 }
 
 export function FormUpdateProduct({
@@ -141,7 +141,11 @@ export function FormUpdateProduct({
                 <FormItem>
                   <FormLabel>Mô tả</FormLabel>
                   <FormControl>
-                    <Input placeholder="Mô tả..." {...field} />
+                    <Input
+                      placeholder="Mô tả..."
+                      {...field}
+                      value={field.value ?? ""}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

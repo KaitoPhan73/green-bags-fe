@@ -386,7 +386,10 @@ const CheckoutDetails = () => {
           </p>
           <div className="w-full text-left max-h-96 overflow-y-auto ">
             {cartItems.map((item, index) => (
-              <div className="flex text-xs lg:text-base border-b-2 mx-2">
+              <div
+                key={index}
+                className="flex text-xs lg:text-base border-b-2 mx-2"
+              >
                 <div className="py-5 w-4/5">
                   <div className="product-col flex items-center">
                     <p className="font-semibold my-1">{index + 1}</p>
@@ -397,8 +400,7 @@ const CheckoutDetails = () => {
                       style={{
                         width: "40%",
                         height: "auto",
-                        maskImage:
-                          "url('/bagsBody/BagTransparentBg.png')",
+                        maskImage: "url('/bagsBody/BagTransparentBg.png')",
                         WebkitMaskImage:
                           "url('/bagsBody/BagTransparentBg.png')",
                         maskSize: "contain",

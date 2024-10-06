@@ -10,7 +10,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
   if (!blog) {
     return <div>Blog không tồn tại.</div>;
   }
-  const allTags = blog.posts.reduce((acc, post) => {
+  const allTags = blog.posts.reduce<string[]>((acc, post) => {
     acc.push(...post.tags);
     return acc;
   }, []);

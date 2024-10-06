@@ -5,14 +5,15 @@ export const ProductResponseSchema = z.object({
   id: z.string().uuid(),
   productName: z.string(),
   img: z.string().url(),
-  stock: z.string(),
+  stock: z.coerce.number(),
   createdDate: z.string(),
   modifiedDate: z.string().nullable(),
   createdBy: z.string().nullable(),
   modifiedBy: z.string().nullable(),
-  status: z.enum(["ACTIVE", "INACTIVE"]),
+  status: z.enum(["ACTIVE", "INACTIVE", "CUSTOM", "CUSTOM-DONE"]),
   baseModelID: z.string().uuid(),
-  finalPrice:  z.coerce.number(),
+  finalPrice: z.coerce.number(),
+  description: z.string(),
 });
 
 export const CreateProductSchema = z.object({
