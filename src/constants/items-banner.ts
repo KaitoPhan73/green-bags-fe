@@ -17,7 +17,8 @@ export const items = [
     title: "Thiết Kế",
     description:
       "KALBAN mang đến những thiết kế túi xanh hiện đại, tiện dụng và phong cách, phù hợp cho mọi hoàn cảnh.",
-    image: "https://i.etsystatic.com/8661388/r/il/f8dd14/1968801704/il_570xN.1968801704_2afa.jpg",
+    image:
+      "https://i.etsystatic.com/8661388/r/il/f8dd14/1968801704/il_570xN.1968801704_2afa.jpg",
     link: "/designs",
   },
   {
@@ -28,11 +29,11 @@ export const items = [
     link: "/blogs",
   },
   {
-    title: "Dịch Vụ",
+    title: "Liên Hệ",
     description:
       "KALBAN cung cấp các dịch vụ tư vấn và hỗ trợ khách hàng, giúp bạn chọn lựa sản phẩm phù hợp nhất.",
     image: "/images/sv.webp",
-    link: "/service",
+    link: "/about",
   },
   {
     title: "Khác",
