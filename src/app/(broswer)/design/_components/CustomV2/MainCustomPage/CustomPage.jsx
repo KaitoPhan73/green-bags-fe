@@ -87,7 +87,7 @@ const CustomPage = ({ bags }) => {
           <p className="text-center mt-4 max-w-4xl px-4">
             Túi xách không chỉ là một món phụ kiện - Nó sẽ là Signature và
             đồng hành cùng bạn trong mọi hành trình. Hãy biến nó thành một phiên
-            bản độc đáo mang dấu ấn riêng của chính mình!
+            bản độc đáo mang dấu ấn riêng của chính mình!!
           </p>
         </div>
 
