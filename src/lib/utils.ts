@@ -22,3 +22,11 @@ export const normalizePath = (path: string) => {
 export const formatDate = (date: Date | string): string => {
   return format(new Date(date), "dd/MM/yyyy");
 };
+export const isValidUrl = (url: string) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (_) {
+    return false;
+  }
+};

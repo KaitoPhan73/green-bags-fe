@@ -15,7 +15,7 @@ export default async function Design() {
 
   return (
     <div>
-      <PageTitle title="Liên hệ với chúng tôi " />
+      <PageTitle title="Thiết kế " />
       <section className="py-12 md:py-24 lg:py-24">
         <div className="md:mx-12 lg:mx-24">
           <CustomPage bags={data.payload.listResult} />
