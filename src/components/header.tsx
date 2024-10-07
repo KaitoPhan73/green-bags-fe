@@ -28,7 +28,7 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="left">
             <Link href="#" prefetch={false}>
-              <Icon className="h-6 w-6 dark:filter dark:invert" />
+              <Icon className="h-26 w-26 dark:filter dark:invert" />
               <span className="sr-only">ShadCN</span>
             </Link>
             <div className="grid gap-2 py-6">

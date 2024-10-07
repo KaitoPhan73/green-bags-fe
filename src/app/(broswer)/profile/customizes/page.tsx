@@ -18,6 +18,9 @@ async function page(props: any) {
     <div className="space-y-6">
       <div>
         <h3 className="text-lg font-medium">Lịch sử thiết kế của tôi</h3>
+        <h3 className="text-lg font-medium">
+          ( Nhấn vào ảnh để xem chi tiết )
+        </h3>
       </div>
       <Separator />
       <CustomList data={response.payload} params={params} />

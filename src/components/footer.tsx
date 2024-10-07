@@ -15,12 +15,12 @@ const Footer = () => {
     <footer className="bg-neutral-50 dark:bg-gray-900 ">
       <div className="flex flex-col md:flex-row justify-between items-start border-t-b border-black py-8 px-12 bg-gray-100 dark:bg-gray-800">
         <div className="text-center md:text-left md:w-2/5">
-          <h2 className="text-3xl font-semibold mb-4">
-            Trải nghiệm tuyệt vời với KALBAN
-          </h2>
           <div className="flex items-center">
-            <Icon className="h-40 w-56 dark:filter dark:invert" />
+            <Icon className="h-32 w-64 dark:filter dark:invert" />
             <p className="text-lg max-w-xl ml-4">
+              <h2 className="text-3xl font-semibold mb-4">
+                Trải nghiệm tuyệt vời với KALBAN
+              </h2>
               Khám phá vẻ đẹp của các sản phẩm túi xanh và những thiết kế độc
               đáo. Chúng tôi cung cấp thông tin chi tiết và hướng dẫn lựa chọn
               các túi phù hợp nhất cho nhu cầu của bạn.
@@ -54,9 +54,9 @@ const Footer = () => {
             <a href="#" className="text-blue-700 hover:text-blue-500">
               <FaFacebook />
             </a>
-            <a href="#" className="text-blue-700 hover:text-blue-500">
+            {/* <a href="#" className="text-blue-700 hover:text-blue-500">
               <FaTwitter />
-            </a>
+            </a> */}
             <a href="#" className="text-pink-700 hover:text-pink-500">
               <FaInstagram />
             </a>

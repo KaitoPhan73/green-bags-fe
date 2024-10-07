@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { formatPriceVND } from "@/lib/formatter";
 import { TOrderResponse } from "@/schema/order.schema";
 import PaginationFilter from "@/components/pagination-filter";
+import { CardOrder } from "./card-order";
 
 type Props = {
   data: TTableResponse<TOrderResponse>;
@@ -13,53 +14,16 @@ type Props = {
 };
 
 const HistoryList = ({ data, params }: Props) => {
+  console.log(data);
   return (
     <div>
       {data.listResult.length > 0 ? (
         <>
-          {/* Header */}
-          <div className="hidden lg:grid grid-cols-3 py-3 gap-4">
-            <div className="font-normal text-xl leading-8 text-gray-500">
-              No.
-            </div>
-            <div className="font-normal text-xl leading-8 text-gray-500">
-              Trạng thái
-            </div>
-            <div className="font-normal text-xl leading-8 text-gray-500 text-center">
-              Tổng tiền
-            </div>
-          </div>
-
           {/* Items */}
           {data.listResult.map((item, index) => (
-            <Link key={index} href={`orders/${item.id}`}>
-              <section key={index} className="w-full mx-auto mt-5 mb-5">
-                <div className="grid grid-cols-3 gap-4 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                  {/* No. */}
-                  <div className="px-4 py-6 flex items-center justify-start">
-                    <span className="text-lg font-bold text-black truncate capitalize">
-                      {index + 1}
-                    </span>
-                  </div>
-
-                  {/* Status */}
-                  <div className=" py-6 flex items-center justify-start">
-                    <span className="text-lg font-bold text-black truncate capitalize">
-                      {item.orderStatus === "PENDING"
-                        ? "Đang xử lý"
-                        : "Đã hoàn thành"}
-                    </span>
-                  </div>
-
-                  {/* Total Price */}
-                  <div className=" py-6 flex items-center justify-center">
-                    <p className="text-lg font-semibold text-black">
-                      {formatPriceVND(item.totalAmount)}
-                    </p>
-                  </div>
-                </div>
-              </section>
-            </Link>
+            <section key={index} className="w-full mx-auto mt-5 mb-5">
+              <CardOrder item={item} index={index} />
+            </section>
           ))}
           <div className="flex justify-center mt-5 mb-5">
             <PaginationFilter page={params.page} totalPage={data.totalPage} />

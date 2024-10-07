@@ -4,15 +4,27 @@ import { products } from "@/constants/data";
 import AddToCartQuantity from "./_components/add-cart-quantity";
 import { getProductById } from "@/api/product";
 import { formatPriceVND } from "@/lib/formatter";
+import CommentProduct from "./_components/comment-product";
+import { getAllReviewByProductId } from "@/api/review";
+import { isValidUrl } from "@/lib/utils";
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
-  const response = await getProductById(params.id);
-  const data = response.payload;
+  const product = getProductById(params.id);
+  const review = getAllReviewByProductId(params.id);
+  const [productResponse, reviewsResponse] = await Promise.all([
+    product,
+    review,
+  ]);
+  const data = productResponse.payload;
   return (
     <div className="container flex flex-col gap-8 w-[80vw] mt-20 p-8">
       <div className="flex gap-4 bg-slate-100 dark:bg-slate-900 rounded-md p-8">
         <div className="">
           <Image
-            src={data?.img || "/path/to/default/image.jpg"}
+            src={
+              data.img && isValidUrl(data.img)
+                ? data.img
+                : "/images/blue-sky.jpg"
+            }
             width={600}
             height={600}
             alt="Product"
@@ -48,6 +60,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
           <AddToCartQuantity data={data} />
         </div>
       </div>
+      <CommentProduct reviewsResponse={reviewsResponse.payload} />
     </div>
   );
 };

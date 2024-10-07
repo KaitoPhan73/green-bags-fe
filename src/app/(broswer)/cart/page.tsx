@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { formatPriceVND } from "@/lib/formatter";
 import useUserStore from "@/store/userStore";
 import { useEffect } from "react";
-import { DialogPayment } from "@/components/dialog-payment";
 
 const CartPage = () => {
   const { items, clearCart, getTotal } = useCartStore();
@@ -99,7 +98,13 @@ const CartPage = () => {
                     Bạn không có quyền thanh toán
                   </button>
                 ) : (
-                  <DialogPayment totalAmt={0} />
+                  <button
+                    className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
+                    onClick={() => router.push("/checkout")}
+                  >
+                    Đi đến trang thanh toán
+                    <ChevronRight className="w-6 h-6 " />
+                  </button>
                 )
               ) : (
                 <button

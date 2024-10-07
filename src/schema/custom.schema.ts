@@ -14,6 +14,7 @@ export const CustomResponseSchema = z.object({
   customValue: z.string(),
   totalPrice: z.number(),
   productID: ProductResponseSchema,
+  reason: z.string(),
   userId: z.string(),
 });
 
@@ -36,11 +37,14 @@ export const UpdateCustomProductSchema = z.object({
   imageURL: z.string(),
   customValue: z.string(),
   totalPrice: z.coerce.number(),
+  reason: z.string().optional(),
   productID: ProductResponseSchema,
 });
 
 // Type Definitions
-export type TCustomResponse = z.TypeOf<typeof CustomResponseSchema>;
+export type TCustomResponse = z.TypeOf<typeof CustomResponseSchema> & {
+  reason: string;
+};
 export type TCreateCustomProductRequest = z.TypeOf<
   typeof CreateCustomProductSchema
 >;

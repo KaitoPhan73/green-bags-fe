@@ -45,10 +45,10 @@ export function PaginationView({
           >
             {1}
           </Button>
-        </PaginationItem>,
-        <PaginationItem key="ellipsis-start">
-          <PaginationEllipsis />
         </PaginationItem>
+        // <PaginationItem key="ellipsis-start">
+        //   <PaginationEllipsis />
+        // </PaginationItem>
       );
     }
 

@@ -1,11 +1,5 @@
 import { createPayment } from "@/api/payment";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { createOrder } from "@/api/order";
 import { createOrderItem } from "@/api/order-item";
 import useCartStore from "@/store/cartStore";
@@ -136,31 +130,12 @@ export function DialogPaymentCustom({ data }: { data: TCustomResponse }) {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button
-          className="rounded-sm w-full max-w-[280px] py-2 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
-          disabled={isLoading}
-        >
-          <CiCreditCard1 className="h-6 w-6" />
-        </button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Chọn phương thức thanh toán</DialogTitle>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="img-box" onClick={handlePayOs}>
-            <Image
-              src="/images/payOs.svg"
-              alt="PayOs"
-              width={140}
-              height={140}
-              className="xl:w-[140px] border-2"
-            />
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <button
+      onClick={handlePayOs}
+      className="rounded-sm w-full max-w-[280px] py-2 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
+      disabled={isLoading}
+    >
+      <CiCreditCard1 className="h-6 w-6" />
+    </button>
   );
 }

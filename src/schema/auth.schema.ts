@@ -13,11 +13,11 @@ export const LoginSchema = z
 
 export const RegisterSchema = z
   .object({
-    username: z.string().min(2, {
+    username: z.string().min(4, {
       message: "Tên đăng nhập phải có ít nhất 2 ký tự.",
     }),
-    password: z.string().min(1, {
-      message: "Mật khẩu không được trống.",
+    password: z.string().min(8, {
+      message: "Mật khẩu ít nhất 8 kí tự.",
     }),
     email: z.string().email({
       message: "Email không hợp lệ.",
