@@ -15,10 +15,10 @@ export const headerPaths = [
     link: "/blogs",
     label: "BLOG",
   },
-  {
-    link: "/services",
-    label: "DỊCH VỤ",
-  },
+  // {
+  //   link: "/services",
+  //   label: "DỊCH VỤ",
+  // },
   {
     link: "/about",
     label: "KHÁC",
