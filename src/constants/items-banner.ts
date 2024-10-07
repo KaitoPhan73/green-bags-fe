@@ -19,7 +19,7 @@ export const items = [
       "KALBAN mang đến những thiết kế túi xanh hiện đại, tiện dụng và phong cách, phù hợp cho mọi hoàn cảnh.",
     image:
       "https://i.etsystatic.com/8661388/r/il/f8dd14/1968801704/il_570xN.1968801704_2afa.jpg",
-    link: "/designs",
+    link: "/design",
   },
   {
     title: "Blog",

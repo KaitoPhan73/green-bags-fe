@@ -39,7 +39,7 @@ const DesignIntroduction = () => {
           </div>
 
           <div className="text-gray-700 dark:text-white">
-            <p className="text-lg md:text-xl">0793-022-559</p>
+            <p className="text-lg md:text-xl">0976-325-953</p>
             <p className="text-sm md:text-md">
               Gọi cho chúng tôi bất cứ lúc nào
             </p>

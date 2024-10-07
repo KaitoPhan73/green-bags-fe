@@ -34,18 +34,18 @@ const Footer = () => {
           <ul>
             <li className="flex gap-2 items-center mb-2">
               <FaPhoneAlt className="h-6 w-6 text-green-400" />
-              <p className="text-gray-700 dark:text-white">0793-022-559</p>
+              <p className="text-gray-700 dark:text-white">0976-325-953</p>
             </li>
             <li className="flex gap-2 items-center mb-2">
               <GrMapLocation className="h-6 w-6 text-green-400" />
               <p className="text-gray-700 dark:text-white">
-                125, Nguyen Cuu Van, Binh Thanh
-              </p>
+              FPT University HCMC,
+              Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Hồ Chí Minh 700000              </p>
             </li>
             <li className="flex gap-2 items-center mb-2">
               <MdOutlineMail className="h-6 w-6 text-green-400" />
               <p className="text-gray-700 dark:text-white">
-                khaithinhvui2003@gmail.com
+                longdhpse171112@fpt.edu.vn
               </p>
             </li>
           </ul>
@@ -62,9 +62,7 @@ const Footer = () => {
             <a href="#" className="text-pink-700 hover:text-pink-500">
               <FaInstagram />
             </a>
-            <a href="#" className="text-red-700 hover:text-red-500">
-              <FaYoutube />
-            </a>
+
           </div>
         </div>
       </div>

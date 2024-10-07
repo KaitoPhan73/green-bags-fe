@@ -21,6 +21,6 @@ export const headerPaths = [
   // },
   {
     link: "/about",
-    label: "KHÁC",
+    label: "CONTACT",
   },
 ];

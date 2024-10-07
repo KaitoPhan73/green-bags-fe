@@ -99,8 +99,8 @@ const BagImage = ({
       };
 
       const stickerRect = {
-        left: sticker.x + 150,
-        top: sticker.y + 190,
+        left: sticker.x,
+        top: sticker.y,
         right: sticker.x + sticker.width,
         bottom: sticker.y + sticker.height,
       };
