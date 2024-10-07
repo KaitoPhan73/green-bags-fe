@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { items } from "@/constants/items-banner";
+import Link from "next/link";
 type Props = {
   className?: string;
 };
@@ -45,9 +46,11 @@ export default function Banner({ className }: Props) {
                     <p className="text-lg md:text-xl mb-6 text-gray-600 dark:text-white">
                       {item.description}
                     </p>
-                    <Button className="py-6 px-6 rounded-lg">
-                      Tìm hiểu thêm
-                    </Button>
+                    <Link href={item.link}>
+                      <Button className="py-6 px-6 rounded-lg">
+                        Tìm hiểu thêm
+                      </Button>
+                    </Link>
                   </div>
                   <div className="order-1 md:order-2">
                     {/* Set a fixed size for the image container */}

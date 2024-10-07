@@ -106,13 +106,13 @@ const Contact = () => {
           <Title
             style={{ color: "chocolate", fontSize: "36px", fontWeight: "bold" }}
           >
-            Contact Us
+            Liên hệ với chúng tôi
           </Title>
-          <Input placeholder="Name" name="name" required />
+          <Input placeholder="Tên" name="name" required />
           <Input type="email" placeholder="Email" name="email" required />
           <Textarea
             name="message"
-            placeholder=" Your message here."
+            placeholder="Tin nhắn của bạn ở đây."
             required
             rows={10}
           />
