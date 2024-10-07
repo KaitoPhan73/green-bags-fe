@@ -78,7 +78,7 @@ export function CardCustomize({ item, index }: Props) {
                   // Nếu parse thành công và là mảng
                   if (Array.isArray(parsedValue) && parsedValue.length > 0) {
                     return parsedValue.map((img: string, index: number) => (
-                      <DialogImg imgURL={img} />
+                      <DialogImg key={index} imgURL={img} />
                     ));
                   } else {
                     // Nếu không phải là mảng, in ra giá trị chuỗi
