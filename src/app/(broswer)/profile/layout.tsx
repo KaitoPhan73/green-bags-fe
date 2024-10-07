@@ -22,7 +22,7 @@ const sidebarNavItems = [
 
 function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container hidden space-y-6 p-10  pb-16 md:block">
+    <div className=" space-y-6 p-10  pb-16 ">
       <div className="space-y-0.5">
         <h2 className="text-2xl font-bold tracking-tight">Hồ sơ</h2>
         <p className="text-muted-foreground">
@@ -34,7 +34,7 @@ function layout({ children }: { children: React.ReactNode }) {
         <aside className="-mx-4 lg:w-1/5">
           <SidebarNav items={sidebarNavItems} />
         </aside>
-        <div className="flex-1 lg:max-w-2xl">{children}</div>
+        <div className="flex-1 lg:max-w-3xl">{children}</div>
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -26,8 +25,7 @@ import {
   UpdateCustomProductSchema,
   TUpdateCustomProductRequest,
   TCustomResponse,
-  CustomResponseSchema,
-} from "@/schema/custom.schema"; // Import corresponding schema
+} from "@/schema/custom.schema";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { updateCustomProduct } from "@/api/custom";
 import { useEffect } from "react";
@@ -36,6 +34,7 @@ import { TProductResponse } from "@/schema/product.schema";
 import { TTableResponse } from "@/types/Table";
 import { statusCustomProduct } from "../../components/config";
 import { useRouter } from "next/navigation";
+import { DialogInputReason } from "./dialog-input-reason";
 
 interface FormUpdateCustomProductProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -52,9 +51,10 @@ export function FormUpdateCustomProduct({
   ...props
 }: FormUpdateCustomProductProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [showDialog, setShowDialog] = React.useState<boolean>(false);
   const { toast } = useToast();
   const [info, setInfo] = React.useState<any>(null);
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
 
   const form = useForm<TUpdateCustomProductRequest>({
     defaultValues: initialData,
@@ -62,30 +62,34 @@ export function FormUpdateCustomProduct({
 
   useEffect(() => {
     if (info?.url) {
-      console.log("Setting image URL:", info.url); // Log the URL being set
       form.setValue("imageURL", info.url);
     }
   }, [info, form]);
 
   const onSubmit = async (data: TUpdateCustomProductRequest) => {
-    console.log("Form submitted with data:", data); // Log the submitted data
+    if (data.status === "CANCELLED" && !data.reason) {
+      toast({
+        title: "Vui lòng nhập lý do khi hủy!",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
-      const response = await updateCustomProduct(data); // Call API update function
-      console.log("API response:", response); // Log the API response
+      const response = await updateCustomProduct(data);
       if (response.status === 200) {
         router.push("/admin/customs");
         toast({
           title: "Cập nhật mẫu thành công",
         });
-         
       } else {
         toast({
           title: "Cập nhật thất bại",
         });
       }
     } catch (error) {
-      console.error("Error occurred during update:", error); // Log the error
+      console.error("Error occurred during update:", error);
       toast({
         title: "Lỗi",
       });
@@ -93,6 +97,18 @@ export function FormUpdateCustomProduct({
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const subscription = form.watch((value) => {
+      if (value.status === "CANCELLED") {
+        setShowDialog(true);
+      } else {
+        setShowDialog(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [form]);
 
   return (
     <Form {...form}>
@@ -106,10 +122,7 @@ export function FormUpdateCustomProduct({
                 <FormItem>
                   <FormLabel>Trạng thái</FormLabel>
                   <FormControl>
-                    <Select
-                      value={field.value} // Use value instead of defaultValue
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger>
                         <SelectValue placeholder="Chọn trạng thái" />
                       </SelectTrigger>
@@ -147,6 +160,27 @@ export function FormUpdateCustomProduct({
             Cập Nhật
           </Button>
         </form>
+
+        {/* Hiển thị lý do khi trạng thái là "CANCELLED" */}
+        {form.watch("status") === "CANCELLED" && (
+          <DialogInputReason
+            isOpen={showDialog}
+            onClose={() => setShowDialog(false)}
+          >
+            <FormField
+              control={form.control}
+              name="reason"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Nhập lý do..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </DialogInputReason>
+        )}
       </div>
     </Form>
   );

@@ -5,6 +5,12 @@ import { CustomColumnDef } from "@/types/Colunm";
 import { DataTableRowActions } from "@/components/table/data-table-row-actions";
 import { TOrderResponse } from "@/schema/order.schema"; // Adjust the import to point to the correct schema
 import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const columns: CustomColumnDef<TOrderResponse>[] = [
   // {
@@ -24,8 +30,10 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Ngày tạo" />
     ),
-    cell: ({ row  }) => (
-      <div className="w-36">{formattedDateTime(row.getValue("createdDate"))}</div>
+    cell: ({ row }) => (
+      <div className="w-36">
+        {formattedDateTime(row.getValue("createdDate"))}
+      </div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
@@ -36,10 +44,68 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
       <DataTableColumnHeader column={column} title="Ngày chỉnh sửa" />
     ),
     cell: ({ row }) => (
-      <div className="">{formattedDateTime(row.getValue("modifiedDate")) || 'Chưa chỉnh sửa'}</div>
+      <div className="">
+        {formattedDateTime(row.getValue("modifiedDate")) || "Chưa chỉnh sửa"}
+      </div>
     ),
     enableSorting: true,
     enableColumnFilter: true,
+  },
+  {
+    accessorKey: "reason",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Thông tin chi tiết" />
+    ),
+    cell: ({ row }) => {
+      const objectString = row.getValue("reason") as string;
+      let reasonObject;
+
+      if (typeof objectString === "string") {
+        try {
+          // Giải mã chuỗi JSON
+          const decodedString = objectString
+            .replace(/\\\\/g, "\\") // Xóa ký tự escape thừa
+            .replace(/\\"/g, '"'); // Đổi ký tự escape của dấu nháy kép thành dấu nháy kép thực sự
+
+          // Chuyển đổi chuỗi đã được giải mã thành object
+          reasonObject = JSON.parse(decodedString);
+
+          // Kiểm tra xem reasonObject có phải là object không
+          if (
+            typeof reasonObject === "object" &&
+            !Array.isArray(reasonObject)
+          ) {
+            console.log("Parsed value is an object:", reasonObject);
+          } else {
+            console.log("Parsed value is not a valid object.");
+          }
+        } catch (error) {
+          console.error("Invalid JSON string for reason:", objectString, error);
+        }
+      }
+
+      // Không có ảnh, chỉ hiển thị thông báo
+      return (
+        <div style={{ textAlign: "center" }}>
+          {reasonObject ? (
+            <p>
+              Name: {reasonObject.name}
+              <br />
+              Email: {reasonObject.email}
+              <br />
+              Phone: {reasonObject.phone}
+              <br />
+              Address: {reasonObject.address}
+            </p>
+          ) : (
+            "No Image"
+          )}
+        </div>
+      );
+    },
+
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "createdBy",
@@ -47,7 +113,7 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
       <DataTableColumnHeader column={column} title="Người tạo" />
     ),
     cell: ({ row }) => (
-      <div className="">{row.getValue("createdBy") || 'N/A'}</div>
+      <div className="">{row.getValue("createdBy") || "N/A"}</div>
     ),
     enableSorting: true,
     enableColumnFilter: true,

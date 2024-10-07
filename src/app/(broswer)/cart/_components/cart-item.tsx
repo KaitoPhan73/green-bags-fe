@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CartItem as CartItemType } from "@/types/Cart";
 import React from "react";
 import { formatPriceVND } from "@/lib/formatter";
+import { isValidUrl } from "@/lib/utils";
 type CartItemProps = {
   item: CartItemType;
 };
@@ -15,7 +16,11 @@ const CartItem = ({ item }: CartItemProps) => {
       <div className="flex items-center flex-col min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto">
         <div className="img-box">
           <Image
-            src={item.img}
+            src={
+              item.img && isValidUrl(item.img)
+                ? item.img
+                : "/images/blue-sky.jpg"
+            }
             alt="perfume bottle image"
             width={140}
             height={140}
