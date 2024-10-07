@@ -4,7 +4,7 @@ export const items = [
     img: "https://product.hstatic.net/200000060906/product/photo1711114221_ec365197a59748fcb9d2a7f96b11a74d_master.jpeg",
     description:
       "Tìm hiểu các dòng sản phẩm túi xanh của KalBan, được thiết kế để bảo vệ môi trường và đáp ứng nhu cầu hàng ngày của bạn.",
-    link: "/products",
+    link: "/design",
   },
   {
     title: "Mang Tính Nhân Văn",

@@ -17,6 +17,7 @@ const AddToCartQuantity = ({ data }: Props) => {
         onChange={(e) => setQuantity(Number(e.target.value))}
         className="w-20 h-10"
         min={1}
+        max={data.stock}
       />
       {data && <AddToCartButton product={data} quantity={quantity} />}
     </div>

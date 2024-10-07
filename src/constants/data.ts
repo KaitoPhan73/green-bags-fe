@@ -33,8 +33,9 @@ export const homepageList = [
     icon: MdOutlineScubaDiving,
     description:
       "Trải nghiệm các loại mẫu sản phẩm đa dạng và đầy màu sắc thú vị.",
-    image: "https://i.pinimg.com/736x/31/c8/e4/31c8e44217971fa28a82c0a71be7245e.jpg",
-    link: "/service",
+    image:
+      "https://i.pinimg.com/736x/31/c8/e4/31c8e44217971fa28a82c0a71be7245e.jpg",
+    link: "/products",
   },
   {
     title: "Khám Phá Giá Trị Bản Thân",
@@ -43,7 +44,7 @@ export const homepageList = [
       "Khám phá các mô hình tự thiết kế để có thể thõa mãn sự sáng tạo của bản thân.",
     image:
       "https://i.pinimg.com/736x/cd/a5/ea/cda5ea6ef22739ed0c3b1bef56d90456.jpg",
-    link: "/about",
+    link: "/design",
   },
   {
     title: "Dịch Vụ Chăm Sóc Khách Hàng",
@@ -249,9 +250,11 @@ export const dataBlogs = [
   {
     id: 6,
     name: "Những Chiếc Túi Đa Năng Cho Rượu Vang Làm Được Tất Cả",
-    description: "Khách hàng của bạn đang tìm kiếm một giải pháp vừa phong cách vừa tiện dụng để mang rượu vang? Túi của chúng tôi không chỉ để đựng rượu mà còn có thể chứa sách, đồ tạp hóa hoặc bất cứ thứ gì bạn muốn! Trong những ngày bận rộn tại cửa hàng tạp hóa, túi rượu của chúng tôi mang lại một giải pháp thân thiện với môi trường thay thế túi nhựa dùng một lần. Chúng tôi có nhắc đến rằng những chiếc túi này [...]",
+    description:
+      "Khách hàng của bạn đang tìm kiếm một giải pháp vừa phong cách vừa tiện dụng để mang rượu vang? Túi của chúng tôi không chỉ để đựng rượu mà còn có thể chứa sách, đồ tạp hóa hoặc bất cứ thứ gì bạn muốn! Trong những ngày bận rộn tại cửa hàng tạp hóa, túi rượu của chúng tôi mang lại một giải pháp thân thiện với môi trường thay thế túi nhựa dùng một lần. Chúng tôi có nhắc đến rằng những chiếc túi này [...]",
     author: "Frank Tech",
-    image: "https://enviro-tote.com/wp-content/uploads/2024/04/Enviro-Tote_The-Multifunctional-Wine-Totes-That-Do-It-All-600x338.png",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/04/Enviro-Tote_The-Multifunctional-Wine-Totes-That-Do-It-All-600x338.png",
     createdDate: "2024-06-01",
     posts: [
       {
@@ -268,9 +271,11 @@ export const dataBlogs = [
   {
     id: 7,
     name: "Hướng Dẫn Của Bạn Về Kích Cỡ Túi Tote",
-    description: "Túi tote đã trở nên cực kỳ phổ biến trong thế giới hiện đại, phục vụ như là những phương tiện vận chuyển đa năng và bền vững cho nhiều loại vật dụng. Nhưng túi tote thực sự dùng để làm gì? Từ những vật dụng hàng ngày đến nhu cầu chuyên dụng, túi tote cung cấp một giải pháp tiện lợi và phong cách để vận chuyển đồ đạc. Đây là hướng dẫn của bạn về kích cỡ túi tote và […]",
+    description:
+      "Túi tote đã trở nên cực kỳ phổ biến trong thế giới hiện đại, phục vụ như là những phương tiện vận chuyển đa năng và bền vững cho nhiều loại vật dụng. Nhưng túi tote thực sự dùng để làm gì? Từ những vật dụng hàng ngày đến nhu cầu chuyên dụng, túi tote cung cấp một giải pháp tiện lợi và phong cách để vận chuyển đồ đạc. Đây là hướng dẫn của bạn về kích cỡ túi tote và […]",
     author: "Grace Earth",
-    image: "https://enviro-tote.com/wp-content/uploads/2024/03/Blog_Your-Guide-to-Tote-Bag-Sizes-600x338.png",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/03/Blog_Your-Guide-to-Tote-Bag-Sizes-600x338.png",
     createdDate: "2024-07-20",
     posts: [
       {
@@ -290,7 +295,8 @@ export const dataBlogs = [
     description:
       "Các hội chợ, sự kiện kết nối, hội nghị... đều đầy thông tin. Nhưng hãy thừa nhận, những món quà lưu niệm thực sự là các quà tặng. Người tham gia khao khát những món đồ dùng được và có thể tái sử dụng, và không có gì tuyệt vời hơn việc đảm bảo họ nhớ đến bạn qua một chiếc túi tote quảng cáo tiện lợi. Tại sao lại chọn túi tote lớn cho quà tặng của bạn? Chắc chắn, lớn hơn là tốt hơn […]",
     author: "Harry Traveler",
-    image: "https://enviro-tote.com/wp-content/uploads/2024/02/Enviro-Tote-Blog_Tote-Bag-Giveaways-Attendees-Will-Love-600x338.png",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2024/02/Enviro-Tote-Blog_Tote-Bag-Giveaways-Attendees-Will-Love-600x338.png",
     createdDate: "2024-08-05",
     posts: [
       {
@@ -311,7 +317,8 @@ export const dataBlogs = [
     description:
       "Xin chào túi Tote Hàng Ngày, người bạn vải bố đáng tin cậy cho mọi cuộc phiêu lưu, dù lớn hay nhỏ. Đây không chỉ là chiếc túi tote thông thường; nó là công cụ mạnh mẽ nhất, sẵn sàng đối mặt với cuộc sống hàng ngày của bạn với cả phong cách và chất lượng. Được sản xuất tại Mỹ với tình yêu và chất lượng mà bạn có thể cảm nhận, Túi Tote Hàng Ngày không chỉ là một […]",
     author: "Ivy Innovate",
-    image: "https://enviro-tote.com/wp-content/uploads/2023/12/The-Everyday-Tote-Your-Go-To-Companion-for-Whatever-Life-Throws-Your-Way-600x338.png",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2023/12/The-Everyday-Tote-Your-Go-To-Companion-for-Whatever-Life-Throws-Your-Way-600x338.png",
     createdDate: "2024-09-10",
     posts: [
       {
@@ -331,7 +338,8 @@ export const dataBlogs = [
     description:
       "Hãy tạm biệt những chiếc túi nhựa mỏng manh, túi đeo vai đã xuất hiện! Chiếc túi vải bố phong cách này, được sản xuất ngay tại Hoa Kỳ, không chỉ là phụ kiện thông thường. Nó là công cụ đắc lực của các nhà bán lẻ, là cứu cánh của người bán sách, là người hùng của các nhà tổ chức sự kiện và là vũ khí bí mật của những người mua sắm tinh tường, những người hiểu rõ chất lượng khi họ nhìn thấy nó. Từ […]",
     author: "Jack Maker",
-    image: "https://enviro-tote.com/wp-content/uploads/2023/12/Enviro-Tote-Blog_Spotlight-Your-Brand-with-Enviro-Totes-Best-Selling-Shoulder-Tote-600x338.png",
+    image:
+      "https://enviro-tote.com/wp-content/uploads/2023/12/Enviro-Tote-Blog_Spotlight-Your-Brand-with-Enviro-Totes-Best-Selling-Shoulder-Tote-600x338.png",
     createdDate: "2024-09-01",
     posts: [
       {
@@ -344,6 +352,5 @@ export const dataBlogs = [
         image: "/images/blue-sky.jpg",
       },
     ],
-  }
-
+  },
 ];

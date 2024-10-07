@@ -9,7 +9,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
   const data = response.payload;
   return (
     <div className="container flex flex-col gap-8 w-[80vw] mt-20 p-8">
-      <div className="flex gap-4 bg-slate-100 rounded-md p-8">
+      <div className="flex gap-4 bg-slate-100 dark:bg-slate-900 rounded-md p-8">
         <div className="">
           <Image
             src={data?.img || "/path/to/default/image.jpg"}
@@ -32,6 +32,13 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
               </div>
 
               <div className="text-gray-500">10 Reviews</div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <span>Kho: </span>
+
+              <div className="text-gray-900 dark:text-white">
+                {data.stock} cái
+              </div>
             </div>
             <div>
               <span>Mô tả</span>

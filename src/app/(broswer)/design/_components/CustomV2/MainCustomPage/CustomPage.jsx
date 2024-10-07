@@ -1,15 +1,23 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CustomBagV2 from "../Custom";
 import { ArrowDownOutlined } from "@ant-design/icons";
 import ListCustomPublic from "../GetCustom/CustomPublic";
 import ProductDesign from "./ProductDesign";
 import Grid from "@mui/material/Grid";
 import { QueryClient, QueryClientProvider } from "react-query";
+import useUserStore from "@/store/userStore";
+import { useRouter } from "next/navigation";
 const queryClient = new QueryClient();
 
 const CustomPage = ({ bags }) => {
   const customBagRef = useRef(null);
+  const { user, loadUserFromLocalStorage } = useUserStore();
+  useEffect(() => {
+    loadUserFromLocalStorage();
+  }, [loadUserFromLocalStorage]);
+
+  const router = useRouter();
 
   const scrollToElement = (element) => {
     // console.log("Scrolling to element:", element);
@@ -90,9 +98,32 @@ const CustomPage = ({ bags }) => {
             </p>
           </div>
         </div>
-        <div ref={customBagRef}>
-          <CustomBagV2 bags={bags} />
-        </div>
+        {user ? (
+          user.roleName === "admin" ? (
+            <div className="flex items-center justify-center">
+              <button
+                className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-gray-400 font-semibold text-lg text-white flex transition-all duration-500 cursor-not-allowed"
+                disabled
+              >
+                Thiết kế chỉ dành cho khách hàng
+              </button>
+            </div>
+          ) : (
+            <div ref={customBagRef}>
+              <CustomBagV2 bags={bags} />
+            </div>
+          )
+        ) : (
+          <div className="flex items-center justify-center">
+            <button
+              className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700"
+              onClick={() => router.push("/login")}
+            >
+              Vui lòng đăng nhập để thiết kế
+            </button>
+          </div>
+        )}
+
         <div>{/* <ListCustomPublic /> */}</div>
       </div>
     </QueryClientProvider>

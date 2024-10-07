@@ -203,10 +203,9 @@ const CustomBagV2 = ({ bags }) => {
     setStep(3);
   };
 
-
   const handleExportImage = async () => {
     handlePostCustomBag();
-  
+
     try {
       const imageUrls = [];
 
@@ -214,7 +213,7 @@ const CustomBagV2 = ({ bags }) => {
         document.querySelector("#bagCanvas")
       );
       const resizedCanvas = document.createElement("canvas");
-      const ctx = resizedCanvas.getContext("2d");  
+      const ctx = resizedCanvas.getContext("2d");
       const MAX_SIZE = 800;
       let { width, height } = originalCanvas;
 
@@ -271,7 +270,6 @@ const CustomBagV2 = ({ bags }) => {
       console.log("Posting to API with data:", postData);
       await postToApi(postData);
       localStorage.removeItem("uploadedImages");
-
     } catch (err) {
       console.error("An error occurred during the export process:", err);
     }
@@ -346,11 +344,11 @@ const CustomBagV2 = ({ bags }) => {
       console.error("An error occurred during the upload process:", err);
     }
   };
-  
+
   console.log("Compressed Blob:", compressedBlob);
   console.log("Image URL:", imageURL);
 
-  const handleViewOrder = () => navigate.push("/my-custom");
+  const handleViewOrder = () => navigate.push("/profile/customizes");
 
   return (
     <div>
@@ -423,7 +421,7 @@ const CustomBagV2 = ({ bags }) => {
                     d="M7 16l-4-4m0 0l4-4m-4 4h18"
                   />
                 </svg>
-                <span className="text-sm font-medium">Continue Customize</span>
+                <span className="text-sm font-medium">Tiếp tục thiết kế</span>
               </a>
               <div
                 className="text-sm font-medium cursor-pointer flex items-center bg-[#cff53e] border border-black-600 rounded-full hover:bg-[#FF78C5] hover:text-white py-1 ml-4 px-4"
@@ -434,7 +432,7 @@ const CustomBagV2 = ({ bags }) => {
                   className="mr-2 w-5 h-5"
                   alt="Custom Icon"
                 />
-                <span>View Your Order</span>
+                <span>Xem lịch sử thiết kế</span>
               </div>
             </div>
           </div>

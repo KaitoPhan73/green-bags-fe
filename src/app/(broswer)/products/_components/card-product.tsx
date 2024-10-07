@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { isValidUrl } from "@/lib/utils";
 import { TProductResponse } from "@/schema/product.schema";
 import { Variants } from "framer-motion";
 import Image from "next/image";
@@ -57,7 +58,11 @@ const CardProduct = ({ item, index }: CardProps) => {
           }`}
         >
           <Image
-            src={item.img ? item.img : "/images/blue-sky.jpg"}
+            src={
+              item.img && isValidUrl(item.img)
+                ? item.img
+                : "/images/blue-sky.jpg"
+            }
             alt={item.productName ? item.productName : "Product Name"}
             layout="fill"
             className="rounded-lg object-cover"

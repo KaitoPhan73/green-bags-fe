@@ -20,20 +20,35 @@ const useCartStore = create<CartStore>()(
       addItem: (item: TProductResponse, quantity: number) => {
         set((state) => {
           const existingItem = state.items.find((i) => i.id === item.id);
+          const maxStock = item.stock; // Lấy stock từ sản phẩm để làm maxStock
+
           if (existingItem) {
+            const newQuantity = existingItem.quantity + quantity;
+            if (newQuantity > maxStock) {
+              toast.error(
+                `Số lượng sản phẩm "${item.productName}" không thể vượt quá ${maxStock}.`
+              );
+              return state;
+            }
             toast.success(
               `Đã thêm ${quantity} sản phẩm "${item.productName}" vào giỏ hàng.`
             );
             return {
               items: state.items.map((i) =>
-                i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
+                i.id === item.id ? { ...i, quantity: newQuantity } : i
               ),
             };
           } else {
+            if (quantity > maxStock) {
+              toast.error(
+                `Số lượng sản phẩm "${item.productName}" không thể vượt quá ${maxStock}.`
+              );
+              return state;
+            }
             toast.success(
               `Đã thêm ${quantity} sản phẩm "${item.productName}" vào giỏ hàng.`
             );
-            return { items: [...state.items, { ...item, quantity }] };
+            return { items: [...state.items, { ...item, quantity, maxStock }] };
           }
         });
       },
@@ -42,7 +57,7 @@ const useCartStore = create<CartStore>()(
           const itemToRemove = state.items.find((item) => item.id === itemId);
           if (itemToRemove) {
             toast.success(
-              `Sản phẩm "${itemToRemove.finalPrice}" đã được xóa khỏi giỏ hàng.`
+              `Sản phẩm "${itemToRemove.productName}" đã được xóa khỏi giỏ hàng.`
             );
           }
           return {
@@ -51,11 +66,20 @@ const useCartStore = create<CartStore>()(
         });
       },
       updateItemQuantity: (itemId: string, quantity: number) =>
-        set((state) => ({
-          items: state.items.map((item) =>
-            item.id === itemId ? { ...item, quantity } : item
-          ),
-        })),
+        set((state) => {
+          const itemToUpdate = state.items.find((item) => item.id === itemId);
+          if (itemToUpdate && quantity > itemToUpdate.maxStock) {
+            toast.error(
+              `Số lượng sản phẩm "${itemToUpdate.productName}" không thể vượt quá ${itemToUpdate.maxStock}.`
+            );
+            return state;
+          }
+          return {
+            items: state.items.map((item) =>
+              item.id === itemId ? { ...item, quantity } : item
+            ),
+          };
+        }),
       clearCart: () => {
         set({ items: [] });
         toast.success("Giỏ hàng đã được dọn sạch.");
