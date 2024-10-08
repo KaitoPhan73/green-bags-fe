@@ -28,7 +28,7 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="left">
             <Link href="#" prefetch={false}>
-              <Icon className="h-26 w-26 dark:filter dark:invert" />
+              <Icon className="h-10 w-90 dark:filter dark:invert" />
               <span className="sr-only">ShadCN</span>
             </Link>
             <div className="grid gap-2 py-6">
@@ -47,7 +47,7 @@ export default function Header() {
         </Sheet>
 
         <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-          <Icon className="h-16 w-16 dark:filter dark:invert" />
+          <Icon className="h-30 w-20 dark:filter dark:invert" />
           <span className="sr-only">ShadCN</span>
         </Link>
 
@@ -107,8 +107,8 @@ function Icon(props: any) {
       <Image
         priority
         src="/svgs/kalban-logo.svg"
-        height={32}
-        width={32}
+        height={0}
+        width={0}
         alt="Kalban-logo"
         {...props}
       />

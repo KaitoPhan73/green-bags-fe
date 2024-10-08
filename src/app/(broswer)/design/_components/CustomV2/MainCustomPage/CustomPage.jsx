@@ -21,14 +21,12 @@ const CustomPage = ({ bags }) => {
     loadUserFromLocalStorage();
   }, [loadUserFromLocalStorage]);
 
-  // Hàm scroll đến cuối trang
   const scrollToBottom = () => {
     if (pageEndRef.current) {
       pageEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   };
 
-  // Hàm scroll đến phần "Dành cho bạn"
   const scrollToCustomBag = () => {
     if (customBagRef.current) {
       customBagRef.current.scrollIntoView({ behavior: "smooth" });

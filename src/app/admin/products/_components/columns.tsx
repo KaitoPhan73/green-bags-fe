@@ -16,13 +16,20 @@ export const columns: CustomColumnDef<TProductResponse>[] = [
   //     "description": null,
   {
     accessorKey: "productName",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tên sản phẩm" />
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Tên sản phẩm" />,
+    cell: ({ row }) => (
+      <div
+        className="w-36 truncate cursor-pointer"
+        title={row.getValue("productName")}
+        onClick={() => alert(row.getValue("productName"))} // Displays product name on click
+      >
+        {row.getValue("productName")}
+      </div>
     ),
-    cell: ({ row }) => <div className="">{row.getValue("productName")}</div>,
     enableSorting: true,
     enableColumnFilter: false,
   },
+  
   {
     accessorKey: "img",
     header: ({ column }) => (

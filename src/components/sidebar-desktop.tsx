@@ -39,7 +39,7 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
           <div className="absolute left-0 bottom-3 w-full px-3">
             <Separator className="absolute -top-3 left-0 w-full" />
             <Popover>
-              <PopoverTrigger asChild>
+              {/* <PopoverTrigger asChild>
                 <Button variant="ghost" className="w-full justify-start">
                   <div className="flex justify-between items-center w-full">
                     <div className="flex gap-2">
@@ -52,7 +52,7 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
                     <MoreHorizontal size={20} />
                   </div>
                 </Button>
-              </PopoverTrigger>
+              </PopoverTrigger> */}
               <PopoverContent className="mb-2 w-56 p-3 rounded-[1rem]">
                 <div className="space-y-1">
                   <Link href="/">
