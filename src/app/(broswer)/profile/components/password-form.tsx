@@ -2,44 +2,77 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { updateAccount } from "@/api/account";
+import useUserStore from "@/store/userStore";
+import { useToast } from "@/hooks/use-toast";
 
 type PasswordFormBodyType = {
   password: string;
-  newPassword: string;
   confirmedPassword: string;
 };
 
-const PasswordFormBody = z.object({
-  password: z.string().min(1, "Current password is required"),
-  newPassword: z.string().min(1, "New password is required"),
-  confirmedPassword: z.string().min(1, "Confirmed password is required"),
-});
+const PasswordFormBody = z
+  .object({
+    password: z.string().min(8, "Mật khẩu mới phải chứa ít nhất 8 ký tự"),
+    confirmedPassword: z.string().min(1, "Vui lòng xác nhận mật khẩu"),
+  })
+  .refine((data) => data.password === data.confirmedPassword, {
+    message: "Mật khẩu không khớp",
+    path: ["confirmedPassword"], // This indicates where the error message should appear
+  });
 
 export function PasswordForm() {
   const router = useRouter();
-
+  const { user } = useUserStore();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const form = useForm<PasswordFormBodyType>({
     resolver: zodResolver(PasswordFormBody),
     defaultValues: {
-      password: "",
       confirmedPassword: "",
-      newPassword: "",
+      password: "",
     },
   });
 
   async function onSubmit(value: PasswordFormBodyType) {
     try {
+      if (!user?.id) {
+        throw new Error("User ID is required");
+      }
+      setIsLoading(true); // Start loading
+      const response = await updateAccount(user.id, value);
+      if (response.status === 200) {
+        toast({
+          title: "Cập nhật mật khẩu thành công. vui lòng đăng nhập lại",
+        });
+        setTimeout(() => {
+          router.push("/logout"); // Điều hướng đến trang đăng xuất sau 2 giây
+        }, 2000);
+      }
       form.reset();
-      // router.push(configRoute.password)
       router.refresh();
     } catch (error: any) {
+      toast({
+        title: "Cập nhật mật khẩu thất bại",
+      });
       console.error(error);
+    } finally {
+      setIsLoading(false); // End loading
     }
   }
 
@@ -51,27 +84,14 @@ export function PasswordForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Current password</FormLabel>
+              <FormLabel>Mật khẩu mới</FormLabel>
               <FormControl>
-                <Input placeholder="Current password" type="password" {...field} />
+                <Input
+                  placeholder="Nhập mật khẩu mới..."
+                  type="password"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-                For security reasons, we need your current password to make changes to your account.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="newPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>New password</FormLabel>
-              <FormControl>
-                <Input placeholder="New password" type="password" {...field} />
-              </FormControl>
-              <FormDescription>Your new password must be at least 6 characters long.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -81,16 +101,22 @@ export function PasswordForm() {
           name="confirmedPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm password</FormLabel>
+              <FormLabel>Xác nhận mật khẩu</FormLabel>
               <FormControl>
-                <Input placeholder="Confirm password" type="password" {...field} />
+                <Input
+                  placeholder="Xác nhận mật khẩu..."
+                  type="password"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>Confirm your new password.</FormDescription>
+              <FormDescription>Xác nhận lại mật khẩu của bạn</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="!mt-8">Update password</Button>
+        <Button className="!mt-8" disabled={isLoading}>
+          {isLoading ? "Đang cập nhật..." : "Cập nhật"}
+        </Button>
       </form>
     </Form>
   );

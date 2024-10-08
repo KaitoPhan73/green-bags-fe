@@ -75,9 +75,15 @@ export function CardOrder({ item, index }: Props) {
               <p className="text-sm font-medium leading-none">
                 {formatPriceVND(orderItem.unitPrice)}
               </p>
-              {item.status === "COMPLETED" && (
-                <DialogReview data={orderItem.product} />
-              )}
+
+              {item.status === "COMPLETED" &&
+                (!orderItem.isReview ? (
+                  <DialogReview data={orderItem.product} />
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Cảm ơn bạn đã đánh giá
+                  </p>
+                ))}
             </div>
           </div>
         ))}

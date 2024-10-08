@@ -41,5 +41,17 @@ const getAccountById = async (id: string) => {
   return response;
 };
 
+const updateAccount = async (id: string, data: any) => {
+  const response = await httpBag.patch<TAccountResponse>(
+    `/account/${id}`,
+    data,
+    {
+      next: { tags: ["accounts"] },
+    }
+  );
+  revalidateTag("accounts");
+  return response;
+};
+
 // Export các hàm API
-export { getAllAccounts, getAccountById, getAllAccountsActive };
+export { getAllAccounts, getAccountById, getAllAccountsActive, updateAccount };
