@@ -25,8 +25,8 @@ export function ProfileForm() {
   const form = useForm<TAccountResponse>({
     // resolver: zodResolver(AccountFormBody),
     defaultValues: {
-      username: user.username,
-      email: user.email,
+      username: user?.username,
+      email: user?.email,
       // yob: data.yob,
     },
   });
