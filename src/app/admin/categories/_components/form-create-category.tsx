@@ -55,8 +55,8 @@ export function FormCreateCategory({
       const response = await createCategory(data);
       if (response.status === 200) {
         toast({
-          title: "Category created successfully",
-          description: "Redirecting to categories list...",
+          title: "Nguồn hàng đã tạo thành công!",
+          description: "Đang chuyển hướng sang danh sách các nguồn hàng...",
         });
         // Redirect hoặc refresh trang nếu cần
       }

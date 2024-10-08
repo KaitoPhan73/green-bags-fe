@@ -164,11 +164,11 @@ const BagSelected = ({
   };
 
   const tabItems = [
-    {
-      key: "1",
-      label: <ToolOutlined className="custom-tab-icon" />,
-      children: <DigitalPrinting onColorSelect={onColorSelect} />,
-    },
+    // {
+    //   key: "1",
+    //   label: <ToolOutlined className="custom-tab-icon" />,
+    //   children: <DigitalPrinting onColorSelect={onColorSelect} />,
+    // },
     {
       key: "2",
       label: <CameraOutlined className="custom-tab-icon" />,
@@ -189,11 +189,11 @@ const BagSelected = ({
         />
       ),
     },
-    {
-      key: "4",
-      label: <SkinOutlined className="custom-tab-icon" />,
-      children: <DecorationTab />,
-    },
+    // {
+    //   key: "4",
+    //   label: <SkinOutlined className="custom-tab-icon" />,
+    //   children: <DecorationTab />,
+    // },
   ];
 
   return (
@@ -202,7 +202,7 @@ const BagSelected = ({
         <div className="w-1/2 flex justify-end mr-10">
           <DndProvider backend={HTML5Backend}>
             <BagImage
-              imageUrl="/bagsBody/BagTransparentBg.png"
+              imageUrl="/images/mautui.png"
               color={selectedColor}
               stickers={stickers}
               onDrop={handleDrop}

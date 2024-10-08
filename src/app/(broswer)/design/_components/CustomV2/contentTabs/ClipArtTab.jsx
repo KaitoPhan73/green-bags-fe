@@ -274,15 +274,15 @@
 // export default ClipArtTab;
 
 import React, { useState, useEffect } from "react";
-import { Modal, Input, Row, Col, Image, Button, Upload, message } from "antd"; 
+import { Modal, Input, Row, Col, Image, Button, Upload, message } from "antd";
 import items from "../../../../../../utils/Items";
 import { PlusOutlined, RightOutlined } from "@ant-design/icons";
 import styled from "styled-components";
-import axios from "axios"; 
+import axios from "axios";
 
 const StyledModal = styled(Modal)`
   .ant-modal-title {
-    color: #cef53d !important; 
+    color: #cef53d !important;
   }
 
   .ant-modal-close {
@@ -303,7 +303,9 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
 
   useEffect(() => {
     // Load images from localStorage when component mounts
-    const storedImages = JSON.parse(localStorage.getItem("uploadedImages") || "[]");
+    const storedImages = JSON.parse(
+      localStorage.getItem("uploadedImages") || "[]"
+    );
     if (storedImages.length < 5) {
       setUploadedImages(storedImages);
     }
@@ -371,8 +373,8 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
           localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
 
           setUploadedImages(updatedImages);
-          setTempUploadFiles([]); 
-          setIsUploadModalVisible(false); 
+          setTempUploadFiles([]);
+          setIsUploadModalVisible(false);
         }
       };
 
@@ -389,10 +391,14 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
     <div>
       <div className="m-4 ml-10">
         <h2 className="font-bold text-lg">Thêm một bức ảnh nào</h2>
-        <p className="text-gray-600 text-[12px]">
+        <h5 className="text-white bg-pink-500 p-4 rounded-lg text-center text-[14px] font-semibold shadow-lg">
           Duyệt qua Danh mục Clip Art của chúng tôi hoặc tải lên hình ảnh của
           riêng bạn.
-        </p>
+          <span className="block mt-2 text-red-800">
+            Lưu ý rằng hãy thiết kế ảnh kéo thả đúng theo khung hình! Sai cấu
+            trúc sẽ bị hủy kết quả.
+          </span>
+        </h5>
       </div>
       <div className="mt-10 mx-6">
         <div className="flex justify-between items-center border-b py-4 ">
@@ -427,10 +433,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
         </div>
         <div className="py-4 flex justify-between items-center">
           <div>
-            <Button
-              type="link"
-              className="text-lg font-semibold"
-            >
+            <Button type="link" className="text-lg font-semibold">
               MY IMAGES
             </Button>
             <p className="ml-4">Chọn ảnh của bạn</p>
@@ -448,7 +451,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
                 width={100}
                 height={100}
                 className="cursor-pointer"
-                onClick={() => onImageSelect(image)} 
+                onClick={() => onImageSelect(image)}
               />
             </Col>
           ))}
@@ -462,7 +465,9 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
         footer={
           <Button
             onClick={handleUploadSelect}
-            disabled={tempUploadFiles.length === 0 || tempUploadFiles.length > 5} 
+            disabled={
+              tempUploadFiles.length === 0 || tempUploadFiles.length > 5
+            }
           >
             Chấp Nhận Các Ảnh
           </Button>
@@ -472,7 +477,7 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
           listType="picture-card"
           multiple={true}
           onChange={handleUploadChange}
-          disabled={uploadedImages.length >= 5} 
+          disabled={uploadedImages.length >= 5}
         >
           <div>
             <PlusOutlined />
@@ -521,8 +526,6 @@ const ClipArtTab = ({ onImageSelect, selectedImage }) => {
 };
 
 export default ClipArtTab;
-
-
 
 // import React, { useState, useEffect } from "react";
 // import { Modal, Input, Row, Col, Image, Button, Upload, message } from "antd"; // Import message here
@@ -764,4 +767,3 @@ export default ClipArtTab;
 // };
 
 // export default ClipArtTab;
-

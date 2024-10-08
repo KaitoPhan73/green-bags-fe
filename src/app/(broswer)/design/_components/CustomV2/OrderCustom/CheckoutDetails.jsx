@@ -400,9 +400,9 @@ const CheckoutDetails = () => {
                       style={{
                         width: "40%",
                         height: "auto",
-                        maskImage: "url('/bagsBody/BagTransparentBg.png')",
+                        maskImage: "url('/images/mautui.png')",
                         WebkitMaskImage:
-                          "url('/bagsBody/BagTransparentBg.png')",
+                          "url('/images/mautui.png')",
                         maskSize: "contain",
                         WebkitMaskSize: "contain",
                         maskPosition: "center",

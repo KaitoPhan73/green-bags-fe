@@ -126,13 +126,13 @@ const BagImage = ({
           id="bagCanvas"
           className="relative w-[600px] h-[521px] border rounded-lg border-pink-500 p-2 overflow-hidden "
           style={{
-            backgroundColor: "#e2e8f0",
-            backgroundImage: `url(${"/bagsBody/BagTransparentBg.png"})`,
+            backgroundColor: "#e2e8f0	",
+            backgroundImage: `url(${"/images/mautui.png"})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center",
-            maskImage: "url('/bagsBody/BagTransparentBg.png')",
-            WebkitMaskImage: "url('/bagsBody/BagTransparentBg.png')",
+            // maskImage: "url('/images/mautui.png')",
+            // WebkitMaskImage: "url('/images/mautui.png')",
             maskSize: "contain",
             WebkitMaskSize: "contain",
             maskPosition: "center",
@@ -142,7 +142,7 @@ const BagImage = ({
           }}
           // style={{
           //   backgroundColor: "#e2e8f0",
-          //   backgroundImage: `url('/bagsBody/BagTransparentBg.png')`,
+          //   backgroundImage: `url('/images/mautui.png')`,
           //   backgroundSize: "cover",
           //   backgroundRepeat: "no-repeat",
           //   backgroundPosition: "center center",

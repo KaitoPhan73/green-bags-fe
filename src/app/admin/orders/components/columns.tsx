@@ -44,7 +44,7 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
       <DataTableColumnHeader column={column} title="Ngày chỉnh sửa" />
     ),
     cell: ({ row }) => (
-      <div className="">
+      <div className="w-56">
         {formattedDateTime(row.getValue("modifiedDate")) || "Chưa chỉnh sửa"}
       </div>
     ),
@@ -59,54 +59,52 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => {
       const objectString = row.getValue("reason") as string;
       let reasonObject;
-
+  
       if (typeof objectString === "string") {
         try {
-          // Giải mã chuỗi JSON
           const decodedString = objectString
-            .replace(/\\\\/g, "\\") // Xóa ký tự escape thừa
-            .replace(/\\"/g, '"'); // Đổi ký tự escape của dấu nháy kép thành dấu nháy kép thực sự
-
-          // Chuyển đổi chuỗi đã được giải mã thành object
+            .replace(/\\\\/g, "\\")
+            .replace(/\\"/g, '"');
+  
           reasonObject = JSON.parse(decodedString);
-
-          // Kiểm tra xem reasonObject có phải là object không
-          if (
-            typeof reasonObject === "object" &&
-            !Array.isArray(reasonObject)
-          ) {
-            console.log("Parsed value is an object:", reasonObject);
-          } else {
-            console.log("Parsed value is not a valid object.");
-          }
         } catch (error) {
           console.error("Invalid JSON string for reason:", objectString, error);
         }
       }
-
-      // Không có ảnh, chỉ hiển thị thông báo
+  
       return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "left" }}>
           {reasonObject ? (
             <p>
-              Name: {reasonObject.name}
+              <strong>Name:</strong> {reasonObject.name}
               <br />
-              Email: {reasonObject.email}
+              <span style={{ fontStyle: "italic" }}>
+                <strong>Email:</strong>{" "}
+                <a
+                  href={`mailto:${reasonObject.email}`}
+                  style={{ color: "blue", textDecoration: "underline" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {reasonObject.email}
+                </a>
+              </span>
               <br />
-              Phone: {reasonObject.phone}
+              <strong>Phone:</strong> {reasonObject.phone}
               <br />
-              Address: {reasonObject.address}
+              <strong>Address:</strong> {reasonObject.address}
             </p>
           ) : (
-            "No Image"
+            "Không có thông tin!"
           )}
         </div>
       );
     },
-
+  
     enableSorting: false,
     enableColumnFilter: false,
   },
+  
   {
     accessorKey: "createdBy",
     header: ({ column }) => (
