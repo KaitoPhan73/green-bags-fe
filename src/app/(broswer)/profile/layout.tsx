@@ -6,10 +6,10 @@ const sidebarNavItems = [
     title: "Hồ sơ",
     href: "/profile",
   },
-  // {
-  //   title: "Cập nhật mật khẩu",
-  //   href: "/profile/password",
-  // },
+  {
+    title: "Cập nhật mật khẩu",
+    href: "/profile/password",
+  },
   {
     title: "Lich sử mua hàng",
     href: "/profile/orders",

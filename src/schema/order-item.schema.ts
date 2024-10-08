@@ -12,6 +12,7 @@ export const OrderItemResponseSchema = z.object({
   product: ProductResponseSchema,
   quantity: z.number().min(1, { message: "Số lượng không hợp lệ." }),
   unitPrice: z.number().min(0, { message: "Giá không được âm." }),
+  isReview: z.boolean().nullable(),
 });
 
 export const CreateOrderItemSchema = z.object({
