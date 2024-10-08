@@ -104,7 +104,7 @@ export function FormCreateProduct({ className, basemodel }: Props) {
   };
 
   return (
-    <Dialog modal={false} open={open} onOpenChange={setOpen}>
+    <Dialog modal={false}>
       <DialogTrigger asChild className={className}>
         <Button variant="default" className="mb-4">
           Tạo Sản Phẩm
@@ -257,7 +257,7 @@ export function FormCreateProduct({ className, basemodel }: Props) {
                 </div>
 
                 <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="img" className="text-right">
+                  <Label htmlFor="image" className="text-right">
                     Ảnh
                   </Label>
                   <div className="col-span-3">

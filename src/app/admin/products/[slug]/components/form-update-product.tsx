@@ -64,8 +64,8 @@ export function FormUpdateProduct({
       const response = await updateProduct(data);
       if (response.status === 200) {
         toast({
-          title: "Product updated successfully",
-          description: "Redirecting to Product list...",
+          title: "Cập nhật sản phẩm thành công!",
+          description: "Đang chuyển hướng sang danh sách sản phẩm...",
         });
         // Redirect hoặc refresh trang nếu cần
       }

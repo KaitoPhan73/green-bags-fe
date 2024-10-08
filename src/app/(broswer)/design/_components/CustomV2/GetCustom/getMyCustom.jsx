@@ -412,9 +412,9 @@ const MyCustom = () => {
                         width: "100%",
                         height: "auto",
                         maskImage:
-                          "url('/bagsBody/BagTransparentBg.png')",
+                          "url('/images/mautui.png')",
                         WebkitMaskImage:
-                          "url('/bagsBody/BagTransparentBg.png')",
+                          "url('/images/mautui.png')",
                         maskSize: "contain",
                         WebkitMaskSize: "contain",
                         maskPosition: "center",

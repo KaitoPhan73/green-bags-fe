@@ -124,7 +124,7 @@ export function DialogCreateBaseModel({ className, categories }: Props) {
                           <FormMessage />
                         </FormItem>
                       )}
-                    />
+                    /> 
                   </div>
                 </div>
 
