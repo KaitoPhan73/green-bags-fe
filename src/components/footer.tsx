@@ -39,8 +39,9 @@ const Footer = () => {
             <li className="flex gap-2 items-center mb-2">
               <GrMapLocation className="h-6 w-6 text-green-400" />
               <p className="text-gray-600 dark:text-white">
-              FPT University HCMC,
-              Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Hồ Chí Minh 700000              </p>
+                FPT University HCMC, Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ,
+                Thành Phố Thủ Đức, Hồ Chí Minh 700000{" "}
+              </p>
             </li>
             <li className="flex gap-2 items-center mb-2">
               <MdOutlineMail className="h-6 w-6 text-green-400" />
@@ -53,16 +54,25 @@ const Footer = () => {
         <div className="mt-8 md:mt-0 md:w-1/5">
           <h3 className="text-2xl font-semibold mb-4">Kết Nối Với Chúng Tôi</h3>
           <div className="flex space-x-4">
-            <a href="#" className="text-blue-700 hover:text-blue-500">
+            <a
+              href="https://www.facebook.com/profile.php?id=100086570243903"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:text-blue-500"
+            >
               <FaFacebook />
             </a>
             {/* <a href="#" className="text-blue-700 hover:text-blue-500">
               <FaTwitter />
             </a> */}
-            <a href="#" className="text-pink-700 hover:text-pink-500">
+            <a
+              href="https://www.instagram.com/kalban.624/?fbclid=IwY2xjawFx2qFleHRuA2FlbQIxMAABHbTokm91AZa7HpbkaMYpn52MFw5wdRxgmHdBVAXnBjZp8U_KKobcOJ21RQ_aem_dCDc4G3ARtkxdm7EWD3wVw"
+              className="text-pink-700 hover:text-pink-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaInstagram />
             </a>
-
           </div>
         </div>
       </div>
