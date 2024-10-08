@@ -16,9 +16,9 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-start border-t-b border-black py-8 px-12 bg-gray-100 dark:bg-gray-800">
         <div className="text-center md:text-left md:w-2/5">
           <div className="flex items-center">
-            <Icon className="h-32 w-64 dark:filter dark:invert" />
+            <Icon className="h-180 w-80 dark:filter dark:invert" />
             <div className="text-lg max-w-xl ml-4">
-              <h2 className="text-3xl font-semibold mb-4">
+              <h2 className="text-2xl font-semibold mb-4">
                 Trải nghiệm tuyệt vời với KALBAN
               </h2>
               <p>
@@ -34,17 +34,17 @@ const Footer = () => {
           <ul>
             <li className="flex gap-2 items-center mb-2">
               <FaPhoneAlt className="h-6 w-6 text-green-400" />
-              <p className="text-gray-700 dark:text-white">0976-325-953</p>
+              <p className="text-gray-600 dark:text-white">0976-325-953</p>
             </li>
             <li className="flex gap-2 items-center mb-2">
               <GrMapLocation className="h-6 w-6 text-green-400" />
-              <p className="text-gray-700 dark:text-white">
+              <p className="text-gray-600 dark:text-white">
               FPT University HCMC,
               Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Hồ Chí Minh 700000              </p>
             </li>
             <li className="flex gap-2 items-center mb-2">
               <MdOutlineMail className="h-6 w-6 text-green-400" />
-              <p className="text-gray-700 dark:text-white">
+              <p className="text-gray-600 dark:text-white">
                 longdhpse171112@fpt.edu.vn
               </p>
             </li>

@@ -36,7 +36,7 @@ const BagSlider = ({ onBagSelect, bags }) => {
               <div key={bag.id} className="relative group p-10 w-[300px]">
                 <div className="relative w-full h-[500px] hover:scale-110">
                   <img
-                    src={bag.img}
+                    src="/images/tote-white.jpg"
                     alt={`Bag ${bag.id}`}
                     className="w-full h-full object-cover transition-shadow duration-300 group-hover:shadow-lg rounded-lg"
                   />

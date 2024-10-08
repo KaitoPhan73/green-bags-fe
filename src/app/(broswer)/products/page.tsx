@@ -25,7 +25,7 @@ const page = async (props: any) => {
     product,
     category,
   ]);
-  console.log("productResponse", productResponse.payload);
+  // console.log("productResponse", productResponse.payload);
   return (
     <div>
       <section className="pt-12 md:pt-24 lg:pt-24">

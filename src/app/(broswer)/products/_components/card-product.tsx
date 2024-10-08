@@ -56,6 +56,8 @@ const CardProduct = ({ item, index }: CardProps) => {
           className={`relative flex items-center justify-center ${
             isLarge(index + 1) ? "w-full max-w-md h-80" : "w-full max-w-xs h-60"
           }`}
+          onClick={() => router.push(`products/${item.id}`)}
+          style={{ cursor: "pointer" }}
         >
           <Image
             src={
