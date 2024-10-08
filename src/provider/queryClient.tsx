@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-const queryClient = new QueryClient();
-const ReactQueryClientProvider = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
 
-export default ReactQueryClientProvider;
+import React from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+export function ReactQueryClientProvider({
+  children,
+}: React.PropsWithChildren) {
+  const [client] = React.useState(new QueryClient());
+
+  return (
+    <QueryClientProvider client={client}>
+      {children}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    </QueryClientProvider>
+  );
+}

@@ -15,6 +15,8 @@ import { TOrderResponse } from "@/schema/order.schema";
 import Image from "next/image";
 import { formatPriceVND } from "@/lib/formatter";
 import { useRouter } from "next/navigation";
+import { DialogReview } from "./dialog-review";
+import useUserStore from "@/store/userStore";
 
 type Props = {
   item: TOrderResponse;
@@ -22,6 +24,8 @@ type Props = {
 };
 export function CardOrder({ item, index }: Props) {
   const router = useRouter();
+  const { user } = useUserStore();
+
   return (
     <Card className="w-full">
       <CardHeader>
@@ -67,10 +71,13 @@ export function CardOrder({ item, index }: Props) {
                 Số lượng: {orderItem.quantity}
               </p>
             </div>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end gap-2">
               <p className="text-sm font-medium leading-none">
                 {formatPriceVND(orderItem.unitPrice)}
               </p>
+              {item.status === "COMPLETED" && (
+                <DialogReview data={orderItem.product} />
+              )}
             </div>
           </div>
         ))}

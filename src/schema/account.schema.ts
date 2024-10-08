@@ -13,6 +13,7 @@ export const AccountResponseSchema = z.object({
   address: z.string(),
   phoneNumber: z.string(),
   roleName: z.string(),
+  token: z.string(),
 });
 
 export type TAccountResponse = z.TypeOf<typeof AccountResponseSchema>;
