@@ -13,14 +13,7 @@ const CommentProduct = ({ reviewsResponse }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h1 className="text-2xl font-semibold mb-4">Comment</h1>
-        <Textarea
-          className="w-full"
-          placeholder="Write a comment..."
-          rows={4}
-        />
-      </div>
+      <h1 className="text-2xl font-semibold mb-4">Ý kiến </h1>
 
       {hasComments ? (
         <div className="flex flex-col gap-4">
@@ -56,7 +49,7 @@ const CommentProduct = ({ reviewsResponse }: Props) => {
                   </div>
                 </div>
               </div>
-              <div className="p-4 font-serif">{item.comment}</div>
+              <div className="p-4">{item.comment}</div>
             </div>
           ))}
         </div>

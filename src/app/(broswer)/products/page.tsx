@@ -30,9 +30,9 @@ const page = async (props: any) => {
     <div>
       <section className="pt-12 md:pt-24 lg:pt-24">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <TabTypeProducts categories={categoryResponse.payload} />
-          </div>
+          </div> */}
           <div className="my-12">
             <ListProducts
               dataSource={productResponse.payload?.listResult}

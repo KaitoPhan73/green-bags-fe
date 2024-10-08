@@ -1,4 +1,4 @@
-// components/Blog.jsx
+"use client";
 import React from "react";
 import {
   Card,
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { dataBlogs } from "@/constants/data";
 import { formatDate } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const posts = [
   {
@@ -28,6 +29,7 @@ const posts = [
 ];
 
 const Blog = () => {
+  const router = useRouter();
   return (
     <section className="bg-gray-50 dark:bg-gray-950 py-12">
       <div className="container mx-auto px-4">
@@ -41,7 +43,11 @@ const Blog = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {dataBlogs.slice(0, 3).map((item, index) => (
-            <Card key={index} className="shadow-lg dark:border-white">
+            <Card
+              key={index}
+              className="shadow-lg dark:border-white"
+              onClick={() => router.push(`/blogs/${item.id}`)}
+            >
               <CardHeader>
                 <h3 className="text-xl font-semibold">{item.name}</h3>
                 {/* <p className="text-sm text-gray-500 truncate">

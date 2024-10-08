@@ -34,11 +34,11 @@ const getAllAccountsActive = async (accessToken: string, params?: any) => {
 };
 
 // Lấy tài khoản theo ID
-const getAccountById = async (id: string): Promise<TAccountResponse> => {
+const getAccountById = async (id: string) => {
   const response = await httpBag.get<TAccountResponse>(`/account/${id}`, {
     next: { tags: ["accounts"] },
   });
-  return response.payload;
+  return response;
 };
 
 // Export các hàm API

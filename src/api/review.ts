@@ -24,8 +24,12 @@ const getReviewById = async (id: string) => {
 };
 
 // Tạo Review mới
-const createReview = async (body: TCreateReviewRequest) => {
-  const response = await httpBag.post<TReviewResponse>("/review", body);
+const createReview = async (body: TCreateReviewRequest, token: string) => {
+  const response = await httpBag.post<TReviewResponse>("/review/create", body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   revalidateTag("reviews");
   revalidateTag("reviews-active");
   return response;

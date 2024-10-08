@@ -19,7 +19,7 @@ export const CreateReviewRequestSchema = z.object({
   productID: z.string().uuid(),
   userID: z.string().uuid(),
   rating: z.number().min(0).max(5),
-  comment: z.string(),
+  comment: z.string().min(1, { message: "Bình luận không được để trống." }),
 });
 
 // Các type

@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 import { ThemeProvider } from "@/components/theme-provider";
-import ReactQueryClientProvider from "@/provider/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as ToasterSonner } from "@/components/ui/sonner";
+import { ReactQueryClientProvider } from "@/provider/queryClient";
 
 export const metadata: Metadata = {
   title: "Green Bag",

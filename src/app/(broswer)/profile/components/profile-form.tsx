@@ -16,31 +16,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { TAccountResponse } from "@/schema/account.schema";
+import useUserStore from "@/store/userStore";
 
-type AccountFormBodyType = {
-  memberName: string;
-  name: string;
-  yob: number;
-};
-
-const AccountFormBody = z.object({
-  memberName: z.string().min(1, "Member name is required"),
-  name: z.string().min(1, "Name is required"),
-  yob: z.number().int().min(1900, "Year of birth must be after 1900"),
-});
-
-export function ProfileForm({ data }: { data: any }) {
+export function ProfileForm() {
+  const { user } = useUserStore();
   const router = useRouter();
-  const form = useForm<AccountFormBodyType>({
-    resolver: zodResolver(AccountFormBody),
+  const form = useForm<TAccountResponse>({
+    // resolver: zodResolver(AccountFormBody),
     defaultValues: {
-      memberName: data?.memberName ?? "",
-      name: data?.name ?? "",
-      yob: data?.yob ?? 0,
+      username: user.username,
+      email: user.email,
+      // yob: data.yob,
     },
   });
 
-  const onSubmit = async (values: AccountFormBodyType) => {
+  const onSubmit = async (values: TAccountResponse) => {
     try {
       router.refresh();
     } catch (error: any) {
@@ -53,53 +44,35 @@ export function ProfileForm({ data }: { data: any }) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="memberName"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Member name</FormLabel>
+              <FormLabel>Tên </FormLabel>
               <FormControl>
-                <Input placeholder="Member name" {...field} />
+                <Input placeholder="Tên" {...field} />
               </FormControl>
-              <FormDescription>
-                Member name is a unique identifier for your account.
-              </FormDescription>
+              <FormDescription>Đây là tên của người dùng</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="name"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Name" {...field} />
+                <Input placeholder="Email..." {...field} />
               </FormControl>
               <FormDescription>
-                Your name will be displayed on your profile.
+                Email sẽ được sử dụng để đăng nhập
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="yob"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Year of birth</FormLabel>
-              <FormControl>
-                <Input placeholder="Year of birth" type="number" {...field} />
-              </FormControl>
-              <FormDescription>
-                Your year of birth will be displayed on your profile.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button className="!mt-8">Update profile</Button>
+        {/* <Button className="!mt-8">Update profile</Button> */}
       </form>
     </Form>
   );
