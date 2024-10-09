@@ -16,7 +16,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const addItem = useCartStore((state) => state.addItem);
 
   return (
-    <Button className="w-full " onClick={() => addItem(product, quantity)}>
+    <Button className="w-1/2 " onClick={() => addItem(product, quantity)}>
       Thêm vào giỏ hàng
     </Button>
   );
