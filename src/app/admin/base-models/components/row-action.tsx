@@ -39,10 +39,10 @@ export function RowActionBaseModel<TData extends TBaseModelResponse>({
     try {
       await deleteBaseModel(row.original.id);
       toast("Xóa thành công", {
-        description: `Bạn đã xóa phân loại với ${row.original.modelName}`,
+        description: `Bạn đã xóa mẫu ${row.original.modelName}`,
       });
     } catch (error) {
-      toast.error("Có lỗi xảy ra khi xóa danh mục."); // Thông báo lỗi
+      toast.error("Có lỗi xảy ra khi xóa mẫu."); // Thông báo lỗi
       console.error("Error deleting category:", error); // In ra lỗi để kiểm tra nếu cần
     }
   };

@@ -52,7 +52,10 @@ function LogoutLogic() {
           loop
           autoplay
         ></dotlottie-player> */}
-        <div>Logging out...</div>
+        <div className="h-screen w-screen flex flex-col items-center justify-center">
+          <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-primary" />
+          <div className="mt-4 text-lg">Đang đăng xuất...</div>
+        </div>
       </div>
     </div>
   );

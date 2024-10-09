@@ -15,15 +15,20 @@ const ChatIcons = () => {
             className="xl:w-[60px] border-2 rounded-full"
           />
         </div> */}
-        <div className="img-box">
+        <a
+          className="img-box"
+          href="https://www.facebook.com/profile.php?id=100086570243903"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Image
-            src="/images/zalo.webp"
+            src="/images/facebook.png"
             alt="zalo"
             width={60}
             height={60}
             className="xl:w-60px] border-2 rounded-full"
           />
-        </div>
+        </a>
       </div>
     </div>
   );

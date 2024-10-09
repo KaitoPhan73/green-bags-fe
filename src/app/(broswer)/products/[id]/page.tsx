@@ -43,7 +43,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                 </span>
               </div>
 
-              <div className="text-gray-500">10 Reviews</div>
+              {/* <div className="text-gray-500">10 Reviews</div> */}
             </div>
             <div className="flex gap-4 items-center">
               <span>Kho: </span>

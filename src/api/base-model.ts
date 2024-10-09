@@ -55,7 +55,7 @@ const updateBaseModel = async (body: TUpdateBaseModelRequest) => {
 
 // Xóa BaseModel
 const deleteBaseModel = async (id: string): Promise<void> => {
-  await httpBag.delete(`/base-model/${id}`);
+  await httpBag.delete(`/base-model/delete/${id}`);
   revalidateTag("base-models");
   revalidateTag("base-models-active");
 };

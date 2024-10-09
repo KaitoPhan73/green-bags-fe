@@ -56,9 +56,9 @@ const sidebarItems: SidebarItems = {
   ],
   extras: (
     <div className="flex flex-col gap-2">
-      <SidebarButton icon={MoreHorizontal} className="w-full">
+      {/* <SidebarButton icon={MoreHorizontal} className="w-full">
         Thêm
-      </SidebarButton>
+      </SidebarButton> */}
       {/* <SidebarButton className="w-full justify-center " variant="default">
         ADMINISTRATION
       </SidebarButton> */}

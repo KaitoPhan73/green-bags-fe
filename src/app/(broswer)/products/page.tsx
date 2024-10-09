@@ -11,7 +11,7 @@ const page = async (props: any) => {
   ];
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
-    limit: props.searchParams.limit ? +props.searchParams.limit : 10,
+    limit: props.searchParams.limit ? +props.searchParams.limit : 6,
   };
   revalidateTag("products");
   revalidateTag("products-active");
@@ -35,7 +35,7 @@ const page = async (props: any) => {
           </div> */}
           <div className="my-12">
             <ListProducts
-              dataSource={productResponse.payload?.listResult}
+              dataSource={productResponse.payload}
               params={params}
             />
           </div>

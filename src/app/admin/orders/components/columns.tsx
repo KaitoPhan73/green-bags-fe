@@ -7,6 +7,18 @@ import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
 import { RowActionOrder } from "./row-action";
 
 export const columns: CustomColumnDef<TOrderResponse>[] = [
+  // {
+  //   accessorKey: "id",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="ID" />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="w-[80px]">{row.getValue("id")}</div>
+  //   ),
+  //   enableSorting: true,
+  //   enableHiding: false,
+  //   enableColumnFilter: true,
+  // },
   {
     accessorKey: "createdDate",
     header: ({ column }) => (
@@ -17,8 +29,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         {formattedDateTime(row.getValue("createdDate"))}
       </div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "modifiedDate",
@@ -30,8 +42,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         {formattedDateTime(row.getValue("modifiedDate")) || "Chưa chỉnh sửa"}
       </div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "reason",
@@ -86,7 +98,29 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     enableSorting: false,
     enableColumnFilter: false,
   },
-
+  
+  {
+    accessorKey: "createdBy",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Người tạo" />
+    ),
+    cell: ({ row }) => (
+      <div className="">{row.getValue("createdBy") || "N/A"}</div>
+    ),
+    enableSorting: true,
+    enableColumnFilter: true,
+  },
+  // {
+  //   accessorKey: "modifiedBy",
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Người chỉnh sửa" />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="">{row.getValue("modifiedBy") ?? 'N/A' }</div>
+  //   ),
+  //   enableSorting: true,
+  //   enableColumnFilter: true,
+  // },
   {
     accessorKey: "status",
     header: ({ column }) => (
@@ -134,8 +168,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{formattedDateTime(row.getValue("orderDate"))}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "totalAmount",
@@ -145,8 +179,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{formatPriceVND(row.getValue("totalAmount"))}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "shippingAddress",
@@ -156,8 +190,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{row.getValue("shippingAddress")}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     id: "actions",
