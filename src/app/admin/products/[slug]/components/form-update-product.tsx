@@ -31,6 +31,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { statusProduct } from "../../_components/config";
+import { CldImage, CldUploadWidget } from "next-cloudinary";
+import { DialogImg } from "./dialog-img";
 
 interface FormUpdateProductProps extends React.HTMLAttributes<HTMLDivElement> {
   initialData: TProductResponse;
@@ -151,26 +153,7 @@ export function FormUpdateProduct({
                 </FormItem>
               )}
             />
-            {/* <FormField
-              control={form.control}
-              name="img"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Upload Ảnh</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      // {...field}
-                      onChange={(e) => {
-                        field.onChange(e.target.files?.[0]);
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+
             <FormField
               control={form.control}
               name="img"
@@ -178,18 +161,29 @@ export function FormUpdateProduct({
                 <FormItem>
                   <FormLabel>Upload Ảnh</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          // Convert file to Base64 string
-                          const base64String = await convertFileToBase64(file);
-                          field.onChange(base64String); // Pass base64 string to form field
-                        }
-                      }}
-                    />
+                    <div>
+                      <CldUploadWidget
+                        signatureEndpoint="/api/sign-image"
+                        onSuccess={(result: any) => {
+                          field.onChange(result?.info.url);
+                        }}
+                      >
+                        {({ open }) => (
+                          <Button
+                            type="button"
+                            className="w-full"
+                            onClick={() => open()}
+                          >
+                            Chọn ảnh
+                          </Button>
+                        )}
+                      </CldUploadWidget>
+                      {field.value && (
+                        <div className="relative mt-4">
+                          <DialogImg imgURL={field.value} />
+                        </div>
+                      )}
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

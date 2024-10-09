@@ -60,6 +60,7 @@ const createHttpClient = (defaultBaseUrl: string) => {
     let fullUrl = url.startsWith("/")
       ? `${baseUrl}${url}`
       : `${baseUrl}/${url}`;
+    console.log("fullUrl", fullUrl);
     console.log("options", options);
     if (options?.params) {
       const queryString = buildQueryString(options.params);

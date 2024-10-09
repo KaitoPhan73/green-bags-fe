@@ -21,9 +21,9 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
   //   cell: ({ row }) => (
   //     <div className="w-[80px]">{row.getValue("id")}</div>
   //   ),
-  //   enableSorting: true,
+  //   enableSorting: false,
   //   enableHiding: false,
-  //   enableColumnFilter: true,
+  //   enableColumnFilter: false,
   // },
   {
     accessorKey: "createdDate",
@@ -35,8 +35,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         {formattedDateTime(row.getValue("createdDate"))}
       </div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "modifiedDate",
@@ -48,8 +48,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         {formattedDateTime(row.getValue("modifiedDate")) || "Chưa chỉnh sửa"}
       </div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "reason",
@@ -59,19 +59,19 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => {
       const objectString = row.getValue("reason") as string;
       let reasonObject;
-  
+
       if (typeof objectString === "string") {
         try {
           const decodedString = objectString
             .replace(/\\\\/g, "\\")
             .replace(/\\"/g, '"');
-  
+
           reasonObject = JSON.parse(decodedString);
         } catch (error) {
           console.error("Invalid JSON string for reason:", objectString, error);
         }
       }
-  
+
       return (
         <div style={{ textAlign: "left" }}>
           {reasonObject ? (
@@ -100,11 +100,11 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         </div>
       );
     },
-  
+
     enableSorting: false,
     enableColumnFilter: false,
   },
-  
+
   {
     accessorKey: "createdBy",
     header: ({ column }) => (
@@ -113,8 +113,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{row.getValue("createdBy") || "N/A"}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   // {
   //   accessorKey: "modifiedBy",
@@ -124,8 +124,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
   //   cell: ({ row }) => (
   //     <div className="">{row.getValue("modifiedBy") ?? 'N/A' }</div>
   //   ),
-  //   enableSorting: true,
-  //   enableColumnFilter: true,
+  //   enableSorting: false,
+  //   enableColumnFilter: false,
   // },
   {
     accessorKey: "status",
@@ -164,8 +164,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{formattedDateTime(row.getValue("orderDate"))}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "totalAmount",
@@ -175,8 +175,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{formatPriceVND(row.getValue("totalAmount"))}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     accessorKey: "shippingAddress",
@@ -186,8 +186,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{row.getValue("shippingAddress")}</div>
     ),
-    enableSorting: true,
-    enableColumnFilter: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
   {
     id: "actions",
