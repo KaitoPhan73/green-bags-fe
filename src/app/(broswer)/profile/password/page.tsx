@@ -5,7 +5,7 @@ function page() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">Dổi mật khâu</h3>
+        <h3 className="text-lg font-medium">Đổi mật khẩu</h3>
       </div>
       <Separator />
       <PasswordForm />

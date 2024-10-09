@@ -61,7 +61,7 @@ export function ProfileForm() {
         });
         setTimeout(() => {
           router.push("/logout"); // Điều hướng đến trang đăng xuất sau 2 giây
-        }, 2000);
+        }, 1000);
       }
     } catch (error: any) {
       toast({

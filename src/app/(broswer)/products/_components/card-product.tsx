@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { formatPriceVND } from "@/lib/formatter";
 import { isValidUrl } from "@/lib/utils";
 import { TProductResponse } from "@/schema/product.schema";
 import { Variants } from "framer-motion";
@@ -81,15 +82,15 @@ const CardProduct = ({ item, index }: CardProps) => {
               {item.productName ? item.productName : "Product Name"}
             </h3>
             <p className="text-gray-700 text-sm sm:text-base">
-              {item.finalPrice} VND
+              {formatPriceVND(item.finalPrice)}
             </p>
           </div>
           <div className="ml-4">
             <Button
-              className="h-12 w-12 bg-gray-100 rounded-full flex items-center justify-center"
+              className="h-12 w-12 bg-gray-100  rounded-full flex items-center justify-center"
               onClick={() => router.push(`products/${item.id}`)}
             >
-              <FaArrowRight className="h-4 w-4 text-black" />
+              <FaArrowRight className="h-4 w-4 text-black " />
             </Button>
           </div>
         </div>
