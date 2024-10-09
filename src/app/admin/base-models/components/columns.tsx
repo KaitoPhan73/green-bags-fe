@@ -125,7 +125,7 @@ export const columns: CustomColumnDef<TBaseModelResponse>[] = [
             {status === "ACTIVE" ? (
               <Badge
                 variant="outline"
-                className="border-2 border-green-500 p-1"
+                className="p-1"
               >
                 Hoạt động
               </Badge>

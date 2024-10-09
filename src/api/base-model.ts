@@ -44,7 +44,7 @@ const createBaseModel = async (body: TCreateBaseModelRequest) => {
 
 // Cập nhật BaseModel
 const updateBaseModel = async (body: TUpdateBaseModelRequest) => {
-  const result = await httpBag.post<TBaseModelResponse>(
+  const result = await httpBag.patch<TBaseModelResponse>(
     "/base-model/update",
     body
   );

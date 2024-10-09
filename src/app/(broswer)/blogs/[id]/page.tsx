@@ -25,7 +25,7 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
         <div className="col-span-2">
           <div className="mb-4">
             <h2 className="text-3xl font-bold mb-4">{blog.name}</h2>
-            <div className="relative h-72 w-full rounded-2xl">
+            <div className="relative h-96 w-12/12 rounded-2xl">
               <Image
                 src={blog.image}
                 alt={blog.name}
@@ -42,13 +42,13 @@ const BlogDetail = ({ params }: { params: { id: string } }) => {
 
           {/* Render các posts */}
           <div className="my-16">
-            {blog.posts.map((post) => (
+            {blog.posts.map((post, index) => (
               <div key={post.id} className="">
                 <h3 className="text-xl font-bold my-4">
-                  {post.title}
+                  {index + 1}. {post.title}
                 </h3>
                 <p className="my-6 text-mb">{post.content}</p>
-                <div className="relative h-72 w-full rounded-2xl">
+                <div className="relative h-96 w-10/12 rounded-2xl">
                   <Image
                     src={post.image}
                     alt={post.title}
