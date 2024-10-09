@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Bell,
-  Bookmark,
   Home,
   List,
   Mail,
@@ -22,7 +20,7 @@ import { SidebarItems } from "./types";
 const sidebarItems: SidebarItems = {
   links: [
     { label: "Trang Chủ", href: "/", icon: Home },
-
+    // { label: "Báo cáo", href: "/report", icon: Home },
     {
       href: "/admin/users",
       icon: User,
