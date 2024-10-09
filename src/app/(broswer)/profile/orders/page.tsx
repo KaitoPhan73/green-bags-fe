@@ -10,6 +10,7 @@ async function page(props: any) {
   const params = {
     page: props.searchParams.page || 1,
     limit: props.searchParams.pageSize || 6,
+    status: "ACTIVE",
   };
   const response = await getOrdersByUserId(userId, params);
   return (

@@ -7,6 +7,8 @@ import { FaArrowRight } from "react-icons/fa";
 import CardProduct from "./card-product";
 import { PaginationView } from "@/components/pagination-view";
 import { TProductResponse } from "@/schema/product.schema";
+import PaginationFilter from "@/components/pagination-filter";
+import { TTableResponse } from "@/types/Table";
 
 type Product = {
   id: number;
@@ -19,7 +21,7 @@ type Product = {
 };
 
 type Props = {
-  dataSource: TProductResponse[];
+  dataSource: TTableResponse<TProductResponse>;
   params: {
     page: number;
     limit: number;
@@ -30,15 +32,12 @@ const ListProducts = ({ dataSource, params }: Props) => {
   return (
     <>
       <div className="grid grid-cols-1  md:grid-cols-2 gap-6 items-center">
-        {dataSource.map((item, index) => (
+        {dataSource.listResult.map((item, index) => (
           <CardProduct key={index} item={item} index={index} />
         ))}
       </div>
-      <PaginationView
-        pageCount={params.page}
-        currentPage={params.limit}
-        className="my-12"
-      />
+
+      <PaginationFilter page={params.page} totalPage={dataSource.totalPage} />
     </>
   );
 };
