@@ -7,6 +7,7 @@ import {
   TOrderResponse,
 } from "@/schema/order.schema";
 import { TTableResponse } from "@/types/Table";
+import { revalidateTag } from "next/cache";
 
 const getAllOrders = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TOrderResponse>>("/order", {
@@ -39,10 +40,11 @@ const createOrder = async (body: TCreateOrderRequest) => {
 
 // Cập nhật đơn hàng
 const updateOrder = async (
-  id: string,
-  body: TUpdateOrderRequest
-): Promise<TOrderResponse> => {
-  const response = await httpBag.put<TOrderResponse>(`/orders/${id}`, body);
+  body: any,
+) => {
+  const response = await httpBag.patch<TOrderResponse>(`/order/update`, body);
+  revalidateTag("orders");
+
   return response.payload;
 };
 

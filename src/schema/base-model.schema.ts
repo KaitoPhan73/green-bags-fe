@@ -25,12 +25,13 @@ export const CreateBaseModelSchema = z.object({
 });
 
 export const UpdateBaseModelSchema = z.object({
+  id: z.string(),
   modelName: z.string().optional(),
   description: z.string().optional(),
   basePrice: z.coerce.number().optional(),
   categoryID: z.string().uuid().optional(),
   status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
-  image: z.string(),
+  image: z.string().optional(),
 });
 
 export type TCreateBaseModelRequest = z.TypeOf<typeof CreateBaseModelSchema>;

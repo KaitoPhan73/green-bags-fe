@@ -1,5 +1,6 @@
 import z from "zod";
 import { OrderItemResponseSchema } from "./order-item.schema";
+import { AccountResponseSchema } from "./account.schema";
 
 // Schema cho Order
 export const OrderResponseSchema = z.object({
@@ -33,6 +34,14 @@ export const UpdateOrderSchema = z.object({
   shippingAddress: z.string().optional(),
   status: z.enum(["ACTIVE", "INACTIVE", "COMPLETED"]).optional(),
   orderStatus: z.string().optional(),
+  createdDate: z.string(),
+  modifiedDate: z.string().nullable(),
+  createdBy: z.string().nullable(),
+  modifiedBy: z.string().nullable(),
+  orderCode: z.string().optional(),
+  reason: z.string(),
+  userId: z.array(AccountResponseSchema),
+  orderItems: z.array(OrderItemResponseSchema),
 });
 
 export type TCreateOrderRequest = z.TypeOf<typeof CreateOrderSchema>;
