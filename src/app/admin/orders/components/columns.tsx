@@ -2,15 +2,9 @@
 
 import { DataTableColumnHeader } from "../../../../components/table/data-table-column-header";
 import { CustomColumnDef } from "@/types/Colunm";
-import { DataTableRowActions } from "@/components/table/data-table-row-actions";
-import { TOrderResponse } from "@/schema/order.schema"; // Adjust the import to point to the correct schema
+import { TOrderResponse } from "@/schema/order.schema";
 import { formatPriceVND, formattedDateTime } from "@/lib/formatter";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { RowActionOrder } from "./row-action";
 
 export const columns: CustomColumnDef<TOrderResponse>[] = [
   // {
@@ -21,9 +15,9 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
   //   cell: ({ row }) => (
   //     <div className="w-[80px]">{row.getValue("id")}</div>
   //   ),
-  //   enableSorting: false,
+  //   enableSorting: true,
   //   enableHiding: false,
-  //   enableColumnFilter: false,
+  //   enableColumnFilter: true,
   // },
   {
     accessorKey: "createdDate",
@@ -104,7 +98,7 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     enableSorting: false,
     enableColumnFilter: false,
   },
-
+  
   {
     accessorKey: "createdBy",
     header: ({ column }) => (
@@ -113,8 +107,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
     cell: ({ row }) => (
       <div className="">{row.getValue("createdBy") || "N/A"}</div>
     ),
-    enableSorting: false,
-    enableColumnFilter: false,
+    enableSorting: true,
+    enableColumnFilter: true,
   },
   // {
   //   accessorKey: "modifiedBy",
@@ -124,8 +118,8 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
   //   cell: ({ row }) => (
   //     <div className="">{row.getValue("modifiedBy") ?? 'N/A' }</div>
   //   ),
-  //   enableSorting: false,
-  //   enableColumnFilter: false,
+  //   enableSorting: true,
+  //   enableColumnFilter: true,
   // },
   {
     accessorKey: "status",
@@ -138,11 +132,19 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
         <div className="flex items-center space-x-2">
           <span
             className={`h-3 w-3 rounded-full ${
-              status === "ACTIVE" ? "bg-green-500" : "bg-red-500"
+              status === "ACTIVE"
+                ? "bg-green-500" // Green for "ACTIVE"
+                : status === "INACTIVE"
+                ? "bg-red-500" // Red for "INACTIVE"
+                : "bg-blue-500" // Blue for "COMPLETED"
             }`}
           />
           <span className="max-w-[500px] truncate font-medium">
-            {status === "ACTIVE" ? "Hoạt động" : "Không hoạt động"}
+            {status === "ACTIVE"
+              ? "Hoạt động"
+              : status === "INACTIVE"
+              ? "Không hoạt động"
+              : "Đã hoàn thành"}
           </span>
         </div>
       );
@@ -152,10 +154,12 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
       options: [
         { label: "Hoạt động", value: "ACTIVE" },
         { label: "Không hoạt động", value: "INACTIVE" },
+        { label: "Đã hoàn thành", value: "COMPLETED" },
       ],
     },
     enableColumnFilter: true,
   },
+
   {
     accessorKey: "orderDate",
     header: ({ column }) => (
@@ -192,6 +196,6 @@ export const columns: CustomColumnDef<TOrderResponse>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <RowActionOrder row={row} />,
   },
 ];
