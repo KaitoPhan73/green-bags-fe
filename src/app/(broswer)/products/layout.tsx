@@ -6,10 +6,10 @@ const ProductLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div>
+    <>
       <PageTitle title="Sản phẩm" />
-      {children}
-    </div>
+      <div>{children}</div>
+    </>
   );
 };
 

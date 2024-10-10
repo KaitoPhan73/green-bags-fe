@@ -27,14 +27,15 @@ const isLarge = (index: number) => {
 
 const CardProduct = ({ item, index }: CardProps) => {
   const router = useRouter();
+
   const getCardVariants = (index: number): Variants => {
     return {
       offscreen: {
-        x: index % 4 === 1 || index % 4 ? -200 : 200,
+        y: -200, // Dạt lên hoặc xuống
         opacity: 0,
       },
       onscreen: {
-        x: 0,
+        y: 0, // Trở về vị trí gốc
         opacity: 1,
         transition: {
           type: "spring",
@@ -49,7 +50,7 @@ const CardProduct = ({ item, index }: CardProps) => {
     <MotionDiv
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.8 }}
+      viewport={{ once: true, amount: 1 }}
       variants={getCardVariants(index)}
     >
       <div className="py-2 flex flex-col items-center">
