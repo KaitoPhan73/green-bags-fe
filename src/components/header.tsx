@@ -27,7 +27,7 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <Link href="#" prefetch={false}>
+            <Link href="/" prefetch={false}>
               <Icon className="h-10 w-90 dark:filter dark:invert" />
               <span className="sr-only">ShadCN</span>
             </Link>
@@ -46,7 +46,7 @@ export default function Header() {
           </SheetContent>
         </Sheet>
 
-        <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
+        <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
           <Icon className="h-30 w-20 dark:filter dark:invert" />
           <span className="sr-only">ShadCN</span>
         </Link>
@@ -104,15 +104,18 @@ function MenuIcon(props: any) {
 function Icon(props: any) {
   return (
     <div className="flex items-center">
-      <Image
-        priority
-        src="/svgs/kalban-logo.svg"
-        height={0}
-        width={0}
-        alt="Kalban-logo"
-        {...props}
-      />
-      <p className="text-lg font-semibold lig">KALBAN</p>
+      {/* <Link href={item.link}> */}
+        <Image
+          priority
+          src="/svgs/kalban-logo.svg"
+          height={0}
+          width={0}
+          alt="Kalban-logo"
+          {...props}
+          href=""
+        />
+        <p className="text-lg font-semibold lig">KALBAN</p>
+      {/* </Link> */}
     </div>
   );
 }
