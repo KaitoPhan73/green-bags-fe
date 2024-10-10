@@ -9,6 +9,7 @@ import {
   User,
   Package,
   ChartBarStacked,
+  Megaphone,
 } from "lucide-react";
 
 import { SidebarDesktop } from "./sidebar-desktop";
@@ -20,7 +21,7 @@ import { SidebarItems } from "./types";
 const sidebarItems: SidebarItems = {
   links: [
     { label: "Trang Chủ", href: "/", icon: Home },
-    // { label: "Báo cáo", href: "/report", icon: Home },
+    { label: "Báo cáo", href: "/admin/report", icon: Megaphone },
     {
       href: "/admin/users",
       icon: User,

@@ -33,7 +33,7 @@ const AddToCartQuantity = ({ data }: Props) => {
           type="number"
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
-          min={0}
+          min={1}
           className="w-16 text-center"
         />
         <Button

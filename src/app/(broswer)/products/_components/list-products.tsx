@@ -31,7 +31,7 @@ type Props = {
 const ListProducts = ({ dataSource, params }: Props) => {
   return (
     <>
-      <div className="grid grid-cols-1  md:grid-cols-2 gap-6 items-center">
+      <div className="grid grid-cols-1  md:grid-cols-2 items-center">
         {dataSource.listResult.map((item, index) => (
           <CardProduct key={index} item={item} index={index} />
         ))}

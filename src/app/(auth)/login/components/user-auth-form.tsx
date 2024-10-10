@@ -61,7 +61,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               </pre>
             ),
           });
-          router.push("/admin/products");
+          router.push("/admin/report");
         } else {
           toast({
             title: "Chào mừng bạn trở lại",

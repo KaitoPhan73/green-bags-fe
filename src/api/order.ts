@@ -5,12 +5,42 @@ import {
   TCreateOrderRequest,
   TUpdateOrderRequest,
   TOrderResponse,
+  TPieChart,
+  TPieChartOrderStatus,
+  TLineChartOrder,
 } from "@/schema/order.schema";
 import { TTableResponse } from "@/types/Table";
 import { revalidateTag } from "next/cache";
 
 const getAllOrders = async (params?: any) => {
   const response = await httpBag.get<TTableResponse<TOrderResponse>>("/order", {
+    params,
+  });
+  return response;
+};
+
+const getPieChartOrderStatus = async (params?: any) => {
+  const response = await httpBag.get<TPieChartOrderStatus[]>(
+    "/order/get-pie-chart",
+    {
+      params,
+    }
+  );
+  return response;
+};
+
+const getPieChartStatus = async (params?: any) => {
+  const response = await httpBag.get<TPieChart[]>(
+    "/order/get-pie-chartStatus",
+    {
+      params,
+    }
+  );
+  return response;
+};
+
+const getLineChartOrders = async (params?: any) => {
+  const response = await httpBag.get<TLineChartOrder[]>("/order/line-chart", {
     params,
   });
   return response;
@@ -39,9 +69,7 @@ const createOrder = async (body: TCreateOrderRequest) => {
 };
 
 // Cập nhật đơn hàng
-const updateOrder = async (
-  body: any,
-) => {
+const updateOrder = async (body: any) => {
   const response = await httpBag.patch<TOrderResponse>(`/order/update`, body);
   revalidateTag("orders");
 
@@ -65,11 +93,14 @@ const getAllOrdersActive = async (): Promise<
 
 // Export các hàm API
 export {
+  getLineChartOrders,
   getAllOrders,
   getOrderById,
   createOrder,
   updateOrder,
   deleteOrder,
   getAllOrdersActive,
+  getPieChartOrderStatus,
+  getPieChartStatus,
   getOrdersByUserId,
 };

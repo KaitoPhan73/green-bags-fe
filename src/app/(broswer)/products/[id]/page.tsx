@@ -16,7 +16,7 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
   ]);
   const data = productResponse.payload;
   return (
-    <div className="container flex flex-col gap-8 w-[80vw] mt-20 p-8">
+    <div className="container flex flex-col gap-6 w-[80vw] mt-20 p-8">
       <div className="bg-slate-100 dark:bg-slate-900 rounded-md p-8">
         <div className="flex gap-4">
           <div className="">

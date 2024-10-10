@@ -15,6 +15,10 @@ export const formattedDate = (timestamp: any) => {
   return format(new Date(timestamp), "dd/MM/yyyy");
 };
 
+export const formattedDateV2 = (timestamp: any) => {
+  return format(new Date(timestamp), "yyyy-MM-dd");
+};
+
 export const formattedDateTime = (timestamp: any) => {
   return format(new Date(timestamp), "dd/MM/yyyy HH:mm");
 };
