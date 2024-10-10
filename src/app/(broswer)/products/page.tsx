@@ -29,7 +29,7 @@ const page = async (props: any) => {
   return (
     <div>
       <section className="pt-12 md:pt-24 lg:pt-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           {/* <div className="flex justify-center">
             <TabTypeProducts categories={categoryResponse.payload} />
           </div> */}
