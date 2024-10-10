@@ -23,10 +23,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Redirect to /admin/products if logged in as admin and accessing auth paths
+  // Redirect to /admin/report if logged in as admin and accessing auth paths
   if (accessToken && authPaths.some((path) => pathname.startsWith(path))) {
     if (user?.roleName === "admin") {
-      return NextResponse.redirect(new URL("/admin/products", request.url));
+      return NextResponse.redirect(new URL("/admin/report", request.url));
     } else {
       return NextResponse.redirect(new URL("/", request.url));
     }

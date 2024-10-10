@@ -44,6 +44,34 @@ export const UpdateOrderSchema = z.object({
   orderItems: z.array(OrderItemResponseSchema),
 });
 
+export const PieChartSchema = z.object({
+  status: z.enum(["ACTIVE", "INACTIVE", "COMPLETED"]),
+  count: z.number(),
+});
+
+export const PieChartOrderStatusSchema = z.object({
+  status: z.enum(["PAID", "PENDING"]),
+  count: z.number(),
+});
+
+export const LineChartOrderSchema = z.object({
+  date: z.string(), // Assuming date is in string format, e.g., "2024-10-09"
+  pendingTotal: z
+    .number()
+    .min(0, { message: "Pending total must be non-negative." }),
+  pendingCount: z
+    .number()
+    .min(0, { message: "Pending count must be non-negative." }),
+  completedTotal: z
+    .number()
+    .min(0, { message: "Completed total must be non-negative." }),
+  completedCount: z
+    .number()
+    .min(0, { message: "Completed count must be non-negative." }),
+});
+export type TLineChartOrder = z.TypeOf<typeof LineChartOrderSchema>;
 export type TCreateOrderRequest = z.TypeOf<typeof CreateOrderSchema>;
 export type TUpdateOrderRequest = z.TypeOf<typeof UpdateOrderSchema>;
+export type TPieChart = z.TypeOf<typeof PieChartSchema>;
+export type TPieChartOrderStatus = z.TypeOf<typeof PieChartOrderStatusSchema>;
 export type TOrderResponse = z.TypeOf<typeof OrderResponseSchema>;
