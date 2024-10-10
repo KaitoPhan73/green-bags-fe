@@ -27,7 +27,7 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <Link href="#" prefetch={false}>
+            <Link href="/" prefetch={false}>
               <Icon className="h-10 w-90 dark:filter dark:invert" />
               <span className="sr-only">ShadCN</span>
             </Link>

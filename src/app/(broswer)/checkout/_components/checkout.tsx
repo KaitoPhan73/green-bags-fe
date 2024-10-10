@@ -81,7 +81,7 @@ const CheckoutForm = () => {
   const handleOrder = async (reason: string) => {
     const orderObject = {
       userID: user?.id || "",
-      totalAmount: getTotal(),
+      totalAmount: 0,
       reason: reason,
       orderStatus: "ACTIVE",
       status: "ACTIVE" as "ACTIVE",

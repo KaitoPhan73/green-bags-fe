@@ -217,12 +217,12 @@ const BagSelected = ({
             />
           </DndProvider>
         </div>
-        <div className="w-1/2 p-4 ">
+        <div className="w-4/5 p-4 ">
           <Tabs
             defaultActiveKey="1"
             tabPosition="top"
             centered
-            className="h-[650px] w-[450px] bg-gray-100"
+            className="h-[750px] w-[630px] bg-gray-100"
             items={tabItems}
           />
           <Button

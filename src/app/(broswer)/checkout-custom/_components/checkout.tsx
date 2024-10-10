@@ -107,7 +107,7 @@ const CheckoutCustomForm = ({ data }: { data: TCustomResponse }) => {
   const handleOrder = async (productId: string, reason: string) => {
     const orderObject = {
       userID: user?.id || "",
-      totalAmount: product?.finalPrice || 0, // Lấy totalAmount từ product
+      totalAmount: 0, // Lấy totalAmount từ product
       orderStatus: "ACTIVE",
       status: "ACTIVE" as "ACTIVE",
       shippingAddress: "HCM",
