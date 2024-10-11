@@ -28,16 +28,16 @@ export function DataTablePagination<TData>({
   table,
   paginationProps,
 }: DataTablePaginationProps<TData>) {
-  const { updateUrlParams, getUrlParam, deleteUrlParam } = useUrlParamChange();
+  const { updateUrlParam, getUrlParam, deleteUrlParam } = useUrlParamChange();
 
   const handlePageChange = (newPageIndex: number) => {
     table.setPageIndex(newPageIndex);
-    updateUrlParams("page", newPageIndex);
+    updateUrlParam("page", newPageIndex);
   };
 
   const handlePageSizeChange = (newPageSize: number) => {
     table.setPageSize(newPageSize);
-    updateUrlParams("limit", newPageSize);
+    updateUrlParam("limit", newPageSize);
   };
 
   return (
