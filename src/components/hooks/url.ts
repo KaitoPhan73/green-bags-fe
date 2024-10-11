@@ -12,10 +12,23 @@ export function useUrlParamChange() {
    * @param key - The query parameter key to update.
    * @param value - The new value for the query parameter.
    */
-  const updateUrlParams = (key: string, value: string | number | boolean) => {
+  const updateUrlParam = (key: string, value: string | number | boolean) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(key, String(value)); // Convert value to string
     router.replace(`${window.location.pathname}?${params.toString()}`); // Update URL with new query params
+  };
+
+  const updateUrlParams = (
+    paramsObj: Record<string, string | number | boolean>
+  ) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    // Cập nhật nhiều params cùng lúc
+    Object.keys(paramsObj).forEach((key) => {
+      params.set(key, String(paramsObj[key])); // Chuyển thành chuỗi
+    });
+
+    router.replace(`${window.location.pathname}?${params.toString()}`);
   };
 
   /**
@@ -43,5 +56,11 @@ export function useUrlParamChange() {
     router.replace(`${window.location.pathname}?${params.toString()}`); // Update URL with new query params
   };
 
-  return { updateUrlParams, getUrlParam, deleteUrlParam, getCurrentParams };
+  return {
+    updateUrlParam,
+    updateUrlParams,
+    getUrlParam,
+    deleteUrlParam,
+    getCurrentParams,
+  };
 }
