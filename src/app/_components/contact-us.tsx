@@ -24,7 +24,7 @@ const ContactUs = () => {
           Bạn muốn gặp chúng tôi chứ?
         </p>
         <Button
-          onClick={() => router.push("/contact")}
+          onClick={() => router.push("/about")}
           className="bg-blue-500 text-white hover:bg-blue-600"
         >
           Liên hệ ngay
