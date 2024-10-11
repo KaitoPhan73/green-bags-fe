@@ -24,7 +24,7 @@ import { useUrlParamChange } from "@/components/hooks/url";
 import { formatPriceVND } from "@/lib/formatter";
 
 const formSchema = z.object({
-  search: z.string(),
+  search: z.string(), // Allow empty string
   priceRange: z.array(z.number().min(1, { message: "Tiền phải lớn hơn 1" })),
 });
 
@@ -39,8 +39,7 @@ type Props = {
 };
 type TFormValues = z.infer<typeof formSchema>;
 const ProductFilter = ({ params }: Props) => {
-  const { updateUrlParams, getUrlParam, getCurrentParams, deleteUrlParam } =
-    useUrlParamChange();
+  const { updateUrlParams } = useUrlParamChange();
 
   const form = useForm<TFormValues>({
     resolver: zodResolver(formSchema),
@@ -57,10 +56,6 @@ const ProductFilter = ({ params }: Props) => {
       minPrice: 0, // Nếu có range từ-to
       maxPrice: values.priceRange[0], // Giá trị max
     });
-
-    if (values.search === "") {
-      deleteUrlParam("name");
-    }
   };
 
   return (
@@ -83,6 +78,7 @@ const ProductFilter = ({ params }: Props) => {
                     <FormControl>
                       <Input placeholder="Nhập tên sản phẩm" {...field} />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -102,10 +98,9 @@ const ProductFilter = ({ params }: Props) => {
                           field.value
                         )})`}
                     </FormLabel>
-                    <FormMessage>
-                      {form.formState.errors.priceRange?.[0]?.message ||
-                        form.formState.errors.priceRange?.[0]?.message}
-                    </FormMessage>
+
+                    <p>{form.formState.errors.priceRange?.[0]?.message}</p>
+
                     <FormControl>
                       <Slider
                         min={0}
