@@ -21,12 +21,12 @@ export function PaginationView({
   currentPage,
   className,
 }: PaginationViewProps) {
-  const { updateUrlParams } = useUrlParamChange();
+  const { updateUrlParam } = useUrlParamChange();
   const isDesktop = useMediaQuery("(min-width: 640px)", {
     initializeWithValue: false,
   });
   const handlePageChange = (newPageIndex: number) => {
-    updateUrlParams("page", newPageIndex.toString());
+    updateUrlParam("page", newPageIndex.toString());
   };
 
   const renderPageNumbers = () => {

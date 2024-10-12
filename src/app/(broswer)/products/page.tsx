@@ -1,47 +1,33 @@
 import React from "react";
 import { TabTypeProducts } from "./_components/tabs";
 import ListProducts from "./_components/list-products";
-import { getAllProducts, getAllProductsActive } from "@/api/product";
+import { getAllProductsForUser } from "@/api/product";
 import { getAllCategoriesActive } from "@/api/category";
 import { revalidateTag } from "next/cache";
+import ProductFilter from "./_components/product-filter";
 const page = async (props: any) => {
-  const typeList = [
-    { label: "Túi đeo chéo", value: "123" },
-    { label: "Túi hư có sẳn", value: "456" },
-  ];
   const params = {
     page: props.searchParams.page ? +props.searchParams.page : 1,
     limit: props.searchParams.limit ? +props.searchParams.limit : 6,
+    minPrice: props.searchParams.minPrice && props.searchParams.minPrice,
+    maxPrice: props.searchParams.maxPrice && props.searchParams.maxPrice,
+    name: props.searchParams.name && props.searchParams.name,
   };
+  console.log("params", params);
   revalidateTag("products");
   revalidateTag("products-active");
-  const product = getAllProductsActive(params);
-  const category = getAllCategoriesActive({
-    page: 1,
-    limit: 1000,
-  });
-
-  const [productResponse, categoryResponse] = await Promise.all([
-    product,
-    category,
-  ]);
+  const productResponse = await getAllProductsForUser(params);
+  console.log("productResponse", productResponse);
   // console.log("productResponse", productResponse.payload);
   return (
-    <div>
-      <section className="pt-12 md:pt-24 lg:pt-24">
-        <div className="container mx-auto">
-          {/* <div className="flex justify-center">
-            <TabTypeProducts categories={categoryResponse.payload} />
-          </div> */}
-          <div className="my-12">
-            <ListProducts
-              dataSource={productResponse.payload}
-              params={params}
-            />
-          </div>
-        </div>
-      </section>
-    </div>
+    <section className="flex flex-1 gap-8 mb-8">
+      <div className="w-[20%]">
+        <ProductFilter params={params} />
+      </div>
+      <div className="mt-14 flex-1 px-2">
+        <ListProducts dataSource={productResponse.payload} params={params} />
+      </div>
+    </section>
   );
 };
 

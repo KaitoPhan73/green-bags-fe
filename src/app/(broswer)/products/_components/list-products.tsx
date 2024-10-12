@@ -25,19 +25,38 @@ type Props = {
   params: {
     page: number;
     limit: number;
+    minPrice: number;
+    maxPrice: number;
+    name: string;
   };
 };
 
 const ListProducts = ({ dataSource, params }: Props) => {
   return (
     <>
-      <div className="grid grid-cols-1  md:grid-cols-2 items-center">
-        {dataSource.listResult.map((item, index) => (
-          <CardProduct key={index} item={item} index={index} />
-        ))}
-      </div>
-
-      <PaginationFilter page={params.page} totalPage={dataSource.totalPage} />
+      {dataSource.listResult.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center">
+            {dataSource.listResult.map((item, index) => (
+              <CardProduct key={index} item={item} index={index} />
+            ))}
+          </div>
+          <PaginationFilter
+            page={params.page}
+            totalPage={dataSource.totalPage}
+          />
+        </>
+      ) : (
+        <div className="flex flex-col justify-center items-center w-full h-[350px]">
+          <Image
+            src="/images/no-data.png"
+            height={200}
+            width={200}
+            alt="nothing"
+          />
+          <span>Không có dữ liệu</span>
+        </div>
+      )}
     </>
   );
 };

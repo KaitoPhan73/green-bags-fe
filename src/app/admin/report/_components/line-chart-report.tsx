@@ -36,7 +36,8 @@ type Props = {
 
 export function LineChartOrderReport({ data }: Props) {
   const formatTooltip = (value: any) => formatPriceVND(value);
-
+  const reversedData = data ? [...data].reverse() : [];
+  console.log("Data:", reversedData);
   return (
     <Card>
       <CardHeader>
@@ -50,7 +51,7 @@ export function LineChartOrderReport({ data }: Props) {
           >
             <LineChart
               accessibilityLayer
-              data={data}
+              data={reversedData}
               margin={{ left: 12, right: 12 }}
             >
               <CartesianGrid vertical={false} />

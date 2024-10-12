@@ -12,10 +12,28 @@ export function useUrlParamChange() {
    * @param key - The query parameter key to update.
    * @param value - The new value for the query parameter.
    */
-  const updateUrlParams = (key: string, value: string | number | boolean) => {
+  const updateUrlParam = (key: string, value: string | number | boolean) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(key, String(value)); // Convert value to string
     router.replace(`${window.location.pathname}?${params.toString()}`); // Update URL with new query params
+  };
+  const updateUrlParams = (
+    params: Record<string, string | number | boolean | null | undefined>
+  ) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    // Loop through each key in params and check its value
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== "") {
+        searchParams.set(key, String(value)); // Set if value is valid
+      } else {
+        searchParams.delete(key); // Remove key if value is null, undefined, or empty
+      }
+    });
+
+    console.log("searchParams", searchParams.toString());
+    // Update the URL without reloading the page
+    router.replace(`${window.location.pathname}?${searchParams.toString()}`);
   };
 
   /**
@@ -43,5 +61,11 @@ export function useUrlParamChange() {
     router.replace(`${window.location.pathname}?${params.toString()}`); // Update URL with new query params
   };
 
-  return { updateUrlParams, getUrlParam, deleteUrlParam, getCurrentParams };
+  return {
+    updateUrlParam,
+    updateUrlParams,
+    getUrlParam,
+    deleteUrlParam,
+    getCurrentParams,
+  };
 }

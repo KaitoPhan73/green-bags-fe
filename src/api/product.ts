@@ -37,6 +37,17 @@ const getAllProductsActive = async (params?: any) => {
   return response;
 };
 
+const getAllProductsForUser = async (params?: any) => {
+  const response = await httpBag.get<TTableResponse<TProductResponse>>(
+    `/product/for-user`,
+    {
+      params,
+      next: { tags: ["products-active"] },
+    }
+  );
+  return response;
+};
+
 const createProduct = async (body: TCreateProductRequest) => {
   const response = await httpBag.post<TProductResponse>(
     "/product/create",
@@ -78,6 +89,7 @@ export {
   getAllProductsActive,
   createProduct,
   updateProduct,
+  getAllProductsForUser,
   // deleteProduct,
   // getProduct,
 };

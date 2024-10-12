@@ -9,11 +9,11 @@ type Props = { categories: TTableResponse<TCategoryResponse> };
 
 export function TabTypeProducts({ categories }: Props) {
   const [activeTab, setActiveTab] = useState(categories.listResult[0].id);
-  const { updateUrlParams } = useUrlParamChange();
+  const { updateUrlParam } = useUrlParamChange();
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
-    updateUrlParams("type", tab);
+    updateUrlParam("type", tab);
   };
 
   return (
