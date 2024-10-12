@@ -6,11 +6,12 @@ import {
   getPieChartStatus,
 } from "@/api/order";
 import { formattedDateV2 } from "@/lib/formatter";
+import { revalidateTag } from "next/cache";
 
 const page = async (props: any) => {
   const today = new Date();
   const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(today.getDate() - 3);
+  threeDaysAgo.setDate(today.getDate() - 7);
 
   const params = {
     fromDate: props.searchParams.fromDate || formattedDateV2(threeDaysAgo),
@@ -34,7 +35,7 @@ const page = async (props: any) => {
     pieChartsOrderStatus,
     lineChartsOrder,
   ]);
-
+  revalidateTag("orders");
   const data = {
     lineChartOrderItems: lineChartOrderResponse.payload,
     pieChartStatusItems: pieChartStatusResponse.payload,

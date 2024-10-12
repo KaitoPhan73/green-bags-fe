@@ -82,7 +82,7 @@ const CardProduct = ({ item, index }: CardProps) => {
             <h3 className="text-lg sm:text-xl font-semibold">
               {item.productName ? item.productName : "Product Name"}
             </h3>
-            <p className="text-gray-700 text-sm sm:text-base">
+            <p className="text-gray-700 dark:text-white text-sm sm:text-base">
               {formatPriceVND(item.finalPrice)}
             </p>
           </div>

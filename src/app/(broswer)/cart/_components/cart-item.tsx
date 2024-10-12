@@ -28,19 +28,16 @@ const CartItem = ({ item }: CartItemProps) => {
           />
         </div>
         <div className="pro-data w-full max-w-sm ">
-          <h5 className="font-semibold text-xl leading-8 text-black max-[550px]:text-center">
+          <h5 className="font-semibold text-xl leading-8 text-black dark:text-white max-[550px]:text-center">
             {item.productName}
           </h5>
-          <p className="font-normal text-lg leading-8 text-gray-500 my-2 min-[550px]:my-3 max-[550px]:text-center">
-            Perfumes
-          </p>
-          <h6 className="font-medium text-lg leading-8 text-indigo-600  max-[550px]:text-center">
+          <h6 className="font-medium text-lg leading-8 text-indigo-600 dark:text-white  max-[550px]:text-center">
             {formatPriceVND(item.finalPrice)}
           </h6>
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <h6 className="font-manrope font-bold text-2xl leading-9 text-black w-full max-w-[176px] text-center">
+        <h6 className="font-manrope font-bold text-2xl leading-9 text-black dark:text-white w-full max-w-[176px] text-center">
           {formatPriceVND(0)}
           <span className="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">
             (Delivery Charge)
@@ -57,7 +54,7 @@ const CartItem = ({ item }: CartItemProps) => {
           </button>
           <input
             type="text"
-            className="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[100px] min-w-[80px] placeholder:text-gray-900 py-4 text-center bg-transparent"
+            className="border-y border-gray-200 outline-none  font-semibold text-lg w-full max-w-[100px] min-w-[80px]  py-4 text-center bg-transparent"
             value={item.quantity}
           />
           <button
