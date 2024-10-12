@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 const privatePaths = ["/admin"];
 const authPaths = ["/login", "/register"];
+const userPaths = ["/design", "/checkout"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -32,7 +33,14 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // If accessing /admin but user role is not admin, redirect to /logout
+  if (accessToken && userPaths.some((path) => pathname.startsWith(path))) {
+    if (user?.roleName === "user") {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL("/admin/report", request.url));
+    }
+  }
+
   if (
     privatePaths.some((path) => pathname.startsWith(path)) &&
     user?.roleName !== "admin"
@@ -44,5 +52,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/admin/:path*"],
+  matcher: ["/", "/login", "/register", "/admin/:path*", "/design", "/checkout"],
 };

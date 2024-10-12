@@ -88,9 +88,9 @@ export const columns: CustomColumnDef<TAccountResponse>[] = [
     },
     enableColumnFilter: true,
   },
-  {
-    id: "actions",
-    header: "Actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
+  // {
+  //   id: "actions",
+  //   header: "Actions",
+  //   cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
 ];

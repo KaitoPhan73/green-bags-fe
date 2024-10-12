@@ -76,7 +76,7 @@ const UserHeader = () => {
               </DropdownMenuItem>
               {user?.roleName === "admin" && (
                 <DropdownMenuItem
-                  onClick={() => router.push("/admin/products")}
+                  onClick={() => router.push("/admin/report")}
                 >
                   <PersonIcon style={{ marginRight: "8px" }} />
                   Quản Lý
