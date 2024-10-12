@@ -39,7 +39,7 @@ export const items = [
     title: "Khác",
     description:
       "Khám phá thêm về KALBAN, sứ mệnh của chúng tôi và những gì chúng tôi đang làm để tạo ra một thế giới xanh hơn.",
-    image: "/images/KALBAN-logo.jpg",
+    image: "/images/kalban-logo.jpg",
     link: "/about",
   },
 ];

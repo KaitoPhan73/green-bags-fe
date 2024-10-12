@@ -29,7 +29,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 md:mt-0 md:w-2/5">
+        <div className="mt-8 md:mt-0 md:w-1/5">
           <h3 className="text-2xl font-semibold mb-4">Thương hiệu KALBAN</h3>
           <ul>
             <li className="flex gap-2 items-center mb-2">
@@ -52,7 +52,16 @@ const Footer = () => {
           </ul>
         </div>
         <div className="mt-8 md:mt-0 md:w-1/5">
-          <h3 className="text-2xl font-semibold mb-4">Kết Nối Với Chúng Tôi</h3>
+          <h3 className="text-2xl font-semibold mb-4">Chính sách đổi trả</h3>
+          <ul className="text-gray-600 dark:text-white">
+            <li className="mb-2">Đổi trả trong vòng 30 ngày</li>
+            <li className="mb-2">Sản phẩm còn nguyên vẹn</li>
+            <li className="mb-2">Hỗ trợ đổi hàng tại cửa hàng</li>
+            <li>Liên hệ để biết thêm chi tiết</li>
+          </ul>
+        </div>
+        <div className="mt-8 md:mt-0 md:w-0/5">
+          <h3 className="text-2xl font-semibold mb-4">Kết nối với chúng tôi</h3>
           <div className="flex space-x-4">
             <a
               href="https://www.facebook.com/profile.php?id=100086570243903"
@@ -62,9 +71,6 @@ const Footer = () => {
             >
               <FaFacebook />
             </a>
-            {/* <a href="#" className="text-blue-700 hover:text-blue-500">
-              <FaTwitter />
-            </a> */}
             <a
               href="https://www.instagram.com/kalban.624/?fbclid=IwY2xjawFx2qFleHRuA2FlbQIxMAABHbTokm91AZa7HpbkaMYpn52MFw5wdRxgmHdBVAXnBjZp8U_KKobcOJ21RQ_aem_dCDc4G3ARtkxdm7EWD3wVw"
               className="text-pink-700 hover:text-pink-500"
@@ -75,8 +81,9 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      
       </div>
-      <div className=" text-center border-t border-black py-8">
+      <div className="text-center border-t border-black py-8">
         <p>
           &copy; 2024 Khám Phá Các Mẫu Túi Có Sẵn Và Tự Lên Ý Tưởng. Sáng Tạo
           Nào!

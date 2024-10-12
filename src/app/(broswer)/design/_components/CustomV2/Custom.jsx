@@ -253,18 +253,17 @@ const CustomBagV2 = ({ bags }) => {
       console.log("Image export process finished.");
       setImageURL(imageUrls);
 
-      // Construct customValue as a JSON string in the desired format
       const customValue = JSON.stringify(
-        imageUrls.map((url) => url) // Create array of objects with "img" as key
+        imageUrls.map((url) => url) 
       );
       const postData = {
-        productId: "4c090f5b-3a7e-40f2-a1cd-3d42a948c013",
+        productId: "bf0bed81-7666-40e7-a02f-2f4b73808043",
         optionId: "bea14739-6b7c-4855-a698-0f19dc708576",
         imageURL: imageUrls[0],
-        customValue: customValue, // Set the customValue to the constructed JSON string
+        customValue: customValue,
         status: "PROCESSING",
         userId: user.id,
-        totalPrice: 10000,
+        totalPrice: 150000,
       };
 
       console.log("Posting to API with data:", postData);
