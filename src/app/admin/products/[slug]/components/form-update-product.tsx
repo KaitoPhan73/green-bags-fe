@@ -67,7 +67,7 @@ export function FormUpdateProduct({
       if (response.status === 200) {
         toast({
           title: "Cập nhật sản phẩm thành công!",
-          description: "Đang chuyển hướng sang danh sách sản phẩm...",
+          // description: "Đang chuyển hướng sang danh sách sản phẩm...",
         });
         // Redirect hoặc refresh trang nếu cần
       }

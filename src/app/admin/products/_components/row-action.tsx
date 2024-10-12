@@ -85,12 +85,12 @@ export function RowAction<TData extends TProductResponse>({
           </DropdownMenuSubContent>
         </DropdownMenuSub> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleDelete}>
+        {/* <DropdownMenuItem onClick={handleDelete}>
           {row.original.status === "ACTIVE" ? "Xóa" : "Đã xóa"}
           <DropdownMenuShortcut>
             <FaDeleteLeft className=" h-4 w-4 " />
           </DropdownMenuShortcut>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

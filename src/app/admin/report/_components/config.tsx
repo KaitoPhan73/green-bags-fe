@@ -56,16 +56,16 @@ export const lineChartOrderConfig: ChartConfig = {
     label: "Tổng Chờ Thanh Toán",
     color: "hsl(var(--chart-5))", // Assign color for pending total
   },
-  pendingCount: {
-    label: "Số Lượng Chờ Thanh Toán",
-    color: "hsl(var(--chart-7))", // Assign color for pending count
-  },
+  // pendingCount: {
+  //   label: "Số Lượng Chờ Thanh Toán",
+  //   color: "hsl(var(--chart-7))", // Assign color for pending count
+  // },
   completedTotal: {
     label: "Tổng Đã Hoàn Thành",
-    color: "hsl(var(--chart-6))", // Assign color for completed total
+    color: "hsl(var(--chart-1))", // Assign color for completed total
   },
-  completedCount: {
-    label: "Số Lượng Đã Hoàn Thành",
-    color: "hsl(var(--chart-8))", // Assign color for completed count
-  },
+  // completedCount: {
+  //   label: "Số Lượng Đã Hoàn Thành",
+  //   color: "hsl(var(--chart-8))", // Assign color for completed count
+  // },
 } satisfies ChartConfig;

@@ -56,28 +56,28 @@ const CartPage = () => {
             {items.map((item) => (
               <CartItem key={item.id} item={item} />
             ))}
-            <div className="bg-gray-50 rounded-xl p-6 w-full mb-8 max-lg:max-w-xl max-lg:mx-auto">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 w-full mb-8 max-lg:max-w-xl max-lg:mx-auto">
               <div className="flex items-center justify-between w-full mb-6">
-                <p className="font-normal text-xl leading-8 text-gray-400">
+                <p className="font-normal text-xl leading-8 text-gray-400 dark:text-white">
                   Tổng tiền hàng
                 </p>
-                <h6 className="font-semibold text-xl leading-8 text-gray-900">
+                <h6 className="font-semibold text-xl leading-8 text-gray-900 dark:text-white">
                   {formatPriceVND(getTotal())}
                 </h6>
               </div>
               <div className="flex items-center justify-between w-full pb-6 border-b border-gray-200">
-                <p className="font-normal text-xl leading-8 text-gray-400">
+                <p className="font-normal text-xl leading-8 text-gray-400 dark:text-white">
                   Phí vận chuyển
                 </p>
-                <h6 className="font-semibold text-xl leading-8 text-gray-900">
+                <h6 className="font-semibold text-xl leading-8 text-gray-900 dark:text-white">
                   {formatPriceVND(0)}
                 </h6>
               </div>
               <div className="flex items-center justify-between w-full py-6">
-                <p className="font-manrope font-medium text-2xl leading-9 text-gray-900">
+                <p className="font-manrope font-medium text-2xl leading-9 text-gray-900 dark:text-white">
                   Tổng cộng
                 </p>
-                <h6 className="font-manrope font-medium text-2xl leading-9 text-indigo-500">
+                <h6 className="font-manrope font-medium text-2xl leading-9 text-indigo-500 dark:text-white">
                   {formatPriceVND(getTotal())}
                 </h6>
               </div>
