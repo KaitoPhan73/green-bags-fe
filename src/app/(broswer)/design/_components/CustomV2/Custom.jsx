@@ -258,13 +258,13 @@ const CustomBagV2 = ({ bags }) => {
         imageUrls.map((url) => url) // Create array of objects with "img" as key
       );
       const postData = {
-        productId: "4c090f5b-3a7e-40f2-a1cd-3d42a948c013",
+        productId: "89d11a71-bc7c-4734-a52d-c7b088a175b6",
         optionId: "bea14739-6b7c-4855-a698-0f19dc708576",
         imageURL: imageUrls[0],
         customValue: customValue, // Set the customValue to the constructed JSON string
         status: "PROCESSING",
         userId: user.id,
-        totalPrice: 10000,
+        totalPrice: 50000,
       };
 
       console.log("Posting to API with data:", postData);
